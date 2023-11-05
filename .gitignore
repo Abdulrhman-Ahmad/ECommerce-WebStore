@@ -40,11 +40,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
 .vs/
 .vs/*
-=======
-
-.vs/
-.vscode/
->>>>>>> c0765f99da55cfbbd9d445aa89ae9c3d4b13f105
