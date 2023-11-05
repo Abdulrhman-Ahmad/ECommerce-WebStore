@@ -26,8 +26,13 @@
             ],
             "styles": [
               "src/styles.css",
+<<<<<<< HEAD
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
+=======
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
+>>>>>>> c0765f99da55cfbbd9d445aa89ae9c3d4b13f105
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -92,8 +97,14 @@
             ],
             "styles": [
               "src/styles.css",
+<<<<<<< HEAD
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
+=======
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
+
+>>>>>>> c0765f99da55cfbbd9d445aa89ae9c3d4b13f105
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -102,5 +113,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f614cfa8-e755-405d-9fdd-032ec02e6cd7"
   }
 }
