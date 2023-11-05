@@ -25,6 +25,7 @@ import { RecommendedProductsComponent } from './Components/Core/recommended-prod
 import { CrossSellComponent } from './Components/Core/cross-sell/cross-sell.component';
 import { NavbarComponent } from './Components/Shared/navbar/navbar.component';
 import { FooterComponent } from './Components/Shared/footer/footer.component';
+import { ContactusComponent } from './Components/Core/contactus/contactus.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { FooterComponent } from './Components/Shared/footer/footer.component';
     CrossSellComponent,
     NavbarComponent,
     FooterComponent,
+    ContactusComponent,
   ],
   imports: [
     BrowserModule,
