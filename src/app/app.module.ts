@@ -29,9 +29,9 @@ import { ContactusComponent } from './Components/Core/contactus/contactus.compon
 import { HomeComponent } from './Components/Core/Home/home/home.component';
 import { HomeBannerComponent } from './Components/Core/Home/home-banner/home-banner.component';
 import { HomeOffersComponent } from './Components/Core/Home/home-offers/home-offers.component';
-import { HomereviewsComponent } from './Components/Core/Home/homereviews/homereviews.component';
 import { HomeTopPicksComponent } from './Components/Core/Home/home-top-picks/home-top-picks.component';
 import { HomeBrandsComponent } from './Components/Core/Home/home-brands/home-brands.component';
+import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-reviews.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,9 +61,9 @@ import { HomeBrandsComponent } from './Components/Core/Home/home-brands/home-bra
     HomeComponent,
     HomeBannerComponent,
     HomeOffersComponent,
-    HomereviewsComponent,
     HomeTopPicksComponent,
     HomeBrandsComponent,
+    HomeReviewsComponent,
   ],
   imports: [
     BrowserModule,
