@@ -68,3 +68,10 @@ nav{
 }
 
 
+h6{
+  cursor:grab;
+}
+
+div ul li a{
+  cursor: pointer;
+}

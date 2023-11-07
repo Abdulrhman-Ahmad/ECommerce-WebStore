@@ -1,56 +1,71 @@
 <div class="Header z-3 shadow">
+
   <div class="upper-nav">
     <p> Shop now for unbeatable deals! <a routerLink="/products" class="PicksLink link-light text-decoration-none">Top
         Picks→</a> </p>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-white m-0 shadow mb-2">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-white mt-1 shadow mb-2">
     <div class="container-fluid">
-      <a class="navbar-brand h2 text-dark logo" >WebStore</a>
+      <a class="navbar-brand h2 text-dark logo">WebStore</a>
+
       <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span><i class="fa-solid fa-bars"></i></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
+
         <ul class="navbar-nav ms-auto">
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" >Home</a>
+            <a class="nav-link text-dark Headers" [routerLink]="['home']">Home</a>
           </li>
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" >Categories</a>
+            <a class="nav-link text-dark Headers" href="#brands">Brands</a>
           </li>
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" >Products</a>
+            <a class="nav-link text-dark Headers"[routerLink]="['products']">Products</a>
           </li>
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" >Blog</a>
+            <a class="nav-link text-dark Headers" [routerLink]="['Blog']" >Blog</a>
           </li>
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" >Contact Us</a>
+            <a class="nav-link text-dark Headers"[routerLink]="['contactus']" >Contact Us</a>
           </li>
         </ul>
+
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item mt-1 p-1">
+
+          <!-- Cart -->
+          <li class="nav-item mt-1 p-2">
             <a class="nav-link position-relative cart d-inline" routerLink="/cart">
-              <i class="bi bi-cart-fill"></i>
+              <i class="bi bi-cart-fill">Cart</i>
               <span class="position-absolute top-20 start-0 translate-middle badge rounded-pill bg-danger">
                 0
               </span>
             </a>
           </li>
-          <li class="nav-item p-1">
-            <!-- LogIn button -->
-            <a routerLink="/login"><i class="bi bi-person-fill"></i></a>
+
+          <!-- Login -->
+          <li class="nav-item m-1">
+            <a class="nav-link text-dark Headers"><i class="bi bi-person-fill">Login</i></a>
           </li>
-          <li class="nav-item p-1 mt-1">
-            <span class="text-black p-1 FullName">Hello, Name</span>
-            <a><i class="fa-solid fa-xl fa-right-from-bracket"></i></a>
+
+          <!-- Logged Name -->
+          <li class="nav-item m-1 d-flex" *ngIf="">
+            <a class="nav-link text-dark Headers"><i class="fa-solid fa-xl fa-right-from-bracket"><img
+                  src="https://www.picsum.photos/200/200" class="img" style="width: 5VH; border-radius: 50%;" alt="">
+                Hello, Name</i></a>
           </li>
+
+
         </ul>
+
       </div>
     </div>
   </nav>
 
-  <div class="lower-nav">
+  <div class="lower-nav mt-3">
     <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
       <i class=" fa fa-money fa-xl"></i>
       <h6 class="p-1">Cash On Delivery</h6>
