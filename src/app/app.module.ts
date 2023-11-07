@@ -37,7 +37,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
 <<<<<<< HEAD
 import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
-// import { AdressComponent } from './Components/Core/user profile/adress/adress.component';
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 =======

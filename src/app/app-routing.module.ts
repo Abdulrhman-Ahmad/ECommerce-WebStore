@@ -9,9 +9,10 @@ import { ProfileComponent } from './Components/Core/profile/profile.component';
 import { ProductListComponent } from './Components/Core/product-list/product-list.component';
 import { CartComponent } from './Components/Core/cart/cart.component';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
-import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
+//import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
+import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
