@@ -32,6 +32,7 @@ import { HomeOffersComponent } from './Components/Core/Home/home-offers/home-off
 import { HomeTopPicksComponent } from './Components/Core/Home/home-top-picks/home-top-picks.component';
 import { HomeBrandsComponent } from './Components/Core/Home/home-brands/home-brands.component';
 import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-reviews.component';
+import { BlogComponent } from './Components/Core/blog/blog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-r
     HomeTopPicksComponent,
     HomeBrandsComponent,
     HomeReviewsComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,

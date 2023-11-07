@@ -1,0 +1,14 @@
+button{
+  border-radius: 0px;
+}
+
+form{
+  width: 40%;
+}
+body{
+  background-color: rgb(150, 102, 102) !important;
+}
+
+div{
+  margin-top: 4px;
+}
