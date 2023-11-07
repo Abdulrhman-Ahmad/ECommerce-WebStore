@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { IRegister } from 'src/app/Interfaces/iregister';
+import { RegisterService } from 'src/app/Services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,18 @@ export class RegisterComponent implements OnInit {
 
   fg !:FormGroup
   IsMatchedPass = new BehaviorSubject<boolean>(false)
-  constructor(private fb:FormBuilder){}
+
+  user: IRegister = {
+    fullName: "",
+    userName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    address: ""
+  };
+
+
+  constructor(private fb:FormBuilder, private register : RegisterService){}
 
 
   ngOnInit(): void {
@@ -20,8 +33,10 @@ export class RegisterComponent implements OnInit {
     fullname:['',[Validators.required, Validators.minLength(4)]],
     username:['',[Validators.required, Validators.minLength(4)]],
     email:   ['',[Validators.required, Validators.email]],
-    password:['',[Validators.required, Validators.minLength(8)]],
-    confirm: ['',[Validators.required, Validators.minLength(8)]]
+    password:['',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]],
+    confirm: ['',[Validators.required, Validators.minLength(8)]],
+    address: ['',[Validators.required, Validators.minLength(8)]],
+    phone:   ['',[Validators.required, Validators.minLength(11)]]
   })
   }
 
@@ -31,6 +46,17 @@ export class RegisterComponent implements OnInit {
     if (this.fg.valid && this.IsMatched)
     {
       this.IsMatchedPass.next(false)
+
+      this.user.fullName = this.fg.get('fullname')?.value;
+      this.user.userName = this.fg.get('username')?.value;
+      this.user.email = this.fg.get('email')?.value;
+      this.user.password = this.fg.get('password')?.value;
+      this.user.address = this.fg.get('address')?.value;
+      this.user.phoneNumber = this.fg.get('phone')?.value;
+
+      // Add User
+      this.register.Register(this.user).subscribe();
+
     }
     else
     {
@@ -65,6 +91,16 @@ export class RegisterComponent implements OnInit {
   get confirmRequired():boolean|void{return this.fg.get('confirm')?.hasError('required');}
   get confirmValid(): boolean|void  {return this.fg.get('confirm')?.valid;}
   get confirmTouched():boolean|void {return this.fg.get('confirm')?.touched;}
+
+  // ---------------- [ address ]
+  get addressRequired():boolean|void{return this.fg.get('address')?.hasError('required');}
+  get addressValid(): boolean|void  {return this.fg.get('address')?.valid;}
+  get addressTouched():boolean|void {return this.fg.get('address')?.touched;}
+
+  // ---------------- [ phone ]
+  get phoneRequired():boolean|void{return this.fg.get('phone')?.hasError('required');}
+  get phoneValid(): boolean|void  {return this.fg.get('phone')?.valid;}
+  get phoneTouched():boolean|void {return this.fg.get('phone')?.touched;}
 
 
 }

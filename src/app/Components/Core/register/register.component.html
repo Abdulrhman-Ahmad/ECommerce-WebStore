@@ -7,7 +7,7 @@
       <input type="text" class="form-control" id="floatingName" placeholder="Full Name" formControlName="fullname">
       <label for="floatingName">Full Name</label>
       <div class="text-danger form-text"   *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
-      <div class="text-danger form-text"   *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 4 digits!</div>
+      <div class="text-danger form-text"   *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
       <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
     </div>
 
@@ -15,8 +15,24 @@
       <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
       <label for="username">Username</label>
       <div class="text-danger form-text"   *ngIf="usernameTouched &&  usernameRequired">Required Field!</div>
-      <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 4 digits!</div>
+      <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 8 digits!</div>
       <div class="text-success form-text" *ngIf="!usernameRequired && usernameValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+      <label for="address">Address</label>
+      <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8 digits!</div>
+      <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
+      <label for="phone">Phone</label>
+      <div class="text-danger form-text"   *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11 digits!</div>
+      <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
     </div>
 
     <div class="form-floating">

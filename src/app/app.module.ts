@@ -35,6 +35,9 @@ import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-r
 import { BlogComponent } from './Components/Core/blog/blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,9 +77,11 @@ import { NotfoundComponent } from './Components/Core/notfound/notfound.component
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
