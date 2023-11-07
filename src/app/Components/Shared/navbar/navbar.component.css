@@ -75,3 +75,8 @@ h6{
 div ul li a{
   cursor: pointer;
 }
+
+
+.banner{
+  background-color: #151617;
+}

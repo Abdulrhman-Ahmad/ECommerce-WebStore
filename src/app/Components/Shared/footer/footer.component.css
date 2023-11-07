@@ -7,10 +7,10 @@
   display: inline-flex;
   list-style: none;
 }
-
+/* right here ! */
 .wrapper .icon {
   position: relative;
-  background: #000;
+  background: black;
   border-radius: 50%;
   padding: 15px;
   margin: 10px;
@@ -100,4 +100,8 @@
 .Footers:hover {
   color: #aba2fd !important;
   font-weight: bold;
+}
+
+footer{
+  background-color: #151617 !important;
 }
