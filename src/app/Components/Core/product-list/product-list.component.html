@@ -1,1 +1,61 @@
-<p>product-list works!</p>
+<div class="container-fluid row mt-4 mb-4 " style="min-height: 80vh;">
+
+  <!-- Side Pannel -->
+  <div class="col-sm-12 col-lg-3">
+    <div class="list-group">
+      <h4>Filter By Product</h4>
+      <!-- [(ngModel)]="listFilter" -->
+      <input class="form-control mb-2" id="productSearch" type="text" placeholder="Search">
+
+      <h4>Filter By Category</h4>
+      <!-- (change)="filterCategory($event)" -->
+      <select title="category" class="form-select mb-2" >
+          <option value="AllCategories">All Categories</option>
+          <option class="text-dark" *ngFor="let category of [1,2,3,4,5]" [value]="category">
+              {{category}}
+          </option>
+      </select>
+
+      <h4>Filter By Color</h4>
+      <!-- (change)="filterColor($event)" -->
+      <select title="category" class="form-select mb-2">
+          <option value="AllColors">All Colors</option>
+          <option class="text-dark" *ngFor="let product of [1,2,3,4]" [value]="product">
+              {{product}}
+          </option>
+      </select>
+
+      <label for="money" class="h4">Filter By money</label>
+      <div class="Flex">
+          <label for="money" class="h6 d-flex">From:</label>
+          <!-- [value]="sliderValue1" (input)="updateValue1($event)" -->
+          <input type="range" class="form-range" id="money" name="money" min="0" max="100"  />
+          <p class="h6" id="sliderValue">slide Value</p>
+      </div>
+
+      <div class="Flex mb-2">
+          <label for="money2" class="h6">To:</label>
+          <!-- [value]="sliderValue2" (input)="updateValue2($event)"  -->
+          <input type="range" class="form-range" id="money2" name="money" min="100" max="1000" />
+          <p class="h6" id="sliderValue">slide value 2</p>
+      </div>
+      <p class="h5 text-center">Form: slide value 1 EGP To: slide value 2 EGP</p>
+
+  </div>
+  </div>
+
+  <!-- Products Container -->
+  <div class="container-fluid col-sm-12 col-lg-9 d-flex flex-wrap p-3  justify-content-end align-items-start" >
+
+    <!-- Cards -->
+    <div class="card m-2" style="width: 15rem;" *ngFor="let item of [1,1,1,1,1,1,1,1]">
+      <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a  class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+  </div>
+</div>

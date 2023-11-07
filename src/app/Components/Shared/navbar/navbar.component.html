@@ -1,6 +1,6 @@
 <div class="Header z-3 shadow">
 
-  <div class="upper-nav">
+  <div class="upper-nav" [routerLink]="['products']">
     <p> Shop now for unbeatable deals! <a routerLink="/products" class="PicksLink link-light text-decoration-none">Top
         Picks→</a> </p>
   </div>
@@ -18,7 +18,7 @@
 
         <ul class="navbar-nav ms-auto">
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" [routerLink]="['home']">Home</a>
+            <a class="nav-link text-dark Headers" [routerLink]="['']">Home</a>
           </li>
           <li class="nav-item m-1">
             <a class="nav-link text-dark Headers" href="#brands">Brands</a>
@@ -27,7 +27,7 @@
             <a class="nav-link text-dark Headers"[routerLink]="['products']">Products</a>
           </li>
           <li class="nav-item m-1">
-            <a class="nav-link text-dark Headers" [routerLink]="['Blog']" >Blog</a>
+            <a class="nav-link text-dark Headers" [routerLink]="['blog']" >Blog</a>
           </li>
           <li class="nav-item m-1">
             <a class="nav-link text-dark Headers"[routerLink]="['contactus']" >Contact Us</a>
