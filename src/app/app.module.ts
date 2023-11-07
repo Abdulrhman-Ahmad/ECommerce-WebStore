@@ -34,6 +34,7 @@ import { HomeBrandsComponent } from './Components/Core/Home/home-brands/home-bra
 import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-reviews.component';
 import { BlogComponent } from './Components/Core/blog/blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeBrandsComponent,
     HomeReviewsComponent,
     BlogComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
