@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { ILogin } from 'src/app/Interfaces/ilogin';
+import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +11,21 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb:FormBuilder){}
-
   fg !:FormGroup;
+  user : ILogin = {
+    username : '',
+    password : ''
+  }
+
+  constructor(private fb:FormBuilder, private login : LoginService){}
+
 
   IsFormValid = new BehaviorSubject<boolean>(true);
 
   ngOnInit(): void {
     this.fg = this.fb.group({
-      email:['',[Validators.required, Validators.email]],
-      password:['',[Validators.required, Validators.minLength(8)]]
+      username:['',[Validators.required, Validators.minLength(4)]],
+      password:['',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]]
     })
   }
 
@@ -28,20 +35,26 @@ export class LoginComponent implements OnInit {
     if (this.fg.valid)
     {
       this.IsFormValid.next(true);
+      this.user.username = this.fg.get('username')?.value;
+      this.user.password = this.fg.get('password')?.value;
+
+      this.login.Login(this.user).subscribe(
+        d=> {
+          localStorage.setItem('token', d.token)
+        }
+      )
+
     }
     else
     {
       this.IsFormValid.next(false);
-
     }
   }
 
-
-
-  // ---------------- [ email ]
-  get emailRequired():boolean|void{return this.fg.get('email')?.hasError('required');}
-  get emailValid(): boolean|void { return this.fg.get('email')?.valid;}
-  get emailTouched():boolean|void{ return this.fg.get('email')?.touched;}
+  // ---------------- [ username ]
+  get usernameRequired():boolean|void{return this.fg.get('username')?.hasError('required');}
+  get usernameValid(): boolean|void { return this.fg.get('username')?.valid;}
+  get usernameTouched():boolean|void{ return this.fg.get('username')?.touched;}
 
   // ---------------- [ password ]
   get passRequired():boolean|void{return this.fg.get('password')?.hasError('required');}

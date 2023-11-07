@@ -5,19 +5,19 @@
 
     <div class="form-floating">
 
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-        formControlName="email">
-      <label for="floatingInput">Email address</label>
-      <div class="text-danger form-text"   *ngIf="emailTouched && emailRequired">Required Field!</div>
-      <div class="text-danger form-text"   *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!</div>
-      <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
+      <input type="username" class="form-control" id="floatingInput" placeholder="name@example.com"
+        formControlName="username">
+      <label for="floatingInput">username address</label>
+      <div class="text-danger form-text"   *ngIf="usernameTouched && usernameRequired">Required Field!</div>
+      <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 4 Characters!</div>
+      <div class="text-success form-text" *ngIf="!usernameRequired && usernameValid">Looks Good!</div>
     </div>
     <div class="form-floating mt-2">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
         formControlName="password">
       <label for="floatingPassword">Password</label>
       <div class="text-danger form-text" *ngIf="passTouched && passRequired">Required Field!</div>
-      <div class="text-danger form-text" *ngIf="passTouched && !passRequired && !passValid">At least 8 Digits!</div>
+      <div class="text-danger form-text" *ngIf="passTouched && !passRequired && !passValid">Must contain Upper, Lower, Unalphabetic letters !</div>
       <div class="text-success form-text" *ngIf="!passRequired && passValid">Looks Good!</div>
     </div>
 

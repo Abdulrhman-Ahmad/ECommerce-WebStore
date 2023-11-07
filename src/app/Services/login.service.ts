@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ILogin } from '../Interfaces/ilogin';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Itoken } from './itoken';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class LoginService {
 
   constructor(private httpclien:HttpClient) { }
 
-  Login(user :ILogin): Observable<ILogin>{
-    return this.httpclien.post<ILogin>(this.BaseUrl, user)
+  Login(user :ILogin): Observable<Itoken>{
+    return this.httpclien.post<Itoken>(this.BaseUrl, user)
   }
 
 }
