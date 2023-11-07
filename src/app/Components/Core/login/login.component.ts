@@ -38,11 +38,7 @@ export class LoginComponent implements OnInit {
       this.user.username = this.fg.get('username')?.value;
       this.user.password = this.fg.get('password')?.value;
 
-      this.login.Login(this.user).subscribe(
-        d=> {
-          localStorage.setItem('token', d.token)
-        }
-      )
+      this.login.Login(this.user).subscribe()
 
     }
     else
