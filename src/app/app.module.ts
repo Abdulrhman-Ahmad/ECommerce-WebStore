@@ -33,6 +33,7 @@ import { HomeTopPicksComponent } from './Components/Core/Home/home-top-picks/hom
 import { HomeBrandsComponent } from './Components/Core/Home/home-brands/home-brands.component';
 import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-reviews.component';
 import { BlogComponent } from './Components/Core/blog/blog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,9 @@ import { BlogComponent } from './Components/Core/blog/blog.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
