@@ -35,15 +35,11 @@ import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-r
 import { BlogComponent } from './Components/Core/blog/blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
-<<<<<<< HEAD
 import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
-=======
 import { HttpClientModule } from '@angular/common/http';
 
-
->>>>>>> d8dc9c405ca076a2e5d4d1c072389426fbc29fd2
 @NgModule({
   declarations: [
     AppComponent,
