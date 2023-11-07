@@ -9,6 +9,9 @@ import { ProfileComponent } from './Components/Core/profile/profile.component';
 import { ProductListComponent } from './Components/Core/product-list/product-list.component';
 import { CartComponent } from './Components/Core/cart/cart.component';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
+import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
+import { AddressComponent } from './Components/Core/user profile/address/address.component';
+import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -17,7 +20,10 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
   {path:'blog', component:BlogComponent},
   {path:'profile', component:ProfileComponent},
+  {path:'Address', component:AddressComponent},
+  {path:'Add', component:AddAddressComponent},
   {path:'products', component:ProductListComponent},
+  {path:'General', component:GeneralInformationComponent},
   {path:'cart', component:CartComponent},
   {path:'**', component:NotfoundComponent}
 ];

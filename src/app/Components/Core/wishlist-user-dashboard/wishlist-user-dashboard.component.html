@@ -1,1 +1,154 @@
-<p>wishlist-user-dashboard works!</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-3 mt-2">
+      <app-profile></app-profile>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- products -->
+    <div class="col-md-9 mx-auto" >
+      <section class="products Top-products section">
+        <div class="container">
+          <div
+            class="row wishListTitle justify-content-center mt-5 mb-5 rounded"
+          >
+            <div class="col-lg-3 text-center">
+              <div class="title py-3">
+                <h2>WishList</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="products  section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="row">
+                  <!-- card -->
+                  <!-- <div
+                    class="col-md-6 col-lg-4 mt-2 card-wrapper col-sm-8"
+                    *ngFor="
+                      let p of products
+
+                    "
+                  >
+                    <div class="card mb-3">
+                      <div class="card-body p-0 pb-3" style="max-height: 200px">
+                        <div *ngIf="p.price != p.priceAfter" class="sale">
+                          {{ p.discount }}% OFF
+                        </div>
+
+
+                        <div class="card-img-actions">
+                          <img
+                            src="{{ p.image }}"
+                            class="card-img rounded-0"
+                            height="200px"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div class="card-body text-center bg-light">
+                        <div class="mb-2 h-25">
+                          <h5 class="font-weight-semibold mb-2 text-white">
+                            <a
+                              routerLink="/Products/{{ p.id }}"
+                              class="text-default mb-2 nameColor"
+                              data-abc="true"
+                            >
+                              {{ p.name }}
+                            </a>
+                          </h5>
+                        </div>
+                        <div class="h-25">
+                          <h4 class="mb-0 font-weight-semibold text-success">
+                            ${{ p.priceAfter }}
+                          </h4>
+                          <h5 *ngIf="p.price != p.priceAfter" class="oldPrice">
+                            ${{ p.price }}
+                          </h5>
+                        </div>
+                        <div class="mt-2 d-flex justify-content-center">
+                          <span>
+                            Rating :
+                          </span>
+
+                            <ul class="list-unstyled d-flex justify-content-center">
+                              <ng-container
+                                *ngIf="p.avgRatingRounded > 0; else emptyStars"
+                              >
+                                <li
+                                  *ngFor="let star of generateStars(p.avgRatingRounded)"
+                                >
+                                  <i
+                                    class="fas fa-star fa-sm text-warning"
+                                    [ngClass]="{
+                                      'fa-star': star === 'full',
+                                      'fa-star-half-alt': star === 'half',
+                                      'fa-star-o': star === 'empty'
+                                    }"
+                                  ></i>
+                                </li>
+                              </ng-container>
+                              <ng-template #emptyStars>
+                                <li *ngFor="let _ of [1, 2, 3, 4, 5]">
+                                  <i class="fas fa-star fa-sm fa-star-o"></i>
+                                </li>
+                              </ng-template>
+                            </ul>
+                        </div>
+                        <div class="text-muted mb-1">
+                          {{ p.reviewCount }} reviews
+                        </div>
+                        <button
+                            (click)="RemoveFromwishList(p.id)"
+                            type="button"
+                            class="btn bg-cart whishlistBtn"
+                          >
+                            <i class="fa-regular fa-heart wishlist"></i>
+                            Remove
+                          </button>
+                      </div>
+                    </div>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- wishlist is empty -->
+      <div class="my-5 centered-message" >
+        <div class="card card-msg">
+          <div class="card-body-msg">
+            <h5 class="card-title-msg">No Products Found</h5>
+            <p class="card-text-msg">Your Wishlist is Empty</p>
+          </div>
+          <div class="mb-4">
+            <h2 class="text-center">
+              <a routerLink="/Products" class="btn btnShoping">Go Shopping</a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wishlist word -->
+
+    <!-- <section class="products Top-products section">
+        <div class="container">
+          <div
+            class="row wishListTitle justify-content-center mt-5 mb-5 rounded"
+          >
+            <div class="col-lg-3 text-center">
+              <div class="title py-3">
+                <h2>WishList</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+
+  </div>
+</div>

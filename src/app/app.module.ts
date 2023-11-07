@@ -35,6 +35,10 @@ import { HomeReviewsComponent } from './Components/Core/Home/home-reviews/home-r
 import { BlogComponent } from './Components/Core/blog/blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
+import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
+// import { AdressComponent } from './Components/Core/user profile/adress/adress.component';
+import { AddressComponent } from './Components/Core/user profile/address/address.component';
+import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +72,10 @@ import { NotfoundComponent } from './Components/Core/notfound/notfound.component
     HomeBrandsComponent,
     HomeReviewsComponent,
     BlogComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    GeneralInformationComponent,
+    AddressComponent,
+    AddAddressComponent
   ],
   imports: [
     BrowserModule,
