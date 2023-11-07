@@ -3,7 +3,7 @@ button{
 }
 
 form{
-  width: 40%;
+  width: 30rem;
 }
 body{
   background-color: rgb(150, 102, 102) !important;
@@ -11,4 +11,8 @@ body{
 
 div{
   margin-top: 4px;
+}
+
+input{
+  margin-top: 1rem;
 }
