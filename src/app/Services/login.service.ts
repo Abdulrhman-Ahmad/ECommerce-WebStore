@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ILogin } from '../Interfaces/ilogin';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Itoken } from './itoken';
+import { Itoken } from '../Interfaces/itoken';
 
 @Injectable({
   providedIn: 'root'
