@@ -13,6 +13,8 @@ import { NotfoundComponent } from './Components/Core/notfound/notfound.component
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
+import { OrderListComponent } from './Components/Core/user profile/order-list/order-list.component';
+import { OrderdetailsComponent } from './Components/Core/user profile/orderdetails/orderdetails.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path:'profile', component:ProfileComponent},
   {path:'Address', component:AddressComponent},
   {path:'Add', component:AddAddressComponent},
+  {path:'Orders', component:OrderListComponent},
+  {path:'OrderDetails', component:OrderdetailsComponent},
   {path:'products', component:ProductListComponent},
   {path:'General', component:GeneralInformationComponent},
   {path:'cart', component:CartComponent},
