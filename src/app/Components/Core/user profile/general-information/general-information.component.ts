@@ -17,9 +17,8 @@ export class GeneralInformationComponent implements OnInit {
   this.EditInfrmation = this.fb.group({
     fullname:['',[Validators.required, Validators.minLength(4)]],
     username:['',[Validators.required, Validators.minLength(4)]],
-    email:   ['',[Validators.required, Validators.email]],
-    password:['',[Validators.required, Validators.minLength(8)]],
-    confirm: ['',[Validators.required, Validators.minLength(8)]]
+    email:   ['',[Validators.required, Validators.email]]
+
   })
   }
 
@@ -52,4 +51,8 @@ export class GeneralInformationComponent implements OnInit {
   get emailRequired():boolean|void{return this.EditInfrmation.get('email')?.hasError('required');}
   get emailValid(): boolean|void { return this.EditInfrmation.get('email')?.valid;}
   get emailTouched():boolean|void{ return this.EditInfrmation.get('email')?.touched;}
+
+
+  /////////////////////////////////////////////////////////////////////////
+  
 }

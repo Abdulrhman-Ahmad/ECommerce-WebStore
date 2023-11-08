@@ -39,6 +39,8 @@ import { GeneralInformationComponent } from './Components/Core/user profile/gene
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderListComponent } from './Components/Core/user profile/order-list/order-list.component';
+import { OrderdetailsComponent } from './Components/Core/user profile/orderdetails/orderdetails.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { HttpClientModule } from '@angular/common/http';
     NotfoundComponent,
     GeneralInformationComponent,
     AddressComponent,
-    AddAddressComponent
+    AddAddressComponent,
+    OrderListComponent,
+    OrderdetailsComponent
   ],
   imports: [
     BrowserModule,
