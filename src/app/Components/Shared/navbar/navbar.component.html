@@ -55,7 +55,7 @@
           <li class="nav-item m-1 d-flex" [routerLink]="['profile']" *ngIf=" (log.IsLoggedIn | async)" >
             <a class="nav-link text-dark Headers"><i class="fa-solid fa-xl fa-right-from-bracket"><img
                   src="https://www.picsum.photos/200/200" class="img" style="width: 4VH; border-radius: 50%;" alt="">
-                Abdurlahman</i></a>
+                {{this.log.CurrentUserName | async}}</i></a>
           </li>
 
           <!-- Logged Name -->
