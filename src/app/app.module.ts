@@ -80,7 +80,7 @@ import { OrderdetailsComponent } from './Components/Core/user profile/orderdetai
     AddressComponent,
     AddAddressComponent,
     OrderListComponent,
-    OrderdetailsComponent
+    OrderdetailsComponent,
   ],
   imports: [
     BrowserModule,
