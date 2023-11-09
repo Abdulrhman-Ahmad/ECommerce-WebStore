@@ -39,8 +39,13 @@ export class LoginComponent implements OnInit {
       this.user.username = this.fg.get('username')?.value;
       this.user.password = this.fg.get('password')?.value;
 
-      this.login.Login(this.user).subscribe()
-      this.router.navigate([''])
+      this.login.Login(this.user).subscribe(
+        {
+          next:     () => this.router.navigate(['']),
+          error:    () => console.log("Incorrect Email or Pass"),
+          complete: () => console.log("Successfully Loged In")
+        }
+      )
     }
     else
     {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IRegister } from 'src/app/Interfaces/iregister';
 import { RegisterService } from 'src/app/Services/register.service';
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor(private fb:FormBuilder, private register : RegisterService){}
+  constructor(private fb:FormBuilder, private register : RegisterService, private router:Router){}
 
 
   ngOnInit(): void {
@@ -54,8 +55,14 @@ export class RegisterComponent implements OnInit {
       this.user.address = this.fg.get('address')?.value;
       this.user.phoneNumber = this.fg.get('phone')?.value;
 
-      // Add User
-      this.register.Register(this.user).subscribe();
+
+      this.register.Register(this.user).subscribe(
+        {
+          next: () => this.router.navigate(['login']),
+          error: () => console.log("Failed To Register!"),
+          complete: () => console.log("Successfully Registered!")
+        }
+      )
 
     }
     else

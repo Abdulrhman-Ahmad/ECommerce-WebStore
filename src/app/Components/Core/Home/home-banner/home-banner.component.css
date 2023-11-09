@@ -4,3 +4,9 @@
   top: 26vw;
   TEXT-ALIGN: left;
 }
+
+a{
+  border-radius: 0px !important;
+  width: 10rem;
+  font-weight: bold;
+}
