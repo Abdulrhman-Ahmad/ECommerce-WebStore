@@ -1,31 +1,32 @@
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+img{
+  max-width: 30vw;
 }
 
-.profile-usertitle {
+div{
   text-align: center;
-  margin-top: 20px;
+  cursor: pointer;
 }
 
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
+.list-group-item:hover{
+  background-color: #0e1130;
+  color: white;
+  transition: 400ms;
 }
 
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
+.list-group-item{
+  transition: 400ms;
 }
 
 
+#logoutbutton:hover{
+  background-color: red;
+}
 
+#profileimage{
+  width: 20vw;
+}
 
+.profactive{
+  background-color: #24295e;
+  color: white;
+}

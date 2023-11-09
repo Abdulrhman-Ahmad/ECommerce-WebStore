@@ -9,27 +9,30 @@ import { ProfileComponent } from './Components/Core/profile/profile.component';
 import { ProductListComponent } from './Components/Core/product-list/product-list.component';
 import { CartComponent } from './Components/Core/cart/cart.component';
 import { NotfoundComponent } from './Components/Core/notfound/notfound.component';
-//import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
 import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 import { OrderListComponent } from './Components/Core/user profile/order-list/order-list.component';
 import { OrderdetailsComponent } from './Components/Core/user profile/orderdetails/orderdetails.component';
+import { authGuard } from './Guards/auth.guard';
+import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-dashboard/wishlist-user-dashboard.component';
+import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'contactus', component:ContactusComponent},
-  {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
   {path:'blog', component:BlogComponent},
-  {path:'profile', component:ProfileComponent},
-  {path:'Address', component:AddressComponent},
-  {path:'Add', component:AddAddressComponent},
-  {path:'Orders', component:OrderListComponent},
-  {path:'OrderDetails', component:OrderdetailsComponent},
+  {path:'login', component:LoginComponent, canActivate:[authGuard]},
+  {path:'register', component:RegisterComponent, canActivate:[authGuard]},
+  {path:'profile', component:GeneralInformationComponent, canActivate:[authGuard]},
+  {path:'address', component:AddressComponent, canActivate:[authGuard]},
+  {path:'wishlist', component:WishlistUserDashboardComponent, canActivate:[authGuard]},
+  {path:'favorite', component:FavoritesUserDashboardComponent, canActivate:[authGuard]},
+  {path:'add', component:AddAddressComponent, canActivate:[authGuard]},
+  {path:'orders', component:OrderListComponent, canActivate:[authGuard]},
+  {path:'orderdetails', component:OrderdetailsComponent, canActivate:[authGuard]},
+  {path:'cart', component:CartComponent, canActivate:[authGuard]},
   {path:'products', component:ProductListComponent},
-  {path:'General', component:GeneralInformationComponent},
-  {path:'cart', component:CartComponent},
   {path:'**', component:NotfoundComponent}
 ];
 

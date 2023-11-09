@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClaimsService } from 'src/app/Services/claims.service';
 import { CurrentuserService } from 'src/app/Services/currentuser.service';
 
@@ -9,7 +10,7 @@ import { CurrentuserService } from 'src/app/Services/currentuser.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public data : CurrentuserService, private claim : ClaimsService){}
+  constructor(public data : CurrentuserService, private claim : ClaimsService, private router:Router){}
 
 ngOnInit(): void {
   let token = localStorage.getItem('token')
@@ -22,6 +23,12 @@ ngOnInit(): void {
     this.data.CurrentUser.Email = claims[this.claim.claimTypes.Email]
     this.data.CurrentUser.Role = claims[this.claim.claimTypes.Role]
     }
+
+}
+
+logout(){
+  localStorage.removeItem('token');
+  this.router.navigate(['login'])
 
 }
 

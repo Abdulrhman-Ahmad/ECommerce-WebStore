@@ -1,15 +1,19 @@
-<div class="container-fluid d-flex justify-content-space-between">
-  <div class="col-3 container-fluid">
+<div class="container-fluid row d-flex mt-2 mb-5">
+
+  <div class="col-12 col-md-5 d-flex justify-content-md-start justify-content-center">
     <app-profile></app-profile>
   </div>
-  <div class="col-9 bg-light mt-3 roundedd  container-fluid">
-    <h1 class="text-center mt-3 ">Addresses</h1>
-    <div class="shadow p-5 m-5  ">
+
+  <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
+
+
+    <div class="shadow p-5  w-100">
+      <div class="fs-2 text-center">Address</div>
+      <br>
       <div class="text-center ">
-        <button class="btn btn-dark p-6 text-center" style="width: 250px;" routerLink="/Add">
+        <button class="btn btn-dark p-6 text-center" style="width: 250px;" [routerLink]="['/add']">
           Add
         </button>
-
       </div>
       <div class="col-lg-8" class="m-3">
         <div class="card my-3">
@@ -49,7 +53,9 @@
           </div>
         </div>
       </div>
+
     </div>
 
   </div>
+
 </div>

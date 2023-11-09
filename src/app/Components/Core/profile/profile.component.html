@@ -1,85 +1,83 @@
-<!-- <div class="container-fluid">
-  <div class="container-fluid row profile" style="min-height: 80vh">
 
-    <div class="col-md-3 h-100 bg-body-secondary">
-      <div class="profile-sidebar">
-        <div class="profile-userpic text-center">
-          <img src="https://www.picsum.photos/400/400" class="img-responsive" alt="">
+<!--
+<div class="container row mb-5 mt-1">
+
+  <div class="container d-flex col-md-5 col-12">
+        <div class="list-group list-group-flush ">
+
+          <div class="text-center p-3" >
+            <img src="https://www.picsum.photos/400/400" id="profileimage" class="img-fluid rounded-circle" alt="">
+          </div>
+
+          <div>
+            <div class="fs-2">Abdulrahman</div>
+          </div>
+
+
+          <div [routerLink]="['/profile']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+            <i class="fas fa-chart-area fa-fw me-3 justify-content-center"></i><span>General Information</span>
+          </div>
+
+          <div [routerLink]="['/address']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom  fs-5">
+            <i class="fas fa-chart-area fa-fw me-3"></i><span>Addresses</span>
+          </div>
+
+          <div [routerLink]="['/wishList']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+            <i class="fas fa-money-bill fa-fw me-3"></i><span>WishList</span>
+          </div>
+
+          <div [routerLink]="['/orders']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+            <i class="fas fa-money-bill fa-fw me-3"></i><span>Orders</span>
+          </div>
+
+          <div [routerLink]="['/orders']" id="logoutbutton" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+            <i class="fas fa-money-bill fa-fw me-3 fw-bold"></i><span>LogOut</span>
+          </div>
+
         </div>
+  </div>
 
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name ">Abdulrahman</div>
-        </div>
-
-        <div class="profile-userbuttons">
-          <button type="button" class="btn btn-success btn-sm">Log Out</button>
-        </div>
-
-        <ul _ngcontent-ng-c3996415894="" class="navbar-nav ms-auto">
-          <li _ngcontent-ng-c3996415894="" class="nav-item m-1"><a _ngcontent-ng-c3996415894=""
-              class="nav-link text-dark Headers"><i class="bi bi-house-fill"></i> Home</a></li>
-          <li _ngcontent-ng-c3996415894="" class="nav-item m-1"><a _ngcontent-ng-c3996415894=""
-              class="nav-link text-dark Headers"><i class="bi bi-gear-fill"></i> Account</a></li>
-          <li _ngcontent-ng-c3996415894="" class="nav-item m-1"><a _ngcontent-ng-c3996415894=""
-              class="nav-link text-dark Headers"><i class="bi bi-star-fill"></i> Favorites</a></li>
-          <li _ngcontent-ng-c3996415894="" class="nav-item m-1"><a _ngcontent-ng-c3996415894=""
-                class="nav-link text-dark Headers"><i class="bi bi-list-check"></i> Wishlist</a></li>
-            <li _ngcontent-ng-c3996415894="" class="nav-item m-1"><a _ngcontent-ng-c3996415894=""
-                class="nav-link text-dark Headers"><i class="bi bi-list-columns-reverse"></i> Orders</a></li>
-          </ul>
-
-        </div>
-
-      </div>
+  <div class="col-lg-7 container d-flex justify-content-end align-items-center" >
+    <img src="https://images.squarespace-cdn.com/content/v1/55628e01e4b024c2e338e7f2/1432695173217-8TBDZ1CELY3CICDELT0I/phone.jpg"  alt="" >
+  </div>
+</div> -->
 
 
+<div class="container d-flex col-md-5 col-12">
+  <div class="list-group list-group-flush ">
 
-      <div class="col-md-9 h-100">
-        <div class="profile-content">
-          Content Goes Here
-          Some user related content goes here...
-        </div>
-      </div>
+    <div class="text-center p-3" >
+      <img src="https://www.picsum.photos/400/400" id="profileimage" class="img-fluid rounded-circle" alt="">
     </div>
-  </div> -->
-<!----------------------SideBar------------------------->
 
-<!-- Sidebar -->
-
-<div class="container-fluid bg-color d-flex flex-column justify-content-space-between mt-0 text-center ">
-  <nav id="sidebarMenu" class=" d-lg-block sidebar ">
-    <div class="row">
-      <div class="list-group list-group-flush ">
-        <div class="profile-userbuttons text-center p-3">
-          <img src="https://www.picsum.photos/400/400" class="img-fluid rounded-circle" alt="">
-        </div>
-
-        <div class="profile-userbuttons text-center">
-          <div class="profile-userbuttons-name fs-2">Abdulrahman</div>
-        </div>
-
-
-        <div routerLink="/General" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
-          <i class="fas fa-chart-area fa-fw me-3 justify-content-center"></i><span>General Information</span>
-        </div>
-
-        <div routerLink="/Address" class="list-group-item list-group-item-action p-3 ripple text-center zoom  fs-5">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Addresses</span>
-        </div>
-
-        <div routerLink="/Orders" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
-          <i class="fas fa-money-bill fa-fw me-3"></i><span>Orders</span>
-        </div>
-
-        <div routerLink="/wishList" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
-          <i class="fas fa-money-bill fa-fw me-3"></i><span>WishList</span>
-        </div>
-
-        <div class="profile-userbuttons p-3 fs-5">
-          <button type="button" class="btn btn-dark">Log Out</button>
-        </div>
-
-      </div>
+    <div>
+      <div class="fs-2">Abdulrahman</div>
     </div>
-  </nav>
+
+
+    <div [routerLink]="['/profile']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-chart-area fa-fw me-3 justify-content-center"></i><span>General Information</span>
+    </div>
+
+    <div [routerLink]="['/address']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom  fs-5">
+      <i class="fas fa-chart-area fa-fw me-3"></i><span>Addresses</span>
+    </div>
+
+    <div [routerLink]="['/wishlist']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>WishList</span>
+    </div>
+
+    <div [routerLink]="['/favorite']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>Favorites</span>
+    </div>
+
+    <div [routerLink]="['/orders']" [routerLinkActive]="['profactive']" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3"></i><span>Orders</span>
+    </div>
+
+    <div  id="logoutbutton" class="list-group-item list-group-item-action p-3 ripple text-center zoom fs-5">
+      <i class="fas fa-money-bill fa-fw me-3 fw-bold"></i><span>LogOut</span>
+    </div>
+
+  </div>
 </div>
