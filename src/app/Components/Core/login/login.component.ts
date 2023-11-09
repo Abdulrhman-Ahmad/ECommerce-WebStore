@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ILogin } from 'src/app/Interfaces/ilogin';
 import { LoginService } from 'src/app/Services/login.service';
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password : ''
   }
 
-  constructor(private fb:FormBuilder, private login : LoginService){}
+  constructor(private fb:FormBuilder, private login : LoginService, private router:Router){}
 
 
   IsFormValid = new BehaviorSubject<boolean>(true);
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.user.password = this.fg.get('password')?.value;
 
       this.login.Login(this.user).subscribe()
-
+      this.router.navigate([''])
     }
     else
     {
