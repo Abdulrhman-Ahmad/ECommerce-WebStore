@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ClaimsService } from 'src/app/Services/claims.service';
 import { CurrentuserService } from 'src/app/Services/currentuser.service';
@@ -10,7 +11,7 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public log: LoginService, public data: CurrentuserService, private claim: ClaimsService) { }
+  constructor(public log: LoginService, public data: CurrentuserService, private claim: ClaimsService, private router:Router) { }
 
 
   logout() {
@@ -34,5 +35,15 @@ export class NavbarComponent implements OnInit {
       this.log.IsLoggedIn.next(false);
   }
 
+  CheckLog(s:string){
+    if (this.log.IsLoggedIn.value)
+    {
+      this.router.navigate([s])
+    }
+    else
+    {
+      this.router.navigate(['login'])
+    }
+  }
 
 }

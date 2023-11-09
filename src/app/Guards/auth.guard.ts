@@ -14,7 +14,7 @@ const token = localStorage.getItem('token');
       return true
   }
 
-  if (state.url === "/profile" || state.url === "/Address" || state.url === "/orders" || state.url === "/general" || state.url === "/cart")
+  if (state.url === "/profile" || state.url === "/Address" || state.url === "/orders" || state.url === "/cart" || state.url === "/favorite")
   {
     if (token != null)
       return true
