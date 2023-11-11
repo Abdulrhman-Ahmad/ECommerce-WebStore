@@ -4,6 +4,8 @@ import { IproductFilter } from './../../../Interfaces/iproductfilter';
 import { Component, OnInit } from '@angular/core';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { ProductlistService } from 'src/app/Services/productlist.service';
+import { CartService } from 'src/app/Services/cart.service';
+import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 
 @Component({
   selector: 'app-product-list',
@@ -28,7 +30,7 @@ export class ProductListComponent implements OnInit {
     pageIndex: '1',
   }
 
-  constructor(private productlist : ProductlistService,private favoriteservice: FavoriteService, private wilshlistservice: WishlistService){}
+  constructor(private productlist : ProductlistService,private favoriteservice: FavoriteService, private wilshlistservice: WishlistService, private cartapi: CartService){}
 
   ngOnInit(): void {
     this.productlist.getProducts(this.filters).subscribe(
@@ -58,7 +60,15 @@ export class ProductListComponent implements OnInit {
   }
 
   AddToCart(id:number){
-
+    let data : Iproductquantity = {
+      productId : id,
+      quantity : 1
+    }
+    this.cartapi.AddToCart(data).subscribe({
+      next:(d) => console.log(d),
+      error: (d) => console.log('failed to add to cart', d.message),
+      complete: () => console.log('Successfully added to cart')
+    })
   }
 
   next()
