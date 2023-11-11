@@ -14,7 +14,11 @@ export class GeneralInformationComponent implements OnInit {
 
   fg !:FormGroup
 
-  constructor(private fb:FormBuilder, private register : RegisterService, public data:CurrentuserService, private claim:ClaimsService){}
+  constructor(
+    private fb:FormBuilder,
+    private register : RegisterService,
+    public data:CurrentuserService,
+    private claim:ClaimsService){}
 
   ngOnInit(): void {
 
