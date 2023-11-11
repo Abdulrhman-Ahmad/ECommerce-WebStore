@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/Core/Home/home/home.component';
@@ -19,6 +20,7 @@ import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 import { ProductDetailsComponent } from './Components/Core/product-details/product-details.component';
 
+
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'contactus', component:ContactusComponent},
@@ -37,6 +39,7 @@ const routes: Routes = [
   {path:'productsDitails', component:ProductDetailsComponent},
   {path:'**', component:NotfoundComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

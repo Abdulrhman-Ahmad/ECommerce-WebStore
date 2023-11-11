@@ -1,0 +1,15 @@
+*{
+  box-sizing: border-box;
+}
+button{
+  border-radius: 0px;
+}
+
+#totalPrice{
+  background-color: rgb(228, 214, 214);
+}
+
+img{
+  padding: 1rem;
+  height: 20vh;
+}

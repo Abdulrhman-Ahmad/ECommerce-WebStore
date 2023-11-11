@@ -5,33 +5,42 @@
   </div>
 
   <div class="col-12 col-md-7 bg-light d-flex align-items-center justify-content-center">
-    <div class="container-fluid">
-      <h1 class="text-center mt-3 ">Orders</h1>
-    </div>
-    <div class="container-fluid shadow p-5 m-5">
+
+    <div class="container-fluid shadow" style="min-height: 60vh;">
+
       <table class="table table-striped -mt-2">
         <thead>
           <tr>
-            <th class="whitespace-nowrap fs-5">Order Id</th>
-            <th class="whitespace-nowrap fs-5">Status</th>
-            <th class="whitespace-nowrap fs-5">Delivered Date</th>
-            <th class="whitespace-nowrap fs-5">Details</th>
+            <th class="whitespace-nowrap fs-5">Id</th>
+            <th class="whitespace-nowrap fs-5">Name</th>
+            <th class="whitespace-nowrap fs-5">Brand</th>
+            <th class="whitespace-nowrap fs-5">Model</th>
+            <th class="whitespace-nowrap fs-5">Price</th>
+            <th class="whitespace-nowrap fs-5">Image</th>
+            <th class="whitespace-nowrap fs-5"></th>
+            <th class="whitespace-nowrap fs-5"></th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="intro-x">
 
-            <td>Order ID</td>
-            <td>Status</td>
-            <td>Delivered Date</td>
+        <tbody>
+          <tr class="intro-x" *ngFor="let item of favorites; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.brandName}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.price}}</td>
+            <img class="img-fluid" src="https://www.picsum.photos/200/200" alt="">
             <td>
-              <div>
-                <a class="btn btn-dark" routerLink="/OrderDetails"> Details </a>
-              </div>
+              <button class="btn btn-dark">View</button>
+            </td>
+            <td>
+              <button class="btn btn-dark" (click)="deleteFavorite(item.id)">X</button>
             </td>
           </tr>
         </tbody>
+
       </table>
+
     </div>
   </div>
 

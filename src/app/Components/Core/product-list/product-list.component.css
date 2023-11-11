@@ -1,0 +1,19 @@
+a{
+  border-radius: 0px !important;
+}
+
+
+button{
+  border-radius: 0px;
+}
+
+input, select{
+  border-radius: 0px !important;
+}
+
+.ination{
+  width: 4rem;
+  height: 2rem;
+}
+
+

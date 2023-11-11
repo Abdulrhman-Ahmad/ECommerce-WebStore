@@ -1,7 +1,7 @@
-<div class="container-fluid row mt-4 mb-4 " style="min-height: 80vh;">
+<div class="container-fluid row mt-4 mb-4 " style="min-height: 95vh;">
 
   <!-- Side Pannel -->
-  <div class="col-sm-12 col-lg-3">
+  <div class="col-sm-12 col-lg-3 shadow p-3 pt-5">
     <div class="list-group">
       <h4>Filter By Product</h4>
       <!-- [(ngModel)]="listFilter" -->
@@ -25,37 +25,40 @@
           </option>
       </select>
 
-      <label for="money" class="h4">Filter By money</label>
-      <div class="Flex">
-          <label for="money" class="h6 d-flex">From:</label>
-          <!-- [value]="sliderValue1" (input)="updateValue1($event)" -->
-          <input type="range" class="form-range" id="money" name="money" min="0" max="100"  />
-          <p class="h6" id="sliderValue">slide Value</p>
-      </div>
+      <label for="money" class="h4">Price Range</label>
 
-      <div class="Flex mb-2">
-          <label for="money2" class="h6">To:</label>
-          <!-- [value]="sliderValue2" (input)="updateValue2($event)"  -->
-          <input type="range" class="form-range" id="money2" name="money" min="100" max="1000" />
-          <p class="h6" id="sliderValue">slide value 2</p>
-      </div>
-      <p class="h5 text-center">Form: slide value 1 EGP To: slide value 2 EGP</p>
 
-  </div>
+
+    </div>
   </div>
 
   <!-- Products Container -->
   <div class="container-fluid col-sm-12 col-lg-9 d-flex flex-wrap p-3  justify-content-end align-items-start" >
 
     <!-- Cards -->
-    <div class="card m-2" style="width: 15rem;" *ngFor="let item of [1,1,1,1,1,1,1,1]">
+    <div class="card m-2" style="width: 15rem; position: relative;" *ngFor="let item of products">
       <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
+      <button (click)="AddToFavorite(item.id)" class="smalled s1 btn btn-dark m-1" style="position: absolute; top:1px; right: 1px; font-size: 10px;"><i class=" bi bi-heart-fill" id="heart"></i></button>
+      <button (click)="AddToWithList(item.id)" class="smalled s2 btn btn-dark m-1" style="position: absolute; top:40px; right:1px; font-size: 10px;"><i class=" bi bi-list-ol" id="star"></i></button>
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a  class="btn btn-primary" [routerLink]="['/productsDitails']">Go somewhere</a>
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p class="card-text">{{item.price}} LE</p>
+
+        <button (click)="AddToCart(item.id)" [value]="item.id" class="btn btn-dark"><i class="bi bi-cart-fill"></i> Add To Cart</button>
+
       </div>
+
     </div>
 
   </div>
+
+  <!-- Pageination Buttons -->
+  <div class="w-50 m-auto text-center">
+    <button class="ination btn btn-dark" (click)="prev()">Prev</button>
+    <button class="ination btn btn-light"> [ {{filters.pageIndex}} ] </button>
+    <button class="ination btn btn-dark" (click)="next()">Next</button>
+  </div>
+
+
 </div>
