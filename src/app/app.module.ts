@@ -38,9 +38,10 @@ import { NotfoundComponent } from './Components/Core/notfound/notfound.component
 import { GeneralInformationComponent } from './Components/Core/user profile/general-information/general-information.component';
 import { AddressComponent } from './Components/Core/user profile/address/address.component';
 import { AddAddressComponent } from './Components/Core/user profile/add-address/add-address.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OrderListComponent } from './Components/Core/user profile/order-list/order-list.component';
 import { OrderdetailsComponent } from './Components/Core/user profile/orderdetails/orderdetails.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,11 @@ import { OrderdetailsComponent } from './Components/Core/user profile/orderdetai
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

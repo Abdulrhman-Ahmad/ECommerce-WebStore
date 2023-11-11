@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/Core/Home/home/home.component';
@@ -18,6 +19,7 @@ import { authGuard } from './Guards/auth.guard';
 import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-dashboard/wishlist-user-dashboard.component';
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 
+
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'contactus', component:ContactusComponent},
@@ -35,6 +37,7 @@ const routes: Routes = [
   {path:'products', component:ProductListComponent},
   {path:'**', component:NotfoundComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
