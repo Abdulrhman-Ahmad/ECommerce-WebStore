@@ -19,6 +19,7 @@ import { authGuard } from './Guards/auth.guard';
 import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-dashboard/wishlist-user-dashboard.component';
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 import { ProductDetailsComponent } from './Components/Core/product-details/product-details.component';
+import { CheckoutComponent } from './Components/Core/checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:'cart', component:CartComponent, canActivate:[authGuard]},
   {path:'products', component:ProductListComponent},
   {path:'productsDitails', component:ProductDetailsComponent},
+  {path:'Checkout', component:CheckoutComponent},
   {path:'**', component:NotfoundComponent}
 ];
 
