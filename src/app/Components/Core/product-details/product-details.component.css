@@ -1,0 +1,8 @@
+img, button, a{
+  border-radius: 0px !important;
+  cursor: pointer;
+}
+
+#mainImage{
+  width: 50vh;
+}
