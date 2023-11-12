@@ -37,8 +37,8 @@ const routes: Routes = [
   {path:'orderdetails', component:OrderdetailsComponent, canActivate:[authGuard]},
   {path:'cart', component:CartComponent, canActivate:[authGuard]},
   {path:'products', component:ProductListComponent},
-  {path:'productsDitails', component:ProductDetailsComponent},
-  {path:'Checkout', component:CheckoutComponent},
+  {path:'products/details/:id', component:ProductDetailsComponent},
+  {path:'checkout', component:CheckoutComponent},
   {path:'**', component:NotfoundComponent}
 ];
 

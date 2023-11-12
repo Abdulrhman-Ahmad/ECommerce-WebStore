@@ -36,18 +36,17 @@
   <div class="container-fluid col-sm-12 col-lg-9 d-flex flex-wrap p-3  justify-content-end align-items-start" >
 
     <!-- Cards -->
-    <div class="card m-2" style="width: 15rem; position: relative;" *ngFor="let item of products">
-      <img src="https://picsum.photos/100/100" class="card-img-top" alt="...">
+    <div class="card m-2" style="width: 15rem; position: relative; cursor: pointer;" *ngFor="let item of products">
+      <img src="https://picsum.photos/100/100" class="card-img-top" alt="..." [routerLink]="['details', item.id]">
       <button (click)="AddToFavorite(item.id)" class="smalled s1 btn btn-dark m-1" style="position: absolute; top:1px; right: 1px; font-size: 10px;"><i class=" bi bi-heart-fill" id="heart"></i></button>
       <button (click)="AddToWithList(item.id)" class="smalled s2 btn btn-dark m-1" style="position: absolute; top:40px; right:1px; font-size: 10px;"><i class=" bi bi-list-ol" id="star"></i></button>
-      <div class="card-body">
+      <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer;">
         <h5 class="card-title">{{item.name}}</h5>
         <p class="card-text">{{item.description}}</p>
         <p class="card-text">{{item.price}} LE</p>
-
-        <button (click)="AddToCart(item.id)" [value]="item.id" class="btn btn-dark"><i class="bi bi-cart-fill"></i> Add To Cart</button>
-
       </div>
+
+      <button (click)="AddToCart(item.id)" [value]="item.id" class="btn btn-dark m-3"><i class="bi bi-cart-fill"></i> Add To Cart</button>
 
     </div>
 

@@ -11,6 +11,7 @@ export class ProductlistService {
 
 
   BaseUrl: string = "https://localhost:7003/api/Products/All";
+  ProductUrl: string = "https://localhost:7003/api/Products/";
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +32,9 @@ export class ProductlistService {
 
   }
 
+  GetProductById(id:number) : Observable<Iproduct>{
+    return this.http.get<Iproduct>(this.ProductUrl + id)
+  }
 }
 
 
