@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Icart } from 'src/app/Interfaces/icart';
+import { Iproduct } from 'src/app/Interfaces/iproduct';
+import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 import { CartService } from 'src/app/Services/cart.service';
 
 @Component({
@@ -10,19 +12,36 @@ import { CartService } from 'src/app/Services/cart.service';
 export class CartComponent implements OnInit {
 
   cart !: Icart[];
+  quantities: number[] = [];
+  prices :number [] = [];
+  totalPrice :number = 0;
+
 
   constructor(private cartapi: CartService){}
 
+  // ------------- [ On Component Initialization ]
   ngOnInit(): void {
     this.cartapi.GetCart().subscribe({
-      next: (d) => this.cart = d,
+      next: (d) => {
+        this.cart = d;
+        this.cart.forEach((item : Icart ) => {
+          if (item.productQuantity <= 5){
+            this.quantities.push(item.productQuantity)
+            this.prices.push(item.productPrice)
+          }
+          else
+            this.quantities.push(5)
+        })
+      },
       error: (e) => console.log(e),
       complete:()=> {
         console.log('Successfully Got Cart')
+        this.UpdatetotalPrice()
       }
     })
   }
 
+  // ------------- [ Delete Cart Element ]
   deletecart(id:number)
   {
     this.cartapi.DeleteCart(id).subscribe({
@@ -33,6 +52,36 @@ export class CartComponent implements OnInit {
         this.cart = this.cart.filter(c => c.productId != id)
       }
     })
+  }
+
+  // ------------- [ Update Cart Element's Amount ]
+  UpdateAmount(id:number, i:number)
+  {
+    let data : Iproductquantity =
+    {
+      productId : id,
+      quantity : this.quantities[i]
+    }
+
+    this.cartapi.AddAmount(data).subscribe({
+      next: (d) => console.log('data Updated', d),
+      error: (e) => console.log('unable to update the amount'),
+      complete: () => {
+        console.log('Successfully Updated!')
+
+        // Update the total price after updating the Ammount
+        this.UpdatetotalPrice()
+
+      }
+    })
+  }
+
+  // ------------- [ Update Total Amount ]
+  UpdatetotalPrice(){
+    this.totalPrice = 0
+    for (let i = 0 ; i < this.prices.length; i ++){
+      this.totalPrice += this.prices[i] * this.quantities[i]
+    }
   }
 
 }

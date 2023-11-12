@@ -4,7 +4,7 @@
   <div id="cartProductsContainer" class="row d-flex justify-content-center col-md-8 col-sm-12">
 
     <!-- Cards Section -->
-    <div class="card mb-2 w-100 h-auto" *ngFor="let item of cart">
+    <div class="card mb-2 w-100 h-auto" *ngFor="let item of cart; let i = index">
       <div class="row g-0 justify-content-between">
 
         <div class="col-md-3 d-flex justify-content-start align-items-center"><img class="img-fluid rounded-start"
@@ -13,6 +13,15 @@
           <div class="card-body">
             <div class="card-title"><strong>Product Name:</strong>{{item.productName}}</div>
             <h4 class="card-title"><strong>Price: {{item.productPrice}}LE</strong></h4>
+            <label for="quantity{{i}}"><strong>Quantity</strong></label>
+            <select name="quantity{{i}}" class="w-50 m-2" id="quantity"  [(ngModel)]="quantities[i]" (change)="UpdateAmount(item.productId, i)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div>Total Price <Strong>{{item.productPrice * quantities[i]}}LE</Strong></div>
           </div>
         </div>
         <div class="col-1 d-flex justify-content-center align-items-center">
@@ -28,12 +37,13 @@
   <!-- checkout Section and price -->
   <div class="col-md-4 col-sm-12 container-fluid">
     <div class="row align-items-center" id="totalPriceSection">
-      <div id="totalPrice" class="fs-4 p-3 ">Total Price: 999LE</div>
+      <div id="totalPrice" class="fs-4 p-3 ">Total Price: <strong>{{totalPrice}}LE</strong></div>
     </div>
 
     <div id="checkButton" class="row">
-      <button class=" btn w-100 btn-dark p-3" routerLink="/Checkout" >Checkout</button>
+      <button class=" btn w-100 btn-dark p-3" [routerLink]="['/checkout']" >Checkout</button>
     </div>
+
 
   </div>
 
