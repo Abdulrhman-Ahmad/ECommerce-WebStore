@@ -4,21 +4,19 @@
   <div id="cartProductsContainer" class="row d-flex justify-content-center col-md-8 col-sm-12">
 
     <!-- Cards Section -->
-    <div class="card mb-2 w-100 h-auto" *ngFor="let item of [1,1,1]">
+    <div class="card mb-2 w-100 h-auto" *ngFor="let item of cart">
       <div class="row g-0 justify-content-between">
 
         <div class="col-md-3 d-flex justify-content-start align-items-center"><img class="img-fluid rounded-start"
             src="https://www.picsum.photos/200/200"></div>
         <div class="col-md-8">
           <div class="card-body">
-            <div class="card-title"><strong>Product Name:</strong>iphone</div>
-            <p class="card-text"><strong>Description:</strong> iphone abpple brand high performance</p>
-            <h4 class="card-title"><strong>Price: 280LE</strong></h4>
+            <div class="card-title"><strong>Product Name:</strong>{{item.productName}}</div>
+            <h4 class="card-title"><strong>Price: {{item.productPrice}}LE</strong></h4>
           </div>
         </div>
-
         <div class="col-1 d-flex justify-content-center align-items-center">
-          <button class="btn btn-dark">X</button>
+          <button class="btn btn-dark" (click)="deletecart(item.productId)">X</button>
         </div>
 
       </div>
@@ -40,3 +38,5 @@
   </div>
 
 </div>
+
+
