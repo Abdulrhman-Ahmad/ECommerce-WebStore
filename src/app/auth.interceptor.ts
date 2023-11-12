@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -20,7 +20,11 @@ export class AuthInterceptor implements HttpInterceptor {
     {
       const clonedRequest = request.clone({setHeaders: {Authorization : `Bearer ${token}`}})
 
-      return next.handle(clonedRequest);
+      return next.handle(clonedRequest).pipe(
+        tap(
+          // here we're getting the response
+          )
+      );
     }
     else
     {
