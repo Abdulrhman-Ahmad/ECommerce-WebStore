@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Icart } from 'src/app/Interfaces/icart';
-import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 import { CartService } from 'src/app/Services/cart.service';
 
@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   totalPrice :number = 0;
 
 
-  constructor(private cartapi: CartService){}
+  constructor(private cartapi: CartService, private router: Router){}
 
   // ------------- [ On Component Initialization ]
   ngOnInit(): void {
@@ -81,6 +81,18 @@ export class CartComponent implements OnInit {
     this.totalPrice = 0
     for (let i = 0 ; i < this.prices.length; i ++){
       this.totalPrice += this.prices[i] * this.quantities[i]
+    }
+  }
+
+  // -------------- [ Checkout Button ]
+  checkout(){
+    if (this.totalPrice == 0)
+    {
+      this.router.navigate(['products'])
+    }
+    else
+    {
+      this.router.navigate(['checkout'])
     }
   }
 

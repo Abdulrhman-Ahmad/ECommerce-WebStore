@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 import { CartService } from 'src/app/Services/cart.service';
+import { FavoriteService } from 'src/app/Services/favorite.service';
 import { ProductlistService } from 'src/app/Services/productlist.service';
 
 @Component({
@@ -43,7 +44,7 @@ export class ProductDetailsComponent implements OnInit{
   currentImage : string = '';
   quantity : number = 1;
 
-  constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router){}
+  constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router, private favoriteapi: FavoriteService){}
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -65,19 +66,13 @@ export class ProductDetailsComponent implements OnInit{
     this.currentImage = src;
   }
 
-  // add the current product to the
+  //------------- [ Add To Cart ]
   AddToCart() {
-    // if the user not logged in then he have to log in at first
-    // if (this.login.IsLoggedIn)
-    // {
-    //   this.router.navigate(['/login']);
-    //   return
-    // }
     let data: Iproductquantity = {
       productId: this.productId,
       quantity: this.quantity
     }
-    this.cartapi.AddToCart(data).subscribe({
+    this.cartapi.AddAmount(data).subscribe({
       next: (d) => console.log(d),
       error: (d) => console.log('failed to add to cart', d.message),
       complete: () => console.log(`Successfully added [${data.quantity}] to cart`)
@@ -85,8 +80,27 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   buy(){
-    this.AddToCart();
-    this.router.navigate(['cart'])
+    let data: Iproductquantity = {
+      productId: this.productId,
+      quantity: this.quantity
+    }
+    this.cartapi.AddAmount(data).subscribe({
+      next: (d) => console.log(d),
+      error: (d) => console.log('failed to add to cart', d.message),
+      complete: () => {
+        console.log(`Successfully added [${data.quantity}] to cart`)
+        this.router.navigate(['cart'])
+      }
+    })
+  }
+
+  // ------------- [ Add To Favorite ]
+  AddToFavorite(){
+    this.favoriteapi.AddToFavorite(this.productId).subscribe({
+      next: (d) => console.log('Adding to Cart', d),
+      error: (e) => console.log(e),
+      complete: () => console.log('Successfully Added to Cart!')
+    })
   }
 
 
