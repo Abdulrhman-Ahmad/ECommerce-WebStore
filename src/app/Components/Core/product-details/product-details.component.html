@@ -4,7 +4,7 @@
     <div class="container row gx-5">
 
       <!-- Images Section -->
-        <aside class="col-lg-6 d-flex flex-column align-content-center  justify-content-center">
+      <aside class="col-lg-6 d-flex flex-column align-content-center  justify-content-center">
 
         <!-- Main Image -->
         <div class=" mb-3 d-flex justify-content-center ">
@@ -17,11 +17,9 @@
         <!-- All the Images -->
         <div class="d-flex justify-content-center mb-3">
           <!-- Other Images of the product [ngfor] -->
-          <a data-fslightbox="mygalley" class="" target="_blank" data-type="image"
-            class="item-thumb"
+          <a data-fslightbox="mygalley" class="" target="_blank" data-type="image" class="item-thumb"
             *ngFor="let item of product.images" (click)="LoadImage(item)">
-            <img width="60" height="60" class="rounded-2"
-              src= '{{item}}' />
+            <img width="60" height="60" class="rounded-2" src='{{item}}' />
           </a>
         </div>
 
@@ -71,18 +69,18 @@
           <hr />
 
 
-              <div class="quantity d-flex align-items-center">
-                <select class="form-select mb-2" aria-label="Default select example" [(ngModel)]="quantity">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-              <div class="text-danger" *ngIf="quantity > 4">You Can't Add to Cart more than 5 Pieces!</div>
+          <div class="quantity d-flex align-items-center">
+            <select class="form-select mb-2" aria-label="Default select example" [(ngModel)]="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="text-danger" *ngIf="quantity > 4">You Can't Add to Cart more than 5 Pieces!</div>
           <a class="btn btn-success shadow-0 m-1" (click)="buy()"> Buy now </a>
-          <a class="btn btn-dark shadow-0 m-1" (click)="AddToCart()" > <i class="bi bi-cart-fill"></i> Add to cart </a>
+          <a class="btn btn-dark shadow-0 m-1" (click)="AddToCart()"> <i class="bi bi-cart-fill"></i> Add to cart </a>
           <a class="btn btn-dark shadow-0 m-1" (click)="AddToFavorite()"> <i class="bi bi-suit-heart-fill"></i>
             Save </a>
         </div>
@@ -98,124 +96,73 @@
     <div class="row gx-4">
 
       <!-- Reviews  -->
-      <div class="col-lg-8 mb-4">
+      <div class="col-lg-8 mb-4 p-4">
         <div class="border rounded-2 px-3 py-2 bg-white">
           <!-- Pills navs -->
           <div class="row">
             <div class="col-lg-12">
+
+              <!-- Nav bar for the Reviews and specification section -->
               <nav class="product-info-tabs wc-tabs mt-5 mb-5">
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+
                   <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-                    aria-controls="nav-home " aria-selected="true">Description</a>
-                  <!--  -->
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab"
-                    aria-controls="nav-profile" aria-selected="false">Specifications</a>
+                    aria-controls="nav-home " aria-selected="true">Specifications</a>
+
                   <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#nav-contact" role="tab"
-                    aria-controls="nav-contact" aria-selected="false">Reviews product.reviewCount </a>
+                    aria-controls="nav-contact" aria-selected="false">Reviews</a>
+
                 </div>
               </nav>
 
               <div class="tab-content" id="nav-tabContent">
+
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                   <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                      <p>
-                        With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit
-                        amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla
-                        pariatur.
-                      </p>
-                      <div class="row mb-2">
-                        <div class="col-12 col-md-6">
-                          <ul class="list-unstyled mb-0">
-                            <li><i class="fas fa-check text-success me-2"></i>Some great feature name here</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Lorem ipsum dolor sit amet, consectetur
-                            </li>
-                            <li><i class="fas fa-check text-success me-2"></i>Duis aute irure dolor in reprehenderit
-                            </li>
-                            <li><i class="fas fa-check text-success me-2"></i>Optical heart sensor</li>
-                          </ul>
-                        </div>
-                        <div class="col-12 col-md-6 mb-0">
-                          <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-success me-2"></i>Easy fast and ver good</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Some great feature name here</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Modern style and design</li>
-                          </ul>
-                        </div>
-                      </div>
+                      <table class="table table-bordered w-100">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Brand</th>
+                            <td> {{product.brandName}} </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Model</th>
+                            <td> {{product.model}} </td>
+                          </tr>
+                          <table class="table border mt-3 mb-2">
+                            <tr>
+                              <th class="py-2">Display:</th>
+                              <td class="py-2">{{product.screenSize}}</td>
+                            </tr>
+                            <tr>
+                              <th class="py-2">Processor capacity:</th>
+                              <td class="py-2">{{product.cpu}}</td>
+                            </tr>
+                            <tr>
+                              <th class="py-2">Camera quality:</th>
+                              <td class="py-2">{{product.carmera}}</td>
+                            </tr>
+                            <tr>
+                              <th class="py-2">Memory</th>
+                              <td class="py-2">{{product.ram}}</td>
+                            </tr>
+                          </table>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  <table class="table table-bordered">
-                    <tbody>
-                      <tr>
-                        <th scope="row">Brand</th>
-                        <td> product.categoryName </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Model</th>
-                        <td> product.model </td>
-                      </tr>
-                      <table class="table border mt-3 mb-2">
-                        <tr>
-                          <th class="py-2">Display:</th>
-                          <td class="py-2">13.3-inch LED-backlit display with IPS</td>
-                        </tr>
-                        <tr>
-                          <th class="py-2">Processor capacity:</th>
-                          <td class="py-2">2.3GHz dual-core Intel Core i5</td>
-                        </tr>
-                        <tr>
-                          <th class="py-2">Camera quality:</th>
-                          <td class="py-2">720p FaceTime HD camera</td>
-                        </tr>
-                        <tr>
-                          <th class="py-2">Memory</th>
-                          <td class="py-2">8 GB RAM or 16 GB RAM</td>
-                        </tr>
-                        <tr>
-                          <th class="py-2">Graphics</th>
-                          <td class="py-2">Intel Iris Plus Graphics 640</td>
-                        </tr>
-                      </table>
-                    </tbody>
-                  </table>
                 </div>
 
+
+                <!-- Reviews -->
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                  <!--  -->
+
                   <div class="container text-center">
-                    <div class="d-flex flex-column flex-sm-row flex-wrap mb-md-0 justify-content-center">
-                      <div class="card col-sm-5 col-md-3 m-1">
-                        <div class="card-body py-4 mt-1">
-                          <div class="d-flex justify-content-center mb-4">
-                            <img src="https://cdn-icons-png.flaticon.com/512/747/747545.png"
-                              class="rounded-circle shadow-1-strong" width="100" height="100" />
-                          </div>
-                          <h5 class="font-weight-bold">
-                            review.fName review.lName
-                          </h5>
-                          <h6 class="font-weight-bold my-3">
-                            review.formattedCreationDate
-                          </h6>
-                          <ul class="list-unstyled d-flex justify-content-center">
-                            <li>
-                              <i class="fas fa-star fa-sm text-warning"></i>
-                            </li>
-                          </ul>
-                          <p class="mb-2">
-                            <i class="fas fa-quote-left pe-2"></i> review.comment
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    <app-review-write></app-review-write>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -282,6 +229,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
