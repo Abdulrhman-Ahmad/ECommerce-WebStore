@@ -1,3 +1,4 @@
+import { ProductsListDasboardComponent } from './Components/Core/dashboard/products-list-dasboard/products-list-dasboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/Core/Home/home/home.component';
@@ -17,6 +18,9 @@ import { OrderdetailsComponent } from './Components/Core/user profile/orderdetai
 import { authGuard } from './Guards/auth.guard';
 import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-dashboard/wishlist-user-dashboard.component';
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
+import { ProductDetailsComponent } from './Components/Core/product-details/product-details.component';
+import { DashhomeComponent } from './Components/Core/dashboard/dashhome/dashhome.component';
+import { ProductFormComponent } from './Components/Core/dashboard/product-form/product-form.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -33,6 +37,9 @@ const routes: Routes = [
   {path:'orderdetails', component:OrderdetailsComponent, canActivate:[authGuard]},
   {path:'cart', component:CartComponent, canActivate:[authGuard]},
   {path:'products', component:ProductListComponent},
+  {path:'adminhome',component:DashhomeComponent},
+  {path:'adminproducts',component: ProductsListDasboardComponent},
+  {path:'products/new',component: ProductFormComponent},
   {path:'**', component:NotfoundComponent}
 ];
 

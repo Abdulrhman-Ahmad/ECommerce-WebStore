@@ -1,0 +1,52 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a [routerLink]="'/admin'" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="'/adminusers'" class="nav-link" routerLinkActive="active">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="'/admincategories'" class="nav-link" routerLinkActive="active">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                </svg>
+                Categories
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="'/adminproducts'" class="nav-link" routerLinkActive="active">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                Products
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="'/adminorders'" class="nav-link" routerLinkActive="active">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Orders
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="'/adminreviews'" class="nav-link" routerLinkActive="active">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Reviews
+            </a>
+        </li>
+    </ul>
+</div>
