@@ -42,3 +42,8 @@ testem.log
 Thumbs.db
 .vs/
 .vs/*
+
+/src/app/Components/Core/Review/review-write
+/src/app/Components/Core/Review/review-write/*.css
+/src/app/Components/Core/Review/review-write/*.ts
+/src/app/Components/Core/Review/review-write/*.html

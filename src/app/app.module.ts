@@ -12,12 +12,12 @@ import { ProfileComponent } from './Components/Core/profile/profile.component';
 import { CartComponent } from './Components/Core/cart/cart.component';
 import { CustomerOrderHistoryComponent } from './Components/Core/customer-order-history/customer-order-history.component';
 import { CustomerOrderDetailComponent } from './Components/Core/customer-order-detail/customer-order-detail.component';
-import { ReviewListComponent } from './Components/Core/review-list/review-list.component';
-import { ReviewWriteComponent } from './Components/Core/review-write/review-write.component';
+import { ReviewListComponent } from './Components/Core/Review/review-list/review-list.component';
+import { ReviewWriteComponent } from './Components/Core/Review/review-write/review-write.component';
 import { InventoryDashboardComponent } from './Components/Core/inventory-dashboard/inventory-dashboard.component';
 import { UsersListDashboardComponent } from './Components/Core/users-list-dashboard/users-list-dashboard.component';
 import { ProductsListDasboardComponent } from './Components/Core/products-list-dasboard/products-list-dasboard.component';
-import { ReviewsListDashboardComponent } from './Components/Core/reviews-list-dashboard/reviews-list-dashboard.component';
+import { ReviewsListDashboardComponent } from './Components/Core/Review/reviews-list-dashboard/reviews-list-dashboard.component';
 import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-dashboard/wishlist-user-dashboard.component';
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 import { ShippingComponent } from './Components/Core/shipping/shipping.component';
@@ -42,6 +42,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OrderListComponent } from './Components/Core/user profile/order-list/order-list.component';
 import { OrderdetailsComponent } from './Components/Core/user profile/orderdetails/orderdetails.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { ReviewRateComponent } from './Components/Core/Review/review-rate/review-rate.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { AuthInterceptor } from './auth.interceptor';
     AddAddressComponent,
     OrderListComponent,
     OrderdetailsComponent,
+    ReviewRateComponent,
   ],
   imports: [
     BrowserModule,
