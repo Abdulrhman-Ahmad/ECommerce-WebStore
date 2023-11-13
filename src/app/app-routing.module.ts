@@ -20,7 +20,9 @@ import { WishlistUserDashboardComponent } from './Components/Core/wishlist-user-
 import { FavoritesUserDashboardComponent } from './Components/Core/favorites-user-dashboard/favorites-user-dashboard.component';
 import { ProductDetailsComponent } from './Components/Core/product-details/product-details.component';
 import { CheckoutComponent } from './Components/Core/checkout/checkout.component';
-
+import { DashhomeComponent } from './Components/Core/dashboard/dashhome/dashhome.component';
+import { ProductsListDasboardComponent } from './Components/Core/dashboard/products-list-dasboard/products-list-dasboard.component';
+import { ProductFormComponent } from './Components/Core/dashboard/product-form/product-form.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -39,6 +41,9 @@ const routes: Routes = [
   {path:'products', component:ProductListComponent},
   {path:'products/details/:id', component:ProductDetailsComponent},
   {path:'checkout', component:CheckoutComponent},
+  {path:'adminhome',component:DashhomeComponent},
+  {path:'adminproducts',component: ProductsListDasboardComponent},
+  {path:'products/new',component: ProductFormComponent},
   {path:'**', component:NotfoundComponent}
 ];
 
