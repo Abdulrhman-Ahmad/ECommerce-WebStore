@@ -27,6 +27,7 @@ import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/us
 import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
 import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
 import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
+import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path:'adminproducts',component: ProductsListDasboardComponent},
   {path:'products/new',component: ProductFormComponent},
   {path:'admincategories',component: CategoryListDashboardComponent},
+  {path:'category/new',component:CategoryFormDashboardComponent},
   {path:'adminbrands',component:BrandListDashboardComponent},
   {path:'adminusers',component:UsersListAdminDashboardComponent},
   {path:'adminorders',component:OrdersListDashboardComponent},
