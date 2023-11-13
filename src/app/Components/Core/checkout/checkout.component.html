@@ -81,7 +81,7 @@
           <div class="form-floating">
             <select class="form-select" aria-label="Default select example" >
               <option selected>Address</option>
-              <option value="1">Add</option>
+              <option value="show" [(ngModel)]="addcity" (change)="onAddCity('show')" value="show">Add</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
@@ -89,7 +89,7 @@
             <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
           </div>
 
-          <div class="form-floating m-2 row">
+          <div class="form-floating m-2 row" *ngIf="addcity === 'show'">
             <div class="col-6">
               <label for="floatingName">City</label>
               <input type="text" class="form-control" id="floatingName" placeholder="City Nme" formControlName="fullname">
@@ -126,16 +126,15 @@
 
         <div class="my-3">
           <div class="form-check">
-            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="" [(ngModel)]="selectedPaymentOption" (change)="onPaymentOptionChange('delivery')" value="delivery">
             <label class="form-check-label" for="credit">Delivery</label>
           </div>
           <div class="form-check">
-            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="" [(ngModel)]="selectedPaymentOption" (change)="onPaymentOptionChange('payment')" value="payment">
             <label class="form-check-label" for="paypal">PayPal</label>
           </div>
         </div>
-
-        <div class="row gy-3">
+        <div class="row gy-3" *ngIf="selectedPaymentOption === 'payment'">
           <div class="col-md-6">
             <label for="cc-name" class="form-label">Name on card</label>
             <input type="text" class="form-control" id="cc-name" placeholder="" required="">
@@ -172,7 +171,7 @@
 
         <hr class="my-4">
 
-        <button class="w-100 btn btn-dark btn-lg" type="submit">Continue to checkout</button>
+        <button class="w-100 btn btn-dark  btn-lg" type="submit">Continue to checkout</button>
       </form>
     </div>
   </div>

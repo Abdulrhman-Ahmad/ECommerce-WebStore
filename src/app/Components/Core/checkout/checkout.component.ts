@@ -109,4 +109,15 @@ export class CheckoutComponent implements OnInit {
   get phoneTouched():boolean|void {return this.fg.get('phone')?.touched;}
 
 
+  selectedPaymentOption: string = 'payment';
+
+  onPaymentOptionChange(option: string) {
+    this.selectedPaymentOption = option;
+  }
+    addcity:string = 'show';
+
+    onAddCity(option: string) {
+      this.addcity = option;
+    }
+
 }

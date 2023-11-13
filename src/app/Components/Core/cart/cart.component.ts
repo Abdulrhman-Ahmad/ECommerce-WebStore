@@ -88,7 +88,7 @@ export class CartComponent implements OnInit {
   checkout(){
     if (this.totalPrice == 0)
     {
-      this.router.navigate(['products'])
+      this.router.navigate(['products']) //products
     }
     else
     {
