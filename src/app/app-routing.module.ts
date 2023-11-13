@@ -21,6 +21,12 @@ import { FavoritesUserDashboardComponent } from './Components/Core/favorites-use
 import { ProductDetailsComponent } from './Components/Core/product-details/product-details.component';
 import { DashhomeComponent } from './Components/Core/dashboard/dashhome/dashhome.component';
 import { ProductFormComponent } from './Components/Core/dashboard/product-form/product-form.component';
+import { CategoryListDashboardComponent } from './Components/Core/dashboard/categories/category-list-dashboard/category-list-dashboard.component';
+import { BrandListDashboardComponent } from './Components/Core/dashboard/brands/brand-list-dashboard/brand-list-dashboard.component';
+import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/users/users-list-admin-dashboard/users-list-admin-dashboard.component';
+import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
+import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
+import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -40,6 +46,12 @@ const routes: Routes = [
   {path:'adminhome',component:DashhomeComponent},
   {path:'adminproducts',component: ProductsListDasboardComponent},
   {path:'products/new',component: ProductFormComponent},
+  {path:'admincategories',component: CategoryListDashboardComponent},
+  {path:'adminbrands',component:BrandListDashboardComponent},
+  {path:'adminusers',component:UsersListAdminDashboardComponent},
+  {path:'adminorders',component:OrdersListDashboardComponent},
+  {path:'adminreviews',component:ReviewsListAdminDashboardComponent},
+  {path:'adminContactUs',component:ContactAdminDashboardComponent},
   {path:'**', component:NotfoundComponent}
 ];
 

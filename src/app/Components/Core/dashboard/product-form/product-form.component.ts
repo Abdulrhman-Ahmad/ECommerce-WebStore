@@ -114,46 +114,7 @@ export class ProductFormComponent {
         // this.product.warranties =  this.product.warranties.push(newWarranty);
         //this.product.images = this.fg.get('images')?.value;
         console.log("pass valid");
-        // Create a FormData object
-        const formData = new FormData();
-
-        // Append product data to FormData
-          formData.append('name', this.product.name);
-          formData.append('description', this.product.description);
-          formData.append('price', this.product.price.toString());
-          formData.append('condition', this.product.condition.toString());
-          formData.append('stockQuantity', this.product.stockQuantity.toString());
-          formData.append('discount', this.product.discount.toString());
-          formData.append('model', this.product.model);
-          formData.append('color', this.product.color);
-          formData.append('storage', this.product.storage.toString());
-          formData.append('ram', this.product.ram.toString());
-          formData.append('camera', this.product.camera);
-          formData.append('cpu', this.product.cpu);
-          formData.append('screenSize', this.product.screenSize.toString());
-          formData.append('batteryCapacity', this.product.batteryCapacity.toString());
-          formData.append('osVersion', this.product.osVersion);
-          formData.append('categoryID', this.product.categoryID.toString());
-          formData.append('brandID', this.product.brandID.toString());
-
-          // Append each warranty to FormData
-          for (const warranty of this.product.warranties) {
-            formData.append('warranties', JSON.stringify(warranty));
-          }
-
-          // Append each image URL to FormData
-          for (const image of this.product.images) {
-            formData.append('images', image.imageUrl);
-          }
-
-
-        // Assuming 'imageUrl' property contains the URL of the image
-        for (const image of this.product.images) {
-          const imageUrl = image.imageUrl; // Adjust this based on your actual data structure
         
-          // Append the image URL to FormData
-          formData.append('images', imageUrl);
-        }
 
         this.productId = this.activatedRoute.snapshot.params['id'];
 
@@ -168,7 +129,7 @@ export class ProductFormComponent {
               }else{
                 //add
             this.prodService.add(this.product).subscribe({
-              next: (data) => this.router.navigate(['/adminproducts']),
+              next: () => this.router.navigate(['/adminproducts']),
               error: (error) => console.log('error' , JSON.stringify(error)),
               complete: () => console.log("Successfully Add Product!"),
             });

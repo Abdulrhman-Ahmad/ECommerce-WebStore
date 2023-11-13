@@ -24,7 +24,7 @@ export class ProductOperationService {
     const headers = new HttpHeaders({
       'Content-Type': 'multipart/form-data',
     });
-    return this.http.post(this.baseURL,prd, { headers });
+    return this.http.post(this.baseURL,prd);
   }
 
   edit(id:number , prd:Iproductadd) {
