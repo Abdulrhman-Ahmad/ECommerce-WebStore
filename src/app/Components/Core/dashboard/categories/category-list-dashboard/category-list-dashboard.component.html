@@ -1,0 +1,32 @@
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-3">
+            <app-adminaside></app-adminaside>
+        </div>
+        <div class="col-9">
+            <div class="m-2">
+                <h3>Categories</h3>
+            </div>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cat of cats; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{cat.name}}</td>
+                        <td>
+                            <i class="bi text-danger fs-4 bi-trash" (click)="delete(cat.id)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+        </div>
+    </div>
+</div>

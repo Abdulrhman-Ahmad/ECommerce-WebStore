@@ -98,55 +98,123 @@ export class ProductFormComponent {
     }
   }
 
-  OnSubmit(e: Event) {
 
-    e.preventDefault();
+  // OnSubmit(e: Event) {
+  //   e.preventDefault();
+  //   console.log(this.fg);
+  //   console.log(this.product);
+  //   if (this.fg.valid) {
+  //     this.product.name = this.fg.get('name')?.value;
+  //     this.product.description = this.fg.get('description')?.value;
+  //     this.product.price = this.fg.get('price')?.value;
+  //     this.product.condition = this.fg.get('condition')?.value;
+  //     this.product.stockQuantity = this.fg.get('stockQuantity')?.value;
+  //     this.product.discount = this.fg.get('discount')?.value;
+  //     this.product.model = this.fg.get('model')?.value;
+  //     this.product.color = this.fg.get('color')?.value;
+  //     this.product.storage = this.fg.get('storage')?.value;
+  //     this.product.ram = this.fg.get('ram')?.value;
+  //     this.product.camera = this.fg.get('camera')?.value;
+  //     this.product.cpu = this.fg.get('cpu')?.value;
+  //     this.product.screenSize = this.fg.get('screenSize')?.value;
+  //     this.product.batteryCapacity = this.fg.get('batteryCapacity')?.value;
+  //     this.product.osVersion = this.fg.get('osVersion')?.value;
+  //     this.product.categoryID = this.fg.get('categoryID')?.value;
+  //     this.product.brandID = this.fg.get('brandID')?.value;
+  //     // this.product.warranties =  this.product.warranties.push(newWarranty);
+  //     //this.product.images = this.fg.get('images')?.value;
+  //     console.log("pass valid");
 
-    if (this.fg.valid || true) {
+
+  //     this.productId = this.activatedRoute.snapshot.params['id'];
+
+  //     console.log('product to add :', this.product); // work and get data
+  //     if (this.productId > 0) {
+  //       //edit
+  //       this.prodService.edit(this.productId, this.product).subscribe({
+  //         next: (data) => this.router.navigate(['/adminproducts']),
+  //         error: (error) => console.log('error' + error),
+  //         complete: () => console.log("Successfully Add Product!"),
+  //       });
+  //     } else {
+  //       //add
+  //       this.prodService.add(this.product).subscribe({
+  //         next: () => this.router.navigate(['/adminproducts']),
+  //         error: (error) => console.log('error', JSON.stringify(error)),
+  //         complete: () => console.log("Successfully Add Product!"),
+  //       });
+  //     }
+  //   }
+  //   else {
+  //     // Log validation errors
+  //     console.log('Form is invalid');
+  //     // Log individual form controls' errors
+  //     console.log('Form control errors:', this.fg.errors);
+
+  //     // Log errors for warranties
+  //     const warrantiesErrors = this.fg.get('warranties')?.errors;
+  //     if (warrantiesErrors) {
+  //       console.log('Warranties errors:', warrantiesErrors);
+  //     }
+  //     // Log errors for images
+  //     const imagesErrors = this.fg.get('images')?.errors;
+  //     if (imagesErrors) {
+  //       console.log('Images errors:', imagesErrors);
+  //     }
+  //   }
+
+  // }
 
 
-      let formData = new FormData();
+OnSubmit(e: Event) {
 
-      formData.append('name', this.fg.get('name')?.value);
-      formData.append('description', this.fg.get('description')?.value);
-      formData.append('price', this.fg.get('price')?.value.toString());
-      formData.append('condition', this.fg.get('condition')?.value.toString());
-      formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
-      formData.append('discount', this.fg.get('discount')?.value.toString());
-      formData.append('model', this.fg.get('model')?.value);
-      formData.append('color', this.fg.get('color')?.value);
-      formData.append('storage', this.fg.get('storage')?.value.toString());
-      formData.append('ram', this.fg.get('ram')?.value.toString());
-      formData.append('camera', this.fg.get('camera')?.value);
-      formData.append('cpu', this.fg.get('cpu')?.value);
-      formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
-      formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
-      formData.append('osVersion', this.fg.get('osVersion')?.value);
-      formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
-      formData.append('brandID', this.fg.get('brandID')?.value.toString());
+  e.preventDefault();
+
+  if (this.fg.valid) {
 
 
-      for (let item of this.warranties) {
-        formData.append(`warranties`, JSON.stringify(item));
-      }
+    let formData = new FormData();
 
-      for (let  image of this.images) {
-        formData.append(`images`, image, image.name);
-      }
+    formData.append('name', this.fg.get('name')?.value);
+    formData.append('description', this.fg.get('description')?.value);
+    formData.append('price', this.fg.get('price')?.value.toString());
+    formData.append('condition', this.fg.get('condition')?.value.toString());
+    formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
+    formData.append('discount', this.fg.get('discount')?.value.toString());
+    formData.append('model', this.fg.get('model')?.value);
+    formData.append('color', this.fg.get('color')?.value);
+    formData.append('storage', this.fg.get('storage')?.value.toString());
+    formData.append('ram', this.fg.get('ram')?.value.toString());
+    formData.append('camera', this.fg.get('camera')?.value);
+    formData.append('cpu', this.fg.get('cpu')?.value);
+    formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
+    formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
+    formData.append('osVersion', this.fg.get('osVersion')?.value);
+    formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
+    formData.append('brandID', this.fg.get('brandID')?.value.toString());
 
-      this.productapi.AddProduct(formData).subscribe({
-        next: (d) => console.log('Adding Product ...',d),
-        error: (e) => console.log('Error: ',e),
-        complete: () => console.log('Added Product Successfully!')
-      })
 
+    for (let item of this.warranties) {
+      formData.append(`warranties`, JSON.stringify(item));
     }
 
-    else {
-      console.log('Form is invalid');
+    for (let image of this.images) {
+      formData.append(`images`, image, image.name);
     }
+
+    this.productapi.AddProduct(formData).subscribe({
+      next: (d) => console.log('Adding Product ...', d),
+      error: (e) => console.log('Error: ', e),
+      complete: () => console.log('Added Product Successfully!')
+    })
 
   }
+
+  else {
+    console.log('Form is invalid');
+  }
+
+}
 
 
 

@@ -46,6 +46,13 @@ import { ReviewRateComponent } from './Components/Core/Review/review-rate/review
 import { DashhomeComponent } from './Components/Core/dashboard/dashhome/dashhome.component';
 import { AdminasideComponent } from './Components/Core/dashboard/adminaside/adminaside.component';
 import { ProductFormComponent } from './Components/Core/dashboard/product-form/product-form.component';
+import { CategoryListDashboardComponent } from './Components/Core/dashboard/categories/category-list-dashboard/category-list-dashboard.component';
+import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
+import { BrandListDashboardComponent } from './Components/Core/dashboard/brands/brand-list-dashboard/brand-list-dashboard.component';
+import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/users/users-list-admin-dashboard/users-list-admin-dashboard.component';
+import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
+import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
+import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +96,14 @@ import { ProductFormComponent } from './Components/Core/dashboard/product-form/p
     ReviewRateComponent,
     DashhomeComponent,
     AdminasideComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CategoryListDashboardComponent,
+    CategoryFormDashboardComponent,
+    BrandListDashboardComponent,
+    UsersListAdminDashboardComponent,
+    OrdersListDashboardComponent,
+    ReviewsListAdminDashboardComponent,
+    ContactAdminDashboardComponent
   ],
   imports: [
     BrowserModule,
