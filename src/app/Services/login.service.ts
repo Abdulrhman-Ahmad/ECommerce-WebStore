@@ -15,7 +15,7 @@ export class LoginService {
   IsLoggedIn = new BehaviorSubject<boolean>(false)
   CurrentUserName = new BehaviorSubject<string>('')
 
-  BaseUrl: string = "http://localhost:5281/api/Accounts/Login"
+  BaseUrl: string = "https://localhost:7003/api/Accounts/Login"
 
   constructor(private httpclien: HttpClient, private claim: ClaimsService, private data: CurrentuserService) { }
 

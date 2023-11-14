@@ -7,9 +7,28 @@
             <div class="m-2">
                 <h3>Brands</h3>
             </div>
+            <!-------------------  add form ------------------- -->
+            <div class="overlay" id="overlay">
+                <div class="form-container">
+                    <form class="shadow p-4 " [formGroup]="fg">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="name" formControlName="name">
+                            <label for="name">Brand Name</label>
+                            <div class="text-danger form-text"   *ngIf="nameTouched &&  nameRequired">Required Field!</div>
+                            <div class="text-danger form-text"   *ngIf="nameTouched && !nameRequired &&!nameValid">Required Field !</div>
+                            <div class="text-success form-text" *ngIf="!nameRequired && nameValid">Looks Good!</div>
+                        </div>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="OnSubmit($event)"><i
+                        class="bi bi-check-circle-fill" > Add</i></button>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="closeForm()"><i
+                            class="bi bi-x-circle-fill" > Cancel</i></button>
+                    </form>
+                </div>
+                </div>
             <div class="m-2">
-                <button [routerLink]="['']">New Brand</button>
+                <button (click)="openForm()">New Brand</button>
             </div>
+            <!-------------------  brand table ------------------- -->
             <table class="table">
                 <thead>
                     <tr>
