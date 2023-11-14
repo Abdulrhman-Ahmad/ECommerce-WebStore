@@ -48,12 +48,6 @@ export class ProductListComponent implements OnInit {
 
   // -------------- [ Add to ]
   AddToFavorite(id: number) {
-    // if the user not logged in then he have to log in at first
-    // if (this.login.IsLoggedIn)
-    // {
-    //   this.router.navigate(['/login']);
-    //   return
-    // }
     this.favoriteservice.AddToFavorite(id).subscribe({
       next: () => console.log("adding to favorite.."),
       error: () => console.log("Error happened during adding to favorites"),
@@ -62,12 +56,6 @@ export class ProductListComponent implements OnInit {
   }
 
   AddToWithList(id: number) {
-    // if the user not logged in then he have to log in at first
-    // if (this.login.IsLoggedIn)
-    // {
-    //   this.router.navigate(['/login']);
-    //   return
-    // }
     this.wilshlistservice.AddToWishlist(id).subscribe({
       next: () => console.log("adding to wishlist.."),
       error: () => console.log("Error happened during adding to wishlist"),
@@ -76,12 +64,6 @@ export class ProductListComponent implements OnInit {
   }
 
   AddToCart(id: number) {
-    // if the user not logged in then he have to log in at first
-    // if (this.login.IsLoggedIn)
-    // {
-    //   this.router.navigate(['/login']);
-    //   return
-    // }
     let data: Iproductquantity = {
       productId: id,
       quantity: 1

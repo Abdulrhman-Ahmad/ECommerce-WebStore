@@ -5,26 +5,30 @@
         </div>
         <div class="col-9">
             <div class="m-2">
-                <button [routerLink]="['/products/new']">New Product</button>
+                <br>
+                <h3>Reviews</h3>
+                <br>
             </div>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">price</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Rating</th>
                         <th scope="col">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let prod of products; let i = index">
+                    <tr *ngFor="let rev of reviews; let i = index">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{prod.name}}</td>
-                        <td>{{prod.price}}</td>
+                        <td>{{rev.productName}}</td>
+                        <td>{{rev.userName}}</td>
+                        <td>{{rev.text}}</td>
+                        <td>{{rev.rating}}</td>
                         <td>
-                            <i class="bi text-primary fs-4 bi-info-circle" [routerLink]="['/products','details',prod.id]"></i> |
-                            <i class="bi text-warning fs-4 bi-pencil-square" [routerLink]="['/products/edit',prod.id]"></i> |
-                            <i class="bi text-danger fs-4 bi-trash" (click)="DeleteProduct(prod.id)"></i>
+                            <i class="bi text-danger fs-4 bi-trash" (click)="delete(rev.id)"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -32,7 +36,7 @@
             <!-- ------ Pageination Buttons --------------- -->
             <div class="w-50 m-auto text-center">
                 <button class="ination btn btn-dark" (click)="prev()">Prev</button>
-                <button class="ination btn btn-light"> [ {{currentIndex}} ] </button>
+                <button class="ination btn btn-light"> [ {{pageIndex}} ] </button>
                 <button class="ination btn btn-dark" (click)="next()">Next</button>
             </div>
             <br><br>

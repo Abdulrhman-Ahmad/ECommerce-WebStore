@@ -14,10 +14,6 @@ export class BrandService {
     return this.http.get<Ibrandreturn[]>(`${this.baseURL}/All`);
   }
 
-  getById(id:number): Observable<Ibrandreturn> {
-    return this.http.get<Ibrandreturn>(`${this.baseURL}/${id}`);
-  }
-
   add(brand:Ibrandreturn) {
     return this.http.post(this.baseURL,brand);
   }

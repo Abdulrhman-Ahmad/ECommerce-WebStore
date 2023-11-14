@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { Iproductreturn } from 'src/app/Interfaces/product/iproductreturn';
-import { ProductOperationService } from 'src/app/Services/dashboard/product-operation.service';
+import { Router } from '@angular/router';
+import { Iproduct } from 'src/app/Interfaces/iproduct';
+import { IproductFilter } from 'src/app/Interfaces/iproductfilter';
+import { LoginService } from 'src/app/Services/login.service';
+import { ProductlistService } from 'src/app/Services/productlist.service';
 
 @Component({
   selector: 'app-products-list-dasboard',
@@ -8,31 +11,65 @@ import { ProductOperationService } from 'src/app/Services/dashboard/product-oper
   styleUrls: ['./products-list-dasboard.component.css']
 })
 export class ProductsListDasboardComponent {
-  products:Iproductreturn[] = [];
-  pageIndex:number =1;
+  currentIndex: number = 1;
+  products !: Iproduct[];
 
-  constructor(private prodService:ProductOperationService){}
-
-  ngOnInit(): void {
-    this.prodService.getAll().subscribe({
-      next:(data) =>{this.products= data},
-      error:(error)=>{console.log('error'+error)},
-      complete: ()=>{},
-    });
-    console.log(this.products);
+  filters: IproductFilter = {
+    sort: '',
+    categoryid: '',
+    brandId: '',
+    condition: '',
+    minPrice: '',
+    maxPrice: '',
+    rating: '',
+    search: '',
+    pageSize: '',
+    pageIndex: '1',
   }
+
+  constructor(private productlist: ProductlistService, private router: Router, private login:LoginService) { }
+
+  // ---------------- [ Load the Products ]
+  ngOnInit(): void {
+
+    // Load all the products only the first index
+    this.productlist.getProducts(this.filters).subscribe(
+      {
+        next: (data) => this.products = data,
+        error: () => console.log("failed to bring the data"),
+        complete: () => console.log("Got Data Successfully!")
+      }
+    );
+
+  }
+
+  // ---------------- [ Delete Product ]
+  // - there is a problem while deleting the prducts, foreigns can't be null there ?
+  DeleteProduct(id:number){
+    this.productlist.DeleteProduct(id).subscribe({
+      next: (d) => console.log('Deleting...'),
+      error:(e) => console.log('Error : ', e),
+      complete: () => {
+        console.log('Product Deleted Successfully!')
+        this.products = this.products.filter(e=> e.id != id)
+        console.log(id)
+      }
+    })
+  }
+
 
   // --------------- [ Pageination ]
   next() {
-    this.pageIndex = this.pageIndex + 1
-    this.prodService.getAll(this.pageIndex).subscribe(
+    this.filters.pageIndex = (this.currentIndex + 1).toString();
+    this.productlist.getProducts(this.filters).subscribe(
       {
         next: (data) => {
           if (data.length > 0) {
+            this.currentIndex++
             this.products = data
           }
           else {
-            this.pageIndex = this.pageIndex - 1;
+            this.filters.pageIndex = this.currentIndex.toString();
           }
         },
         error: () => console.log("failed to bring the data on the next page index"),
@@ -40,13 +77,13 @@ export class ProductsListDasboardComponent {
       }
     );
   }
-
   prev() {
-    if (this.pageIndex > 1) {
-      this.pageIndex = this.pageIndex - 1 ;
-      this.prodService.getAll(this.pageIndex).subscribe(
+    if (this.currentIndex > 1) {
+      this.filters.pageIndex = (this.currentIndex - 1).toString();
+      this.productlist.getProducts(this.filters).subscribe(
         {
           next: (data) => {
+            this.currentIndex--
             this.products = data
           },
           error: () => console.log("failed to bring the data on the next page index"),
@@ -54,12 +91,5 @@ export class ProductsListDasboardComponent {
         }
       );
     }
-
-  }
-
-  delete(id:number){
-    this.products = this.products.filter(p => p.id !== id);
-    this.prodService.delete(id).subscribe(() => {
-    });
   }
 }
