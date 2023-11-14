@@ -36,7 +36,7 @@ export class ProductsListDasboardComponent {
     this.productlist.getProducts(this.filters).subscribe(
       {
         next: (data) => this.products = data,
-        error: () => console.log("failed to bring the data"),
+        error: (e) => console.log('Error: ', e),
         complete: () => console.log("Got Data Successfully!")
       }
     );
@@ -45,7 +45,9 @@ export class ProductsListDasboardComponent {
 
   // ---------------- [ Delete Product ]
   // - there is a problem while deleting the prducts, foreigns can't be null there ?
+  // yes, and can't fix it :) [must edit db to make table products on delete cascade]
   DeleteProduct(id:number){
+    this.products = this.products.filter(e=> e.id != id) //Analgesic
     this.productlist.DeleteProduct(id).subscribe({
       next: (d) => console.log('Deleting...'),
       error:(e) => console.log('Error : ', e),

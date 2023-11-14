@@ -7,7 +7,7 @@ import { Icategoryreturn } from 'src/app/Interfaces/category/icategoryreturn';
   providedIn: 'root'
 })
 export class CategoryService {
-  baseURL: string = 'https://localhost:44365/api/Category';
+  baseURL: string = 'https://localhost:7003/api/Category';
   constructor(private http: HttpClient) {}
 
   getAll() : Observable<Icategoryreturn[]>{
