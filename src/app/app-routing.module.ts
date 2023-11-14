@@ -30,6 +30,7 @@ import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders
 import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
 import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
 import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
+import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent, canActivate:[authGuard]},
   {path:'register', component:RegisterComponent, canActivate:[authGuard]},
   {path:'profile', component:GeneralInformationComponent, canActivate:[authGuard]},
+  {path:'Changepassword', component:ChangepasswordComponent, canActivate:[authGuard]},
   {path:'address', component:AddressComponent, canActivate:[authGuard]},
   {path:'wishlist', component:WishlistUserDashboardComponent, canActivate:[authGuard]},
   {path:'favorite', component:FavoritesUserDashboardComponent, canActivate:[authGuard]},

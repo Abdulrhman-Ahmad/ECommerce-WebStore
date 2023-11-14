@@ -53,6 +53,7 @@ import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/us
 import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
 import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
 import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
+import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { ContactAdminDashboardComponent } from './Components/Core/dashboard/cont
     UsersListAdminDashboardComponent,
     OrdersListDashboardComponent,
     ReviewsListAdminDashboardComponent,
-    ContactAdminDashboardComponent
+    ContactAdminDashboardComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,
