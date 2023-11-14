@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Iproduct } from '../Interfaces/iproduct';
 import { IproductFilter } from '../Interfaces/iproductfilter';
 import { Iproductadd } from '../Interfaces/product/iproductadd';
+import { Iproductreturn } from '../Interfaces/product/iproductreturn';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ export class ProductlistService {
     return this.http.get<Iproduct>(this.ProductUrl + "/" +  id)
   }
 
+    // -------------------- [ Admin Get Product By Id ]
+    GetProductByIdAdmin(id:number) : Observable<Iproductreturn>{
+      return this.http.get<Iproductreturn>(this.ProductUrl + "/" +  id)
+    }
+
+
   // -------------------- [ Delete Product ]
   DeleteProduct(id: number): Observable<void> {
     let params = new HttpParams();
@@ -52,7 +59,10 @@ export class ProductlistService {
     return this.http.post<FormData>(this.ProductUrl, data);
   }
 
-
+  // -------------------- [ Edit Product ]
+  EditProduct(data : FormData): Observable<FormData> {
+    return this.http.put<FormData>(this.ProductUrl, data);
+  }
 
 
 }

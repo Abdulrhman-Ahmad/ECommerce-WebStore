@@ -7,7 +7,7 @@ import { Ibrandreturn } from 'src/app/Interfaces/brand/ibrandreturn';
   providedIn: 'root'
 })
 export class BrandService {
-  baseURL: string = 'https://localhost:44365/api/Brand';
+  baseURL: string = 'https://localhost:7003/api/Brand';
   constructor(private http: HttpClient) {}
 
   getAll() : Observable<Ibrandreturn[]>{

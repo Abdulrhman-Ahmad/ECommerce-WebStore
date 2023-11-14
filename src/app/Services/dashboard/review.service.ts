@@ -11,7 +11,7 @@ import { Ireviewreturn } from 'src/app/Interfaces/review/Ireviewreturn';
 })
 export class ReviewService {
 
-  baseURL: string = 'https://localhost:44365/api/Review';
+  baseURL: string = 'https://localhost:7003/api/Review';
   constructor(private http: HttpClient) {}
 
   getAll(PageIndex?:number) : Observable<Ireviewreturn[]>{
