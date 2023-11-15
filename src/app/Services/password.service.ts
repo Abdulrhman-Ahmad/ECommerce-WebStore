@@ -15,6 +15,6 @@ export class PasswordService {
 
   // adding new user
   Editpassword( user : Ipassword): Observable<Ipassword>{
-    return this.httpclient.post<Ipassword>(this.BaseUrl, user )
+    return this.httpclient.put<Ipassword>(this.BaseUrl, user )
   }
 }
