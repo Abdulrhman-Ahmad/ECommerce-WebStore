@@ -13,30 +13,31 @@ import { BrandService } from 'src/app/Services/dashboard/brand.service';
 export class BrandListDashboardComponent {
 
   brands:Ibrandreturn[] = [];
-
+  
+  // ---------------- [ Add Variables ]
   fg !:FormGroup;
 
   brandAdd : Ibrandadd = {
     name : ''
   }
 
-  fgEdit !:FormGroup;
-
+  // ---------------- [ Edit Variables ]
   brandEdit : Ibrandreturn={
     id:0,
     name : ''
   }
-
   brandId:number = 0;
 
 
-  constructor(private fb:FormBuilder , private fbEdit:FormBuilder ,private brandService:BrandService ,private router:Router ){}
+  constructor(private fb:FormBuilder ,private brandService:BrandService ,private router:Router ){}
 
   ngOnInit(): void {
+
     this.fg = this.fb.group({
-      name:['',[Validators.required, Validators.minLength(4)]]
+      name:['',[Validators.required, Validators.minLength(2)]]
     });
 
+    // ---------------- [ Get All Brands ]
     this.brandService.getAll().subscribe({
       next:(data) =>{this.brands= data},
       error:(error)=>{console.log('error'+error)},
@@ -45,39 +46,59 @@ export class BrandListDashboardComponent {
     
   }
 
+// ------------------------------------------ [ Add brand  ] ----------------------------------------
+  // ---------------- [OnSubmit Add Form  ]
   OnSubmit(e :Event){
     e.preventDefault();
 
     if (this.fg.valid)
     {
-      this.brandAdd.name = this.fg.get('name')?.value;
-
-      this.brandService.add(this.brandAdd).subscribe(
-        {
-          next:     () => this.closeForm(),
-          error:    (e) => console.log(e),
-          complete: () => console.log("Successfully Add Brand")
-        }
-      )
+      if(this.brandId < 1) //add
+      {
+        this.brandAdd.name = this.fg.get('name')?.value;
+          this.brandService.add(this.brandAdd).subscribe(
+            {
+              next:     () => this.closeForm(),
+              error:    (e) => console.log(e),
+              complete: () => console.log("Successfully Add Brand")
+            })
+      }
+      else // edit
+      {
+        this.brandEdit.id = this.brandId ;
+        this.brandEdit.name = this.fg.get('name')?.value;
+        console.log(this.brandEdit);
+        this.brandService.edit(this.brandEdit).subscribe(
+          {
+            next:     () => this.closeForm(),
+            error:    (e) => console.log(e),
+            complete: () => console.log("Successfully Edit Brand")
+          })
+      }
+      
     }
 
   }
 
-
-
-    
-  
-  
-  // ---------------- [Delete Brand ]
-  delete(id:number){
-    this.brands = this.brands.filter(b => b.id !== id);
-    this.brandService.delete(id).subscribe(() => {
-    });
-  }
-
-
   // ---------------- [OPEN Brand Form ]
-  openForm() {
+  openForm(id:number) {
+
+    if(id > 0)//edit
+    {
+      this.brandId=id ;
+        this.brandService.getById(this.brandId).subscribe(
+          {
+            next:(d) => {
+              this.brandEdit = d ;
+              // ---------------- [declare edit form group  ]
+              this.fg= this.fb.group({
+                name:[this.brandEdit.name,[Validators.required, Validators.minLength(2)]]
+              });
+            },
+            error:    (e) => console.log(e),
+            complete: () => console.log("got brand data to edit it successfully!")
+          });
+    }
     const overlay = document.getElementById('overlay');
     if (overlay) {
       overlay.style.display = 'block';
@@ -92,7 +113,17 @@ export class BrandListDashboardComponent {
     }
   }
 
-  // ---------------- [ name ]
+
+
+ // ---------------- [Delete Brand ]
+  delete(id:number){
+  this.brands = this.brands.filter(b => b.id !== id);
+  this.brandService.delete(id).subscribe(() => {
+  });
+}
+
+
+  // ---------------- [ name  ]
   get nameRequired():boolean|void{return this.fg.get('name')?.hasError('required');}
   get nameValid(): boolean|void { return this.fg.get('name')?.valid;}
   get nameTouched():boolean|void{ return this.fg.get('name')?.touched;}

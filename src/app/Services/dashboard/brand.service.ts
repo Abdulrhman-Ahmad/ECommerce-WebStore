@@ -12,6 +12,11 @@ export class BrandService {
   constructor(private http: HttpClient) {}
 
 
+  // ---------------- [Get By Id ]
+  getById(id:number) : Observable<Ibrandreturn>{
+    return this.http.get<Ibrandreturn>(`${this.baseURL}/${id}`);
+  }
+
    // ---------------- [Get All ]
   getAll() : Observable<Ibrandreturn[]>{
     return this.http.get<Ibrandreturn[]>(`${this.baseURL}/All`);

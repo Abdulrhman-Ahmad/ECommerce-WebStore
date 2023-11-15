@@ -7,7 +7,7 @@
             <div class="m-2">
                 <h3>Brands</h3>
             </div>
-            <!-------------------  add form ------------------- -->
+            <!-------------------  form ------------------- -->
             <div class="overlay" id="overlay">
                 <div class="form-container">
                     <form class="shadow p-4 " [formGroup]="fg">
@@ -19,14 +19,14 @@
                             <div class="text-success form-text" *ngIf="!nameRequired && nameValid">Looks Good!</div>
                         </div>
                     <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="OnSubmit($event)"><i
-                        class="bi bi-check-circle-fill" > Add</i></button>
+                        class="bi bi-check-circle-fill" > Save</i></button>
                     <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="closeForm()"><i
                             class="bi bi-x-circle-fill" > Cancel</i></button>
                     </form>
                 </div>
                 </div>
             <div class="m-2">
-                <button (click)="openForm()">New Brand</button>
+                <button (click)="openForm(0)">New Brand</button>
             </div>
             <!-------------------  brand table ------------------- -->
             <table class="table">
@@ -42,7 +42,7 @@
                         <th scope="row">{{i+1}}</th>
                         <td>{{brand.name}}</td>
                         <td>
-                            <i class="bi text-warning fs-4 bi-pencil-square" [routerLink]="[]"></i> |
+                            <i class="bi text-warning fs-4 bi-pencil-square" (click)="openForm(brand.id)"></i> |
                             <i class="bi text-danger fs-4 bi-trash" (click)="delete(brand.id)"></i>
                         </td>
                     </tr>
