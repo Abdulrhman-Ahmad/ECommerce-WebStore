@@ -9,7 +9,7 @@ Observable
 })
 export class RegisterService {
 
-  BaseUrl :string = "http://localhost:7003/api/Accounts/Register";
+  BaseUrl :string = "https://localhost:7003/api/Accounts/Register";
 
   constructor(private httpclient :HttpClient) { }
 
