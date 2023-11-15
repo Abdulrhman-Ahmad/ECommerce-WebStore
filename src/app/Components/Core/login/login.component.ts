@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       this.login.Login(this.user).subscribe(
         {
           next:     () => this.router.navigate(['']),
-          error:    () => console.log("Incorrect Email or Pass"),
+          error:    (e) => console.log("Incorrect Email or Pass",e),
           complete: () => console.log("Successfully Loged In")
         }
       )

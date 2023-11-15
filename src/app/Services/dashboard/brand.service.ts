@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Ibrandadd } from 'src/app/Interfaces/brand/ibrandadd';
 import { Ibrandreturn } from 'src/app/Interfaces/brand/ibrandreturn';
 
 @Injectable({
@@ -10,18 +11,23 @@ export class BrandService {
   baseURL: string = 'https://localhost:7003/api/Brand';
   constructor(private http: HttpClient) {}
 
+
+   // ---------------- [Get All ]
   getAll() : Observable<Ibrandreturn[]>{
     return this.http.get<Ibrandreturn[]>(`${this.baseURL}/All`);
   }
 
-  add(brand:Ibrandreturn) {
+     // ---------------- [Add ]
+  add(brand:Ibrandadd) {
     return this.http.post(this.baseURL,brand);
   }
 
-  edit(id:number , brand:Ibrandreturn) {
-    return this.http.put(`${this.baseURL}/${id}`,brand);
+     // ---------------- [Edit ]
+  edit(brand:Ibrandreturn) {
+    return this.http.put(this.baseURL,brand);
   }
 
+  // ---------------- [Delete ]
   delete(id:number) {
     return this.http.delete(`${this.baseURL}?id=${id}`);
   }
