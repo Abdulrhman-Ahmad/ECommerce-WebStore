@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Ireviewreturn } from 'src/app/Interfaces/review/Ireviewreturn';
-import { ReviewService } from 'src/app/Services/dashboard/review.service';
+import { ReviewService } from 'src/app/Services/review.service';
+
 
 @Component({
   selector: 'app-reviews-list-admin-dashboard',
@@ -14,7 +15,7 @@ export class ReviewsListAdminDashboardComponent {
   constructor(private reviewService:ReviewService){}
 
   ngOnInit(): void {
-    this.reviewService.getAll(this.pageIndex).subscribe({
+    this.reviewService.getAllAdmin(this.pageIndex).subscribe({
       next:(data) =>{this.reviews= data},
       error:(error)=>{console.log('error'+error)},
       complete: ()=>{},
@@ -25,7 +26,7 @@ export class ReviewsListAdminDashboardComponent {
    // --------------- [ Pageination ]
     next() {
     this.pageIndex = this.pageIndex + 1
-    this.reviewService.getAll(this.pageIndex).subscribe(
+    this.reviewService.getAllAdmin(this.pageIndex).subscribe(
       {
         next: (data) => {
           if (data.length > 0) {
@@ -44,7 +45,7 @@ export class ReviewsListAdminDashboardComponent {
   prev() {
     if (this.pageIndex > 1) {
       this.pageIndex = this.pageIndex - 1 ;
-      this.reviewService.getAll(this.pageIndex).subscribe(
+      this.reviewService.getAllAdmin(this.pageIndex).subscribe(
         {
           next: (data) => {
             this.reviews = data
@@ -59,7 +60,7 @@ export class ReviewsListAdminDashboardComponent {
 
   delete(id:number){
     this.reviews = this.reviews.filter(r => r.id !== id);
-    this.reviewService.delete(id).subscribe({
+    this.reviewService.deleteAdmin(id).subscribe({
       next:() =>{console.log('deleted Succsesfully')},
       error:(error)=>{console.log('error'+JSON.stringify(error))},
       complete: ()=>{},

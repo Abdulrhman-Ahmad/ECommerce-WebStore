@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ireview } from '../Interfaces/ireview';
 import { Iwritereview } from '../Interfaces/iwritereview';
+import { Ireviewreturn } from '../Interfaces/review/Ireviewreturn';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ReviewService {
 
   AllReviewsUrl : string = "https://localhost:7003/api/Review/GetAllReviews";
   AddReviewUrl  : string = "https://localhost:7003/api/Review";
+  baseURL: string = 'https://localhost:7003/api/Review'; // Tasneem
 
   constructor(private httpclient: HttpClient) { }
 
@@ -24,4 +26,17 @@ export class ReviewService {
     return this.httpclient.post<Iwritereview>(this.AddReviewUrl, data)
   }
 
+  // ------------------------------- [ ADMIN ] 
+  
+
+    // ------------------- [ Get All Reviews For Admin ]
+  getAllAdmin(PageIndex?:number) : Observable<Ireviewreturn[]>{
+    const url = PageIndex ? `${this.baseURL}/GetAllReviewsAdmin?pageIndex=${PageIndex}` : `${this.baseURL}/GetAllReviewsAdmin`;
+    return this.httpclient.get<Ireviewreturn[]>(url);
+  }
+
+    // ------------------- [ delete Review ]
+  deleteAdmin(id:number) {
+    return this.httpclient.delete(`${this.baseURL}/${id}`);
+  }
 }

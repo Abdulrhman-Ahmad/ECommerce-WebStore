@@ -30,7 +30,7 @@ export class BrandListDashboardComponent {
   brandId:number = 0;
 
 
-  constructor(private fb:FormBuilder , private fbEdit:FormBuilder ,private brandService:BrandService ,private router:Router ,private activatedRoute: ActivatedRoute){}
+  constructor(private fb:FormBuilder , private fbEdit:FormBuilder ,private brandService:BrandService ,private router:Router ){}
 
   ngOnInit(): void {
     this.fg = this.fb.group({
