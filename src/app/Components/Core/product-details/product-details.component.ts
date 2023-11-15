@@ -57,7 +57,9 @@ export class ProductDetailsComponent implements OnInit{
         this.currentImage= d.images[0]
       },
       error:(e) => console.log(e),
-      complete: () => console.log('Successfully Got the product!')
+      complete: () => {
+        console.log('Successfully Got the product!')
+      }
     })
   }
 

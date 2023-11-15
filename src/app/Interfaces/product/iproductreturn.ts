@@ -12,7 +12,7 @@ import { Iwarranty } from "../iwarranty";
       color: string;
       storage: number;
       ram: number;
-      carmera: string;
+      camera: string;
       cpu: string;
       screenSize: number;
       batteryCapacity: number;
@@ -26,4 +26,4 @@ import { Iwarranty } from "../iwarranty";
       avgRating: number;
       avgRatingRounded: number;
     }
-    
+
