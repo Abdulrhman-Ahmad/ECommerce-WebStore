@@ -45,8 +45,9 @@ export class ChangepasswordComponent implements OnInit {
         next: () => console.log('Changing Password ...'),
         error: (e) => console.log('Failed To Change Password! : ',e),
         complete: () => {
-          console.log('Successfully Change Password!')
-          this.router.navigate(['login'])
+          console.log('Successfully Change Password!');
+          localStorage.removeItem('token');
+          this.router.navigate(['login']);
         }
       });
     } else {
