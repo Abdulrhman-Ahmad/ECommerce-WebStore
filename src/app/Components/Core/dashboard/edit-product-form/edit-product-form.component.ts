@@ -18,31 +18,8 @@ export class EditProductFormComponent {
 
   selectedImage: File | null = null;
 
-  //------------- [ initialize product to edit]
-  product: Iproductadd = {
-    name: '',
-    description: '',
-    price: 0,
-    condition: 0,
-    stockQuantity: 0,
-    discount: 0,
-    model: '',
-    color: '',
-    storage: 0,
-    ram: 0,
-    camera: '',
-    cpu: '',
-    screenSize: 0,
-    batteryCapacity: 0,
-    osVersion: '',
-    categoryID: 0,
-    brandID: 0,
-    warranties: [],
-    images: []
-  };
-
   //------------- [ get product data in case of edit]
-  productById :Iproductreturn= {
+  productById: Iproductreturn = {
     id: 0,
     name: '',
     description: '',
@@ -50,12 +27,12 @@ export class EditProductFormComponent {
     discount: 0,
     priceAfter: 0,
     condition: 0,
-    stockQuantity:0,
+    stockQuantity: 0,
     model: '',
     color: '',
     storage: 0,
     ram: 0,
-    carmera: '',
+    camera: '',
     cpu: '',
     screenSize: 0,
     batteryCapacity: 0,
@@ -70,7 +47,7 @@ export class EditProductFormComponent {
     avgRatingRounded: 0
   };
 
-  productId:number = 0;
+  productId: number = 0;
   images: File[] = [];
   warranties: Iwarranty[] = [];
 
@@ -80,38 +57,63 @@ export class EditProductFormComponent {
 
     this.productId = this.activatedRoute.snapshot.params['id'];
 
+    // Initializing the form group
+    this.fg = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+      price: [null, [Validators.required, Validators.min(1000), Validators.max(80000)]],
+      condition: [null, [Validators.required, Validators.min(0), Validators.max(1)]],
+      stockQuantity: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
+      discount: [null, [Validators.required, Validators.min(0), Validators.max(70)]],
+      model: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      color: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      storage: [null, [Validators.required, Validators.min(16), Validators.max(1000)]],
+      ram: [null, [Validators.required, Validators.min(8), Validators.max(64)]],
+      camera: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
+      cpu: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
+      screenSize: [null, [Validators.required]],
+      batteryCapacity: [null, [Validators.required, Validators.min(16), Validators.max(10000)]],
+      osVersion: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      categoryID: [null, [Validators.required, Validators.min(1)]],
+      brandID: [null, [Validators.required]],
+      warranties: [''],
+      images: ['']
+    });
+
     //------------- [ in case of edit declare fg with product data]
-      this.productapi.GetProductByIdAdmin(this.productId).subscribe({
-        next: (d) => 
-        {
-            this.productById = d;
-            console.log(this.productById);
-            this.fg = this.fb.group({
-              name: [this.productById.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-              description: [this.productById.description, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
-              price: [this.productById.price, [Validators.required, Validators.min(1000), Validators.max(80000)]],
-              condition: [this.productById.condition, [Validators.required, Validators.min(0), Validators.max(1)]],
-              stockQuantity: [this.productById.stockQuantity, [Validators.required, Validators.min(0), Validators.max(100)]],
-              discount: [this.productById.discount, [Validators.required, Validators.min(0), Validators.max(70)]],
-              model: [this.productById.model, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-              color: [this.productById.color, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-              storage: [this.productById.storage, [Validators.required, Validators.min(16), Validators.max(1000)]],
-              ram: [this.productById.ram, [Validators.required, Validators.min(8), Validators.max(64)]],
-              camera: [this.productById.carmera, [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
-              cpu: [this.productById.cpu, [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
-              screenSize: [this.productById.screenSize, [Validators.required]],
-              batteryCapacity: [this.productById.batteryCapacity, [Validators.required, Validators.min(16), Validators.max(10000)]],
-              osVersion: [this.productById.osVersion, [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-              categoryID: [this.productById.categoryID, [Validators.required, Validators.min(1)]],
-              brandID: [this.productById.brandID, [Validators.required]],
-              warranties: [''], // cant display data of edited product
-              images: [''] // cant display data of edited product
-        
-            })
-        },
-        error:(e) => console.log(e),
-        complete: () => {}
-      }); 
+    this.productapi.GetProductByIdAdmin(this.productId).subscribe({
+      next: (d) => {
+        this.productById = d;
+      },
+      error: (e) => console.log('Unable to load data : ', e),
+      complete: () => {
+
+        console.log('Got Product Data Successfully!')
+        console.log(this.productById)
+        // in case we got data successfully assign it to form controls
+        this.fg.patchValue({
+          name: this.productById.name,
+          description: this.productById.description,
+          price: this.productById.price,
+          condition: this.productById.condition,
+          stockQuantity: this.productById.stockQuantity,
+          discount: this.productById.discount,
+          model: this.productById.model,
+          color: this.productById.color,
+          storage: this.productById.storage,
+          ram: this.productById.ram,
+          camera: this.productById.camera,
+          cpu: this.productById.cpu,
+          screenSize: this.productById.screenSize,
+          batteryCapacity: this.productById.batteryCapacity,
+          osVersion: this.productById.osVersion,
+          categoryID: this.productById.categoryID,
+          brandID: this.productById.brandID,
+        });
+
+      }
+    });
+
   }
 
   addWarranty() {
@@ -144,53 +146,56 @@ export class EditProductFormComponent {
   }
 
 
-OnSubmit(e: Event) {
+  OnSubmit(e: Event) {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  if (this.fg.valid) {
-    let formData = new FormData();
-    formData.append('id', this.productId.toString());
-    formData.append('name', this.fg.get('name')?.value);
-    formData.append('description', this.fg.get('description')?.value);
-    formData.append('price', this.fg.get('price')?.value.toString());
-    formData.append('condition', this.fg.get('condition')?.value.toString());
-    formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
-    formData.append('discount', this.fg.get('discount')?.value.toString());
-    formData.append('model', this.fg.get('model')?.value);
-    formData.append('color', this.fg.get('color')?.value);
-    formData.append('storage', this.fg.get('storage')?.value.toString());
-    formData.append('ram', this.fg.get('ram')?.value.toString());
-    formData.append('camera', this.fg.get('camera')?.value);
-    formData.append('cpu', this.fg.get('cpu')?.value);
-    formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
-    formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
-    formData.append('osVersion', this.fg.get('osVersion')?.value);
-    formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
-    formData.append('brandID', this.fg.get('brandID')?.value.toString());
+    if (this.fg.valid) {
+      let formData = new FormData();
+      formData.append('id', this.productId.toString());
+      formData.append('name', this.fg.get('name')?.value);
+      formData.append('description', this.fg.get('description')?.value);
+      formData.append('price', this.fg.get('price')?.value.toString());
+      formData.append('condition', this.fg.get('condition')?.value.toString());
+      formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
+      formData.append('discount', this.fg.get('discount')?.value.toString());
+      formData.append('model', this.fg.get('model')?.value);
+      formData.append('color', this.fg.get('color')?.value);
+      formData.append('storage', this.fg.get('storage')?.value.toString());
+      formData.append('ram', this.fg.get('ram')?.value.toString());
+      formData.append('camera', this.fg.get('camera')?.value);
+      formData.append('cpu', this.fg.get('cpu')?.value);
+      formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
+      formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
+      formData.append('osVersion', this.fg.get('osVersion')?.value);
+      formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
+      formData.append('brandID', this.fg.get('brandID')?.value.toString());
 
 
-    for (let item of this.warranties) {
-      formData.append(`warranties`, JSON.stringify(item));
+      for (let item of this.warranties) {
+        formData.append(`warranties`, JSON.stringify(item));
+      }
+
+      for (let image of this.images) {
+        formData.append(`images`, image, image.name);
+      }
+
+      this.productapi.EditProduct(formData).subscribe({
+        next: (d) => {
+          console.log('Editing Product ...', d)
+          //this.router.navigate(['/adminproducts'])
+        },
+        error: (e) => console.log('Error: ', e),
+        complete: () => console.log('Edit Product Successfully!')
+      })
+
     }
 
-    for (let image of this.images) {
-      formData.append(`images`, image, image.name);
+    else {
+      console.log('Form is invalid');
     }
 
-    this.productapi.EditProduct(formData).subscribe({
-      next: (d) => {console.log('Editing Product ...', d),this.router.navigate(['/adminproducts'])},
-      error: (e) => console.log('Error: ', e),
-      complete: () => console.log('Edit Product Successfully!')
-    })
-
   }
-
-  else {
-    console.log('Form is invalid');
-  }
-
-}
 
 
 

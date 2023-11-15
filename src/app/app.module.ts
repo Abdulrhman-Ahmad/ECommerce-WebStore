@@ -54,6 +54,7 @@ import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders
 import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
 import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
 import { EditProductFormComponent } from './Components/Core/dashboard/edit-product-form/edit-product-form.component';
+import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { EditProductFormComponent } from './Components/Core/dashboard/edit-produ
     OrdersListDashboardComponent,
     ReviewsListAdminDashboardComponent,
     ContactAdminDashboardComponent,
-    EditProductFormComponent
+    EditProductFormComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,

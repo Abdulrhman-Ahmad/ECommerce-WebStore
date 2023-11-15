@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit{
     color: '',
     storage: 0,
     ram: 0,
-    carmera: '',
+    camera: '',
     cpu: '',
     screenSize: 0,
     batteryCapacity: 0,
@@ -57,7 +57,9 @@ export class ProductDetailsComponent implements OnInit{
         this.currentImage= d.images[0]
       },
       error:(e) => console.log(e),
-      complete: () => console.log('Successfully Got the product!')
+      complete: () => {
+        console.log('Successfully Got the product!')
+      }
     })
   }
 

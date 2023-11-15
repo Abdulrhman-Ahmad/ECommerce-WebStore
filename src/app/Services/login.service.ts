@@ -16,6 +16,8 @@ export class LoginService {
   CurrentUserName = new BehaviorSubject<string>('')
 
   BaseUrl: string = "https://localhost:7003/api/Accounts/Login"
+  // BaseUrl: string = "http://localhost:5281/api/Accounts/Login"   // Tasneem Commit
+
 
   constructor(private httpclien: HttpClient, private claim: ClaimsService, private data: CurrentuserService) { }
 
