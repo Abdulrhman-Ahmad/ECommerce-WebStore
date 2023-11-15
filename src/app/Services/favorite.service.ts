@@ -8,7 +8,7 @@ import { Ifavorite } from '../Interfaces/ifavorite';
 })
 export class FavoriteService {
 
-  BaseUrl :string = "https://localhost:7003/api/Accounts/favourite"
+  BaseUrl :string = "https://localhost:7003/api/UserProfile/favourite"
   constructor(private httpclient:HttpClient) { }
 
   // get all (GET)

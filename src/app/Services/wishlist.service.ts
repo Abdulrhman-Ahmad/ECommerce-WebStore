@@ -8,7 +8,7 @@ import { Iwishlist } from '../Interfaces/iwishlist';
 })
 export class WishlistService {
 
-  BaseUrl :string = "https://localhost:7003/api/Accounts/wishlist"
+  BaseUrl :string = "https://localhost:7003/api/UserProfile/wishlist"
   constructor(private httpclient:HttpClient) { }
 
   // get all (GET)
