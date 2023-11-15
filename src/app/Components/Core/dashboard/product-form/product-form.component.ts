@@ -18,30 +18,6 @@ export class ProductFormComponent {
 
   selectedImage: File | null = null;
 
-  //------------- [ initialize product to add]
-  product: Iproductadd = {
-    name: '',
-    description: '',
-    price: 0,
-    condition: 0,
-    stockQuantity: 0,
-    discount: 0,
-    model: '',
-    color: '',
-    storage: 0,
-    ram: 0,
-    camera: '',
-    cpu: '',
-    screenSize: 0,
-    batteryCapacity: 0,
-    osVersion: '',
-    categoryID: 0,
-    brandID: 0,
-    warranties: [],
-    images: []
-  };
-
-
   productId:number = 0;
   images: File[] = [];
   warranties: Iwarranty[] = [];
@@ -52,8 +28,7 @@ export class ProductFormComponent {
 
     this.productId = this.activatedRoute.snapshot.params['id'];
 
-    //------------- [ declare fg with empty data]
-
+      //#region FormGroup
       this.fg = this.fb.group({
         name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
@@ -74,10 +49,12 @@ export class ProductFormComponent {
         brandID: [1, [Validators.required]],
         warranties: [''],
         images: ['']
-  
+        //#endregion
+
       })
-    
+
   }
+
 
   addWarranty() {
 
@@ -91,7 +68,6 @@ export class ProductFormComponent {
 
     this.fg.get('warranties')?.reset();
   }
-
 
   AssignImage(e: any) {
     this.selectedImage = e.target.files[0];
@@ -108,7 +84,7 @@ export class ProductFormComponent {
     }
   }
 
-
+  //#region Old OnSubmit
   // OnSubmit(e: Event) {
   //   e.preventDefault();
   //   console.log(this.fg);
@@ -174,155 +150,156 @@ export class ProductFormComponent {
   //   }
 
   // }
+//#endregion
+
+  OnSubmit(e: Event) {
+
+    e.preventDefault();
+
+    if (this.fg.valid) {
+
+      //#region Assigning the form Data
+      let formData = new FormData();
+      formData.append('name', this.fg.get('name')?.value);
+      formData.append('description', this.fg.get('description')?.value);
+      formData.append('price', this.fg.get('price')?.value.toString());
+      formData.append('condition', this.fg.get('condition')?.value.toString());
+      formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
+      formData.append('discount', this.fg.get('discount')?.value.toString());
+      formData.append('model', this.fg.get('model')?.value);
+      formData.append('color', this.fg.get('color')?.value);
+      formData.append('storage', this.fg.get('storage')?.value.toString());
+      formData.append('ram', this.fg.get('ram')?.value.toString());
+      formData.append('camera', this.fg.get('camera')?.value);
+      formData.append('cpu', this.fg.get('cpu')?.value);
+      formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
+      formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
+      formData.append('osVersion', this.fg.get('osVersion')?.value);
+      formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
+      formData.append('brandID', this.fg.get('brandID')?.value.toString());
+
+      for (let item of this.warranties) {
+        formData.append(`warranties`, JSON.stringify(item));
+      }
+
+      for (let image of this.images) {
+        formData.append(`images`, image, image.name);
+      }
+      //#endregion
 
 
-OnSubmit(e: Event) {
+      //#region Sending Data to API
+      this.productapi.AddProduct(formData).subscribe({
+        next: (d) => {console.log('Adding Product ...', d),this.router.navigate(['/adminproducts'])},
+        error: (e) => console.log('Error: ', e),
+        complete: () => console.log('Added Product Successfully!')
+      })
+      //#endregion
 
-  e.preventDefault();
-
-  if (this.fg.valid) {
-    let formData = new FormData();
-    formData.append('name', this.fg.get('name')?.value);
-    formData.append('description', this.fg.get('description')?.value);
-    formData.append('price', this.fg.get('price')?.value.toString());
-    formData.append('condition', this.fg.get('condition')?.value.toString());
-    formData.append('stockQuantity', this.fg.get('stockQuantity')?.value.toString());
-    formData.append('discount', this.fg.get('discount')?.value.toString());
-    formData.append('model', this.fg.get('model')?.value);
-    formData.append('color', this.fg.get('color')?.value);
-    formData.append('storage', this.fg.get('storage')?.value.toString());
-    formData.append('ram', this.fg.get('ram')?.value.toString());
-    formData.append('camera', this.fg.get('camera')?.value);
-    formData.append('cpu', this.fg.get('cpu')?.value);
-    formData.append('screenSize', this.fg.get('screenSize')?.value.toString());
-    formData.append('batteryCapacity', this.fg.get('batteryCapacity')?.value.toString());
-    formData.append('osVersion', this.fg.get('osVersion')?.value);
-    formData.append('categoryID', this.fg.get('categoryID')?.value.toString());
-    formData.append('brandID', this.fg.get('brandID')?.value.toString());
-
-
-    for (let item of this.warranties) {
-      formData.append(`warranties`, JSON.stringify(item));
     }
 
-    for (let image of this.images) {
-      formData.append(`images`, image, image.name);
+    else {
+      console.log('Form is invalid');
     }
-
-    this.productapi.AddProduct(formData).subscribe({
-      next: (d) => {console.log('Adding Product ...', d),this.router.navigate(['/adminproducts'])},
-      error: (e) => console.log('Error: ', e),
-      complete: () => console.log('Added Product Successfully!')
-    })
 
   }
 
-  else {
-    console.log('Form is invalid');
-  }
+    //#region Properties Getter
+    // ---------------- [ name ]
+    get nameRequired(): boolean | void { return this.fg.get('name')?.hasError('required'); }
+    get nameValid(): boolean | void { return this.fg.get('name')?.valid; }
+    get nameTouched(): boolean | void { return this.fg.get('name')?.touched; }
 
-}
+    // ---------------- [ description ]
+    get descriptionRequired(): boolean | void { return this.fg.get('description')?.hasError('required'); }
+    get descriptionValid(): boolean | void { return this.fg.get('description')?.valid; }
+    get descriptionTouched(): boolean | void { return this.fg.get('description')?.touched; }
 
+    // ---------------- [ price ]
+    get priceRequired(): boolean | void { return this.fg.get('price')?.hasError('required'); }
+    get priceValid(): boolean | void { return this.fg.get('price')?.valid; }
+    get priceTouched(): boolean | void { return this.fg.get('price')?.touched; }
 
+    // ---------------- [ condition ]
+    get conditionRequired(): boolean | void { return this.fg.get('condition')?.hasError('required'); }
+    get conditionValid(): boolean | void { return this.fg.get('condition')?.valid; }
+    get conditionTouched(): boolean | void { return this.fg.get('condition')?.touched; }
 
+    // ---------------- [ stockQuantity ]
+    get stockQuantityRequired(): boolean | void { return this.fg.get('stockQuantity')?.hasError('required'); }
+    get stockQuantityValid(): boolean | void { return this.fg.get('stockQuantity')?.valid; }
+    get stockQuantityTouched(): boolean | void { return this.fg.get('stockQuantity')?.touched; }
 
-  // ---------------- [ name ]
-  get nameRequired(): boolean | void { return this.fg.get('name')?.hasError('required'); }
-  get nameValid(): boolean | void { return this.fg.get('name')?.valid; }
-  get nameTouched(): boolean | void { return this.fg.get('name')?.touched; }
+    // ---------------- [ discount ]
+    get discountRequired(): boolean | void { return this.fg.get('discount')?.hasError('required'); }
+    get discountValid(): boolean | void { return this.fg.get('discount')?.valid; }
+    get discountTouched(): boolean | void { return this.fg.get('discount')?.touched; }
 
-  // ---------------- [ description ]
-  get descriptionRequired(): boolean | void { return this.fg.get('description')?.hasError('required'); }
-  get descriptionValid(): boolean | void { return this.fg.get('description')?.valid; }
-  get descriptionTouched(): boolean | void { return this.fg.get('description')?.touched; }
+    // ---------------- [ model ]
+    get modelRequired(): boolean | void { return this.fg.get('model')?.hasError('required'); }
+    get modelValid(): boolean | void { return this.fg.get('model')?.valid; }
+    get modelTouched(): boolean | void { return this.fg.get('model')?.touched; }
 
-  // ---------------- [ price ]
-  get priceRequired(): boolean | void { return this.fg.get('price')?.hasError('required'); }
-  get priceValid(): boolean | void { return this.fg.get('price')?.valid; }
-  get priceTouched(): boolean | void { return this.fg.get('price')?.touched; }
+    // ---------------- [ color ]
+    get colorRequired(): boolean | void { return this.fg.get('color')?.hasError('required'); }
+    get colorValid(): boolean | void { return this.fg.get('color')?.valid; }
+    get colorTouched(): boolean | void { return this.fg.get('color')?.touched; }
 
-  // ---------------- [ condition ]
-  get conditionRequired(): boolean | void { return this.fg.get('condition')?.hasError('required'); }
-  get conditionValid(): boolean | void { return this.fg.get('condition')?.valid; }
-  get conditionTouched(): boolean | void { return this.fg.get('condition')?.touched; }
+    // ---------------- [ storage ]
+    get storageRequired(): boolean | void { return this.fg.get('storage')?.hasError('required'); }
+    get storageValid(): boolean | void { return this.fg.get('storage')?.valid; }
+    get storageTouched(): boolean | void { return this.fg.get('storage')?.touched; }
 
-  // ---------------- [ stockQuantity ]
-  get stockQuantityRequired(): boolean | void { return this.fg.get('stockQuantity')?.hasError('required'); }
-  get stockQuantityValid(): boolean | void { return this.fg.get('stockQuantity')?.valid; }
-  get stockQuantityTouched(): boolean | void { return this.fg.get('stockQuantity')?.touched; }
+    // ---------------- [ ram ]
+    get ramRequired(): boolean | void { return this.fg.get('ram')?.hasError('required'); }
+    get ramValid(): boolean | void { return this.fg.get('ram')?.valid; }
+    get ramTouched(): boolean | void { return this.fg.get('ram')?.touched; }
 
-  // ---------------- [ discount ]
-  get discountRequired(): boolean | void { return this.fg.get('discount')?.hasError('required'); }
-  get discountValid(): boolean | void { return this.fg.get('discount')?.valid; }
-  get discountTouched(): boolean | void { return this.fg.get('discount')?.touched; }
-
-  // ---------------- [ model ]
-  get modelRequired(): boolean | void { return this.fg.get('model')?.hasError('required'); }
-  get modelValid(): boolean | void { return this.fg.get('model')?.valid; }
-  get modelTouched(): boolean | void { return this.fg.get('model')?.touched; }
-
-  // ---------------- [ color ]
-  get colorRequired(): boolean | void { return this.fg.get('color')?.hasError('required'); }
-  get colorValid(): boolean | void { return this.fg.get('color')?.valid; }
-  get colorTouched(): boolean | void { return this.fg.get('color')?.touched; }
-
-  // ---------------- [ storage ]
-  get storageRequired(): boolean | void { return this.fg.get('storage')?.hasError('required'); }
-  get storageValid(): boolean | void { return this.fg.get('storage')?.valid; }
-  get storageTouched(): boolean | void { return this.fg.get('storage')?.touched; }
-
-  // ---------------- [ ram ]
-  get ramRequired(): boolean | void { return this.fg.get('ram')?.hasError('required'); }
-  get ramValid(): boolean | void { return this.fg.get('ram')?.valid; }
-  get ramTouched(): boolean | void { return this.fg.get('ram')?.touched; }
-
-  // ---------------- [ camera ]
-  get cameraRequired(): boolean | void { return this.fg.get('camera')?.hasError('required'); }
-  get cameraValid(): boolean | void { return this.fg.get('camera')?.valid; }
-  get cameraTouched(): boolean | void { return this.fg.get('camera')?.touched; }
+    // ---------------- [ camera ]
+    get cameraRequired(): boolean | void { return this.fg.get('camera')?.hasError('required'); }
+    get cameraValid(): boolean | void { return this.fg.get('camera')?.valid; }
+    get cameraTouched(): boolean | void { return this.fg.get('camera')?.touched; }
 
 
-  // ---------------- [ cpu ]
-  get cpuRequired(): boolean | void { return this.fg.get('cpu')?.hasError('required'); }
-  get cpuValid(): boolean | void { return this.fg.get('cpu')?.valid; }
-  get cpuTouched(): boolean | void { return this.fg.get('cpu')?.touched; }
+    // ---------------- [ cpu ]
+    get cpuRequired(): boolean | void { return this.fg.get('cpu')?.hasError('required'); }
+    get cpuValid(): boolean | void { return this.fg.get('cpu')?.valid; }
+    get cpuTouched(): boolean | void { return this.fg.get('cpu')?.touched; }
 
-  // ---------------- [ screenSize ]
-  get screenSizeRequired(): boolean | void { return this.fg.get('screenSize')?.hasError('required'); }
-  get screenSizeValid(): boolean | void { return this.fg.get('screenSize')?.valid; }
-  get screenSizeTouched(): boolean | void { return this.fg.get('screenSize')?.touched; }
+    // ---------------- [ screenSize ]
+    get screenSizeRequired(): boolean | void { return this.fg.get('screenSize')?.hasError('required'); }
+    get screenSizeValid(): boolean | void { return this.fg.get('screenSize')?.valid; }
+    get screenSizeTouched(): boolean | void { return this.fg.get('screenSize')?.touched; }
 
-  // ---------------- [ batteryCapacity ]
-  get batteryCapacityRequired(): boolean | void { return this.fg.get('batteryCapacity')?.hasError('required'); }
-  get batteryCapacityValid(): boolean | void { return this.fg.get('batteryCapacity')?.valid; }
-  get batteryCapacityTouched(): boolean | void { return this.fg.get('batteryCapacity')?.touched; }
+    // ---------------- [ batteryCapacity ]
+    get batteryCapacityRequired(): boolean | void { return this.fg.get('batteryCapacity')?.hasError('required'); }
+    get batteryCapacityValid(): boolean | void { return this.fg.get('batteryCapacity')?.valid; }
+    get batteryCapacityTouched(): boolean | void { return this.fg.get('batteryCapacity')?.touched; }
 
-  // ---------------- [ osVersion ]
-  get osVersionRequired(): boolean | void { return this.fg.get('osVersion')?.hasError('required'); }
-  get osVersionValid(): boolean | void { return this.fg.get('osVersion')?.valid; }
-  get osVersionTouched(): boolean | void { return this.fg.get('osVersion')?.touched; }
+    // ---------------- [ osVersion ]
+    get osVersionRequired(): boolean | void { return this.fg.get('osVersion')?.hasError('required'); }
+    get osVersionValid(): boolean | void { return this.fg.get('osVersion')?.valid; }
+    get osVersionTouched(): boolean | void { return this.fg.get('osVersion')?.touched; }
 
-  // ---------------- [ categoryID ]
-  get categoryIDRequired(): boolean | void { return this.fg.get('categoryID')?.hasError('required'); }
-  get categoryIDValid(): boolean | void { return this.fg.get('categoryID')?.valid; }
-  get categoryIDTouched(): boolean | void { return this.fg.get('categoryID')?.touched; }
+    // ---------------- [ categoryID ]
+    get categoryIDRequired(): boolean | void { return this.fg.get('categoryID')?.hasError('required'); }
+    get categoryIDValid(): boolean | void { return this.fg.get('categoryID')?.valid; }
+    get categoryIDTouched(): boolean | void { return this.fg.get('categoryID')?.touched; }
 
-  // ---------------- [ brandID ]
-  get brandIDRequired(): boolean | void { return this.fg.get('brandID')?.hasError('required'); }
-  get brandIDValid(): boolean | void { return this.fg.get('brandID')?.valid; }
-  get brandIDTouched(): boolean | void { return this.fg.get('brandID')?.touched; }
+    // ---------------- [ brandID ]
+    get brandIDRequired(): boolean | void { return this.fg.get('brandID')?.hasError('required'); }
+    get brandIDValid(): boolean | void { return this.fg.get('brandID')?.valid; }
+    get brandIDTouched(): boolean | void { return this.fg.get('brandID')?.touched; }
 
-  // ---------------- [ warranties ]
-  public get warrantiesRequired(): boolean | void { return this.fg.get('warranties')?.hasError('required'); }
-  get warrantiesValid(): boolean | void { return this.fg.get('warranties')?.valid; }
-  get warrantiesTouched(): boolean | void { return this.fg.get('warranties')?.touched; }
+    // ---------------- [ warranties ]
+    public get warrantiesRequired(): boolean | void { return this.fg.get('warranties')?.hasError('required'); }
+    get warrantiesValid(): boolean | void { return this.fg.get('warranties')?.valid; }
+    get warrantiesTouched(): boolean | void { return this.fg.get('warranties')?.touched; }
 
-  // ---------------- [ images ]
-  get imagesRequired(): boolean | void { return this.fg.get('images')?.hasError('required'); }
-  get imagesValid(): boolean | void { return this.fg.get('images')?.valid; }
-  get imagesTouched(): boolean | void { return this.fg.get('images')?.touched; }
-
-
-
+    // ---------------- [ images ]
+    get imagesRequired(): boolean | void { return this.fg.get('images')?.hasError('required'); }
+    get imagesValid(): boolean | void { return this.fg.get('images')?.valid; }
+    get imagesTouched(): boolean | void { return this.fg.get('images')?.touched; }
+    //#endregion
 
 }

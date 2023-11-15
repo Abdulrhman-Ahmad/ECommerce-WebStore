@@ -47,7 +47,7 @@ export class GeneralInformationComponent implements OnInit {
 
     if (this.fg.valid)
     {
-      
+
     }
     else
     {
