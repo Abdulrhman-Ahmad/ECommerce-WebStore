@@ -26,8 +26,8 @@ export class ReviewService {
     return this.httpclient.post<Iwritereview>(this.AddReviewUrl, data)
   }
 
-  // ------------------------------- [ ADMIN ] 
-  
+  // ------------------------------- [ ADMIN ]
+
 
     // ------------------- [ Get All Reviews For Admin ]
   getAllAdmin(PageIndex?:number) : Observable<Ireviewreturn[]>{

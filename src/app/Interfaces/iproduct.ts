@@ -13,7 +13,7 @@ export interface Iproduct {
   color: string;
   storage: number;
   ram: number;
-  carmera: string;
+  camera: string;
   cpu: string;
   screenSize: number;
   batteryCapacity: number;

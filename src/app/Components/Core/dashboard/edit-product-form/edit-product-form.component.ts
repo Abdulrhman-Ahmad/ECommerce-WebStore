@@ -85,11 +85,11 @@ export class EditProductFormComponent {
       next: (d) => {
         this.productById = d;
       },
-      error: (e) => console.log('Unable to load data : ',e),
+      error: (e) => console.log('Unable to load data : ', e),
       complete: () => {
 
         console.log('Got Product Data Successfully!')
-
+        console.log(this.productById)
         // in case we got data successfully assign it to form controls
         this.fg.patchValue({
           name: this.productById.name,
@@ -181,7 +181,10 @@ export class EditProductFormComponent {
       }
 
       this.productapi.EditProduct(formData).subscribe({
-        next: (d) => { console.log('Editing Product ...', d), this.router.navigate(['/adminproducts']) },
+        next: (d) => {
+          console.log('Editing Product ...', d)
+          //this.router.navigate(['/adminproducts'])
+        },
         error: (e) => console.log('Error: ', e),
         complete: () => console.log('Edit Product Successfully!')
       })

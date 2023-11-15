@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit{
     color: '',
     storage: 0,
     ram: 0,
-    carmera: '',
+    camera: '',
     cpu: '',
     screenSize: 0,
     batteryCapacity: 0,
