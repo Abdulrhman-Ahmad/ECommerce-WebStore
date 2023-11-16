@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
   deletecart(id:number)
   {
     this.cartapi.DeleteCart(id).subscribe({
-      next: (d) => console.log('Deleting the Cart'),
+      //next: (d) => console.log('Deleting the Cart'),
       error: (e) => console.log(e),
       complete: () => {
         console.log('Cart deleted Successfully!')

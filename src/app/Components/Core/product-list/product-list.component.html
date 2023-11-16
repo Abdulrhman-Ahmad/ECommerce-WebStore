@@ -36,8 +36,12 @@
   <div class="container-fluid col-sm-12 col-lg-9 d-flex flex-wrap p-3  justify-content-end align-items-start" >
 
     <!-- Cards -->
-    <div class="card m-2" style="width: 15rem; position: relative; cursor: pointer;" *ngFor="let item of products">
-      <img src="https://picsum.photos/100/100" class="card-img-top" alt="..." [routerLink]="['details', item.id]">
+    <div id="card" class="card m-2" style="width: 15rem; position: relative; cursor: pointer;" *ngFor="let item of products">
+
+      <div id="img" class="card-img-top text-center">
+      <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" class="img-fluid" alt="..." [routerLink]="['details', item.id]">
+      </div>
+
       <button (click)="AddToFavorite(item.id)" class="smalled s1 btn btn-dark m-1" style="position: absolute; top:1px; right: 1px; font-size: 10px;"><i class=" bi bi-heart-fill" id="heart"></i></button>
       <button (click)="AddToWithList(item.id)" class="smalled s2 btn btn-dark m-1" style="position: absolute; top:40px; right:1px; font-size: 10px;"><i class=" bi bi-list-ol" id="star"></i></button>
       <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer;">

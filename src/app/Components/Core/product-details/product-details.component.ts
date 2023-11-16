@@ -1,9 +1,11 @@
+import { NotExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 import { CartService } from 'src/app/Services/cart.service';
 import { FavoriteService } from 'src/app/Services/favorite.service';
+import { LoginService } from 'src/app/Services/login.service';
 import { ProductlistService } from 'src/app/Services/productlist.service';
 
 @Component({
@@ -41,20 +43,19 @@ export class ProductDetailsComponent implements OnInit{
   };
 
   productId !: number;
-  currentImage : string = '';
+  currentImage : string = 'assets/Images/NotFound.png';
   quantity : number = 1;
 
-  constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router, private favoriteapi: FavoriteService){}
+  constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router, private favoriteapi: FavoriteService, private log:LoginService){}
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      d=> this.productId = d['id']
-    )
+
+    this.productId = this.route.snapshot.params['id']
 
     this.productapi.GetProductById(this.productId).subscribe({
       next: (d) => {
         this.product = d;
-        this.currentImage= d.images[0]
+        this.currentImage= d.images[0] ? d.images[0] : 'assets/Images/NotFound.png'
       },
       error:(e) => console.log(e),
       complete: () => {
@@ -70,39 +71,63 @@ export class ProductDetailsComponent implements OnInit{
 
   //------------- [ Add To Cart ]
   AddToCart() {
-    let data: Iproductquantity = {
-      productId: this.productId,
-      quantity: this.quantity
+    if (this.log.IsLoggedIn.value)
+    {
+      let data: Iproductquantity = {
+        productId: this.productId,
+        quantity: this.quantity
+      }
+      this.cartapi.AddAmount(data).subscribe({
+        //next: (d) => console.log(d),
+        error: (d) => console.log('failed to add to cart', d.message),
+        complete: () => console.log(`Successfully added [${data.quantity}] to cart`)
+      })
     }
-    this.cartapi.AddAmount(data).subscribe({
-      next: (d) => console.log(d),
-      error: (d) => console.log('failed to add to cart', d.message),
-      complete: () => console.log(`Successfully added [${data.quantity}] to cart`)
-    })
+    else
+    {
+      //in case the user is not logged in don't Add the product, so here it must navigate him to the login page
+      this.router.navigate(['login']);
+    }
   }
 
   buy(){
+   if (this.log.IsLoggedIn.value)
+   {
     let data: Iproductquantity = {
       productId: this.productId,
       quantity: this.quantity
     }
     this.cartapi.AddAmount(data).subscribe({
-      next: (d) => console.log(d),
+      //next: (d) => console.log(d),
       error: (d) => console.log('failed to add to cart', d.message),
       complete: () => {
         console.log(`Successfully added [${data.quantity}] to cart`)
         this.router.navigate(['cart'])
       }
     })
+   }
+   else
+   {
+      // In case the user didn't logged in we have to direct him to the login page
+      // next improvement we record its cart or desire to buy something that were before clicking on the buy button and login
+      this.router.navigate(['login'])
+   }
   }
 
   // ------------- [ Add To Favorite ]
   AddToFavorite(){
-    this.favoriteapi.AddToFavorite(this.productId).subscribe({
-      next: (d) => console.log('Adding to Cart', d),
-      error: (e) => console.log(e),
-      complete: () => console.log('Successfully Added to Cart!')
-    })
+    if (this.log.IsLoggedIn.value)
+    {
+      this.favoriteapi.AddToFavorite(this.productId).subscribe({
+        //next: (d) => console.log('Adding to Cart', d),
+        error: (e) => console.log(e),
+        complete: () => console.log('Successfully Added to Cart!')
+      })
+    }
+    else
+    {
+      this.router.navigate(['login'])
+    }
   }
 
 

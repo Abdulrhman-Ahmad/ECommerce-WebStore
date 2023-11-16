@@ -39,40 +39,68 @@ export class ProductListComponent implements OnInit {
     this.productlist.getProducts(this.filters).subscribe(
       {
         next: (data) => this.products = data,
-        error: () => console.log("failed to bring the data"),
+        error: (e) => console.log("failed to bring the data: ", e),
         complete: () => console.log("Got Data Successfully!")
       }
     );
   }
 
-
   // -------------- [ Add to ]
   AddToFavorite(id: number) {
-    this.favoriteservice.AddToFavorite(id).subscribe({
-      next: () => console.log("adding to favorite.."),
-      error: () => console.log("Error happened during adding to favorites"),
-      complete: () => console.log("Added Successfully favorite")
-    })
+
+    if (this.login.IsLoggedIn.value)
+    {
+      this.favoriteservice.AddToFavorite(id).subscribe({
+        //next: () => console.log("adding to favorite.."),
+        error: (e) => console.log("Error happened during adding to favorites: ",e),
+        complete: () => console.log("Added to favorite Successfully!")
+      })
+    }
+    else
+    {
+      //in case the user is not logged in don't Add the product, so here it must navigate him to the login page
+      this.router.navigate(['login']);
+    }
+
+
   }
 
   AddToWithList(id: number) {
-    this.wilshlistservice.AddToWishlist(id).subscribe({
-      next: () => console.log("adding to wishlist.."),
-      error: () => console.log("Error happened during adding to wishlist"),
-      complete: () => console.log("Added Successfully to wishlist")
-    })
+
+    if (this.login.IsLoggedIn.value)
+    {
+      this.wilshlistservice.AddToWishlist(id).subscribe({
+        //next: () => console.log("adding to wishlist.."),
+        error: (e) => console.log("Error happened during adding to wishlist: ",e),
+        complete: () => console.log("Added to Wishlist Successfully!")
+      })
+    }
+    else
+    {
+      //in case the user is not logged in don't Add the product, so here it must navigate him to the login page
+      this.router.navigate(['login']);
+    }
   }
 
   AddToCart(id: number) {
-    let data: Iproductquantity = {
-      productId: id,
-      quantity: 1
+    if (this.login.IsLoggedIn.value)
+    {
+      let data: Iproductquantity = {
+        productId: id,
+        quantity: 1
+      }
+      this.cartapi.AddToCart(data).subscribe({
+        //next: (d) => console.log(d),
+        error: (e) => console.log('failed to add to cart: ', e ),
+        complete: () => console.log('Added to Cart Successfully!')
+      })
     }
-    this.cartapi.AddToCart(data).subscribe({
-      next: (d) => console.log(d),
-      error: (d) => console.log('failed to add to cart', d.message),
-      complete: () => console.log('Successfully added to cart')
-    })
+    else
+    {
+      //in case the user is not logged in don't Add the product, so here it must navigate him to the login page
+      this.router.navigate(['login']);
+    }
+
   }
 
   // --------------- [ Pageination ]
@@ -94,6 +122,7 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
+
   prev() {
     if (this.currentIndex > 1) {
       this.filters.pageIndex = (this.currentIndex - 1).toString();

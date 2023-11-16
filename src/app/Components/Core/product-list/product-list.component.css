@@ -16,4 +16,22 @@ input, select{
   height: 2rem;
 }
 
+#img{
+  max-height: 200.14px;
+  min-height: 200.14px;
+}
+img{
+  max-height: inherit;
+  transition-duration: 1s;
 
+}
+
+#card{
+  border: 0px;
+  overflow: hidden;
+}
+
+#card:hover #img img {
+  transform: scale(1.04);
+  opacity: 0.8;
+}
