@@ -25,7 +25,7 @@
                         <td>{{order.products.length}}</td>
                         <td>{{order.totalPrice}}</td>
                         <td>
-                            <i class="bi text-primary fs-4 bi-info-circle" ></i> 
+                            <i class="bi text-primary fs-4 bi-info-circle" [routerLink]="['/adminorder/details',order.orderId]" ></i> 
                         </td>
                     </tr>
                 </tbody>

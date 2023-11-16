@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IorderAdmin } from 'src/app/Interfaces/order/iorder-admin';
+import { OrderStatus } from 'src/app/Interfaces/order/order-status';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ export class OrderService {
     return this.http.get<IorderAdmin[]>(`${this.baseURL}/GetAllOrders/${PageIndex}`);
   }
 
-  
+  // ---------------- [ Get Order By Id  ]
+  GetOrderById(id:number) : Observable<IorderAdmin>{
+    return this.http.get<IorderAdmin>(`${this.baseURL}/GetOrderById/${id}`);
+  }
+
 }

@@ -32,6 +32,7 @@ import { ContactAdminDashboardComponent } from './Components/Core/dashboard/cont
 import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
 import { EditProductFormComponent } from './Components/Core/dashboard/edit-product-form/edit-product-form.component';
 import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
+import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path:'adminbrands',component:BrandListDashboardComponent},
   {path:'adminusers',component:UsersListAdminDashboardComponent},
   {path:'adminorders',component:OrdersListDashboardComponent},
+  {path:'adminorder/details/:id',component:AdminOrderDetailsComponent},
   {path:'adminreviews',component:ReviewsListAdminDashboardComponent},
   {path:'adminContactUs',component:ContactAdminDashboardComponent},
   {path:'**', component:NotfoundComponent}
