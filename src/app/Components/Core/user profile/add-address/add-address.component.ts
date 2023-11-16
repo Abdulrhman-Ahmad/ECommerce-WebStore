@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { IRegister } from 'src/app/Interfaces/iregister';
-import { RegisterService } from 'src/app/Services/register.service';
+import { Router } from '@angular/router';
+import { Iaddress } from 'src/app/Interfaces/iaddress';
+import { AddressService } from 'src/app/Services/address.service';
 
 @Component({
   selector: 'app-add-address',
@@ -11,93 +12,81 @@ import { RegisterService } from 'src/app/Services/register.service';
 })
 export class AddAddressComponent {
   fg !:FormGroup
-  IsMatchedPass = new BehaviorSubject<boolean>(false)
-
-  user: IRegister = {
-    fullName: "",
-    userName: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-    address: ""
+  address: Iaddress = {
+    id: 0,
+    street: '',
+    city: '',
+    state: '',
+    country: '',
+    postalCode: 0,
+    specialInstructions: ''
   };
 
-
-  constructor(private fb:FormBuilder, private register : RegisterService){}
-
+  constructor(
+    private fb: FormBuilder,
+    private addaddress: AddressService,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
-  this.fg = this.fb.group({
-    fullname:['',[Validators.required, Validators.minLength(4)]],
-    username:['',[Validators.required, Validators.minLength(4)]],
-    email:   ['',[Validators.required, Validators.email]],
-    password:['',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]],
-    confirm: ['',[Validators.required, Validators.minLength(8)]],
-    address: ['',[Validators.required, Validators.minLength(8)]],
-    phone:   ['',[Validators.required, Validators.minLength(11)]]
-  })
+    this.fg = this.fb.group({
+      street :['',[Validators.required, Validators.minLength(5)]],
+      city :['',[Validators.required, Validators.minLength(5)]],
+      state :['',[Validators.required, Validators.minLength(5)]],
+      country :['',[Validators.required, Validators.minLength(5)]],
+      postalCode :['',[Validators.required, Validators.pattern(/\d{1,}/)]],
+    });
   }
 
-  OnSubmit(e :Event){
+  onSubmit(e: Event): void {
     e.preventDefault();
 
-    if (this.fg.valid && this.IsMatched)
-    {
-      this.IsMatchedPass.next(false)
+    if (this.fg.valid ) {
 
-      this.user.fullName = this.fg.get('fullname')?.value;
-      this.user.userName = this.fg.get('username')?.value;
-      this.user.email = this.fg.get('email')?.value;
-      this.user.password = this.fg.get('password')?.value;
-      this.user.address = this.fg.get('address')?.value;
-      this.user.phoneNumber = this.fg.get('phone')?.value;
+      this.address.street = this.fg.get('street')?.value;
+      this.address.city = this.fg.get('city')?.value;
+      this.address.country = this.fg.get('country')?.value;
 
-      // Add User
-      this.register.Register(this.user).subscribe();
 
-    }
-    else
-    {
-      this.IsMatchedPass.next(true)
+      this.addaddress.AddAddress(this.address).subscribe({
+        next: () => console.log('Changing Password ...'),
+        error: (e) => console.log('Failed To Change Password! : ',e),
+        complete: () => {
+          console.log('Successfully Change Password!');
+          localStorage.removeItem('token');
+          this.router.navigate(['login']);
+        }
+      });
+    } else {
     }
   }
 
 
+  //#region Getter Properties
+  // ---------------- [ street ]
+  get streetRequired(): boolean | void { return this.fg.get('street')?.hasError('required'); }
+  get streetValid(): boolean | void { return this.fg.get('street')?.valid; }
+  get streetTouched(): boolean | void { return this.fg.get('street')?.touched; }
 
-  // ---------------- [ fullname ]
-  get fullnameRequired():boolean|void{return this.fg.get('fullname')?.hasError('required');}
-  get fullnameValid(): boolean|void { return this.fg.get('fullname')?.valid;}
-  get fullnameTouched():boolean|void{ return this.fg.get('fullname')?.touched;}
+  // ---------------- [ city ]
+  get cityRequired(): boolean | void { return this.fg.get('city')?.hasError('required'); }
+  get cityValid(): boolean | void { return this.fg.get('city')?.valid; }
+  get cityTouched(): boolean | void { return this.fg.get('city')?.touched; }
 
-  // ---------------- [ username ]
-  get usernameRequired():boolean|void{return this.fg.get('username')?.hasError('required');}
-  get usernameValid(): boolean|void { return this.fg.get('username')?.valid;}
-  get usernameTouched():boolean|void{ return this.fg.get('username')?.touched;}
+  // ---------------- [ state ]
+  get stateRequired(): boolean | void { return this.fg.get('state')?.hasError('required'); }
+  get stateValid(): boolean | void { return this.fg.get('state')?.valid; }
+  get stateTouched(): boolean | void { return this.fg.get('state')?.touched; }
 
-  // ---------------- [ email ]
-  get emailRequired():boolean|void{return this.fg.get('email')?.hasError('required');}
-  get emailValid(): boolean|void { return this.fg.get('email')?.valid;}
-  get emailTouched():boolean|void{ return this.fg.get('email')?.touched;}
+  // ---------------- [ country ]
+  get countryRequired(): boolean | void { return this.fg.get('country')?.hasError('required'); }
+  get countryValid(): boolean | void { return this.fg.get('country')?.valid; }
+  get countryTouched(): boolean | void { return this.fg.get('country')?.touched; }
 
-  // ---------------- [ password ]
-  get passRequired():boolean|void{return this.fg.get('password')?.hasError('required');}
-  get passValid(): boolean|void  {return this.fg.get('password')?.valid;}
-  get passTouched():boolean|void {return this.fg.get('password')?.touched;}
-  get IsMatched():boolean|void   {return this.fg.get('password')?.value === this.fg.get('confirm')?.value}
-
-  // ---------------- [ confirm ]
-  get confirmRequired():boolean|void{return this.fg.get('confirm')?.hasError('required');}
-  get confirmValid(): boolean|void  {return this.fg.get('confirm')?.valid;}
-  get confirmTouched():boolean|void {return this.fg.get('confirm')?.touched;}
-
-  // ---------------- [ address ]
-  get addressRequired():boolean|void{return this.fg.get('address')?.hasError('required');}
-  get addressValid(): boolean|void  {return this.fg.get('address')?.valid;}
-  get addressTouched():boolean|void {return this.fg.get('address')?.touched;}
-
-  // ---------------- [ phone ]
-  get phoneRequired():boolean|void{return this.fg.get('phone')?.hasError('required');}
-  get phoneValid(): boolean|void  {return this.fg.get('phone')?.valid;}
-  get phoneTouched():boolean|void {return this.fg.get('phone')?.touched;}
+  // ---------------- [ postalCode ]
+  get postalCodeRequired(): boolean | void { return this.fg.get('postalCode')?.hasError('required'); }
+  get postalCodeValid(): boolean | void { return this.fg.get('postalCode')?.valid; }
+  get postalCodeTouched(): boolean | void { return this.fg.get('postalCode')?.touched; }
 
 }

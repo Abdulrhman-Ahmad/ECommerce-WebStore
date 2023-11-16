@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iwritereview } from 'src/app/Interfaces/iwritereview';
+import { LoginService } from 'src/app/Services/login.service';
 import { ReviewService } from 'src/app/Services/review.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ReviewWriteComponent implements OnInit {
   fg !: FormGroup;
   productId !: number;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private reviewapi: ReviewService) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private reviewapi: ReviewService, private log: LoginService, private router:Router) { }
 
   ngOnInit(): void {
     this.fillRate = [
@@ -48,23 +49,33 @@ export class ReviewWriteComponent implements OnInit {
 
 
   submit() {
-    if (this.fg.valid && this.selectedRating > 0) {
 
-      // ----- [ Initialize the review Dto ]
-      let review: Iwritereview = {
-        text: this.fg.get('reviewText')?.value,
-        date: new Date(),
-        rating: this.selectedRating,
-        productID: this.productId
+    if (this.log.IsLoggedIn.value)
+    {
+      if (this.fg.valid && this.selectedRating > 0) {
+
+        // ----- [ Initialize the review Dto ]
+        let review: Iwritereview = {
+          text: this.fg.get('reviewText')?.value,
+          date: new Date(),
+          rating: this.selectedRating,
+          productID: this.productId
+        }
+
+        // send the revie to the server
+        this.reviewapi.AddReview(review).subscribe({
+          next: (d)=> console.log('Adding Review...', d),
+          error: (e) => console.log(e),
+          complete: () => console.log('Review Added Successfully!')
+        })
+
       }
-
-      // send the revie to the server
-      this.reviewapi.AddReview(review).subscribe({
-        next: (d)=> console.log('Adding Review...', d),
-        error: (e) => console.log(e),
-        complete: () => console.log('Review Added Successfully!')
-      })
-
+    }
+    else
+    {
+      // login first and then return back to the page where you were!
+      // we have to record its desire to return him to it again to Complete What he was doing
+      this.router.navigate(['login'])
     }
   }
 

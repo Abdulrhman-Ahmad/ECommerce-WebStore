@@ -47,7 +47,6 @@ export class ProductsListDasboardComponent {
   // - there is a problem while deleting the prducts, foreigns can't be null there ?
   // yes, and can't fix it :( [must edit db to make table products on delete cascade]
   DeleteProduct(id:number){
-    this.products = this.products.filter(e=> e.id != id) //Analgesic
     this.productlist.DeleteProduct(id).subscribe({
       next: (d) => console.log('Deleting...'),
       error:(e) => console.log('Error : ', e),

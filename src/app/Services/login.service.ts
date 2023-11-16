@@ -4,8 +4,9 @@ import { ILogin } from '../Interfaces/ilogin';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Itoken } from '../Interfaces/itoken';
-import { Iclaims } from '../Interfaces/iclaims';
 import { CurrentuserService } from './currentuser.service';
+import { CartService } from './cart.service';
+import { FavoriteService } from './favorite.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +17,27 @@ export class LoginService {
   CurrentUserName = new BehaviorSubject<string>('')
 
   BaseUrl: string = "https://localhost:7003/api/Accounts/Login"
-  // BaseUrl: string = "http://localhost:5281/api/Accounts/Login"   // Tasneem Commit
 
-
-  constructor(private httpclien: HttpClient, private claim: ClaimsService, private data: CurrentuserService) { }
+  constructor(private httpclien: HttpClient, private claim: ClaimsService, private data: CurrentuserService, private cartservice: CartService, private favoriteservice: FavoriteService) { }
 
   Login(user: ILogin): Observable<Itoken> {
     return this.httpclien.post<Itoken>(this.BaseUrl, user).pipe(tap((res: any) => {
-      if (res)
-      {
+      if (res) {
         localStorage.setItem('token', res.token);
 
-        // getting the name of the user to display it in the  navbar
+        // Get Name of the User from Token Claims and display it in NavBar
         let claims = JSON.parse(window.atob(res.token.split('.')[1]));
         this.CurrentUserName.next(claims[this.claim.claimTypes.GivenName])
       }
 
-      if (localStorage.getItem('token'))
+      if (localStorage.getItem('token')) {
+
         this.IsLoggedIn.next(true)
+
+        this.cartservice.GetCart().subscribe();
+
+        this.favoriteservice.GetFavorite().subscribe();
+      }
     }))
   }
 

@@ -12,5 +12,16 @@ button{
 img{
   padding: 1rem;
   height: 20vh;
+  transition-duration: 500ms;
+}
+
+#img{
+  max-width: 160px;
+}
+
+#card:hover #img img {
+  transform: scale(1.2);
+  opacity: 0.8;
+  transition-duration: 500ms;
 }
 
