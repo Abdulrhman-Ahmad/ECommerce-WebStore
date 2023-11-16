@@ -36,9 +36,9 @@ export class GeneralInformationComponent implements OnInit {
     this.fg = this.fb.group({
       fullname:[this.data.CurrentUser.GivenName,[Validators.required, Validators.minLength(4)]],
       username:[this.data.CurrentUser.Name,[Validators.required, Validators.minLength(4)]],
-      email:   [this.data.CurrentUser.StreetAddress,[Validators.required, Validators.email]],
-      address: [this.data.CurrentUser.MobilePhone,[Validators.required, Validators.minLength(8)]],
-      phone:   [this.data.CurrentUser.Email,[Validators.required, Validators.minLength(11)]]
+      email:   [this.data.CurrentUser.Email,[Validators.required, Validators.email]],
+      address: [this.data.CurrentUser.StreetAddress,[Validators.required, Validators.minLength(8)]],
+      phone:   [this.data.CurrentUser.MobilePhone,[Validators.required, Validators.minLength(11)]]
     })
   }
 
