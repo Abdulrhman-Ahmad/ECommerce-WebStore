@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Iuser } from 'src/app/Interfaces/user/iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,16 @@ export class AdminUserManagerService {
   GetTotalSell() : Observable<number>{
     return this.http.get<number>(`${this.totalSellUrl}`);
   }
+
+
+   // ---------------- [ Get All Users ]
+    GetAllUsers(PageIndex:number) : Observable<Iuser[]>{
+    return this.http.get<Iuser[]>(`${this.baseURL}/GetAllUsers/${PageIndex}`);
+  }
+
+  // ---------------- [ Delete User ]
+  DeleteUser(userName:string) {
+    return this.http.delete(`${this.baseURL}/DeleteUser?userName=${userName}`);
+  }
+
 }

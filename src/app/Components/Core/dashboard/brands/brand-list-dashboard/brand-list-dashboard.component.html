@@ -4,9 +4,6 @@
             <app-adminaside></app-adminaside>
         </div>
         <div class="col-9">
-            <div class="m-2">
-                <h3>Brands</h3>
-            </div>
             <!-------------------  form ------------------- -->
             <div class="overlay" id="overlay">
                 <div class="form-container">
@@ -26,7 +23,8 @@
                 </div>
                 </div>
             <div class="m-2">
-                <button (click)="openForm(0)">New Brand</button>
+                <!-- <button (click)="openForm(0)">New Brand</button> -->
+                <button (click)="openForm(0)" class="btn btn-dark m-3"><i class="bi bi-plus"></i> Add Brand</button>
             </div>
             <!-------------------  brand table ------------------- -->
             <table class="table">
