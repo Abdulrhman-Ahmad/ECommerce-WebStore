@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit {
     password:['',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]],
     confirm: ['',[Validators.required, Validators.minLength(8)]],
     address: ['',[Validators.required, Validators.minLength(8)]],
-    phone:   ['',[Validators.required, Validators.minLength(11)]]
+    phone:   ['',[Validators.required, Validators.pattern(/^\d{11}$/)]]
   })
   }
 
