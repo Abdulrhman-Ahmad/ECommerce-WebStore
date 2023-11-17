@@ -15,4 +15,9 @@ export class ContacUsService {
     return this.http.get<IcontactUs[]>(`${this.baseURL}?pageNumber=${PageIndex}`);
   }
 
+  // ---------------- [ Add Contac Msg ]
+      add(msg:IcontactUs) {
+      return this.http.post(this.baseURL,msg);
+    }
+
 }

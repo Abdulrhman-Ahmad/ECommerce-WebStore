@@ -7,6 +7,8 @@ import { CartService } from 'src/app/Services/cart.service';
 import { FavoriteService } from 'src/app/Services/favorite.service';
 import { WishlistService } from 'src/app/Services/wishlist.service';
 
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

@@ -111,14 +111,14 @@ import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add
     ChangepasswordComponent,
     AdminOrderDetailsComponent,
     AddUserComponent,
-
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

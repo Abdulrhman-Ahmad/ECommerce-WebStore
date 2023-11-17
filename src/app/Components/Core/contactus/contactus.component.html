@@ -50,10 +50,10 @@
 
               <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12 w-100" id="i634i-7">
                 <textarea name="message" aria-placeholder="Type message here" class="textinput" id="i5vyy-7"
-                  placeholder="Type message here" formControlName="address"></textarea>
-                  <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
-                  <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 20 digits!</div>
-                  <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+                  placeholder="Type message here" formControlName="message"></textarea>
+                  <div class="text-danger form-text"   *ngIf="messageTouched &&  messageRequired">Required Field!</div>
+                  <div class="text-danger form-text"   *ngIf="messageTouched && !messageRequired &&!messageValid">At least 20 digits!</div>
+                  <div class="text-success form-text" *ngIf="!messageRequired && messageValid">Looks Good!</div>
               </div>
 
             </div>

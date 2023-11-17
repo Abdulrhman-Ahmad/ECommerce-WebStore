@@ -46,6 +46,9 @@ export class ProductDetailsComponent implements OnInit{
   currentImage : string = 'assets/Images/NotFound.png';
   quantity : number = 1;
 
+  // ---------------- [ get related products ]
+  relatedProducts !: Iproduct[];
+
   constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router, private favoriteapi: FavoriteService, private log:LoginService){}
 
   ngOnInit(): void {
@@ -56,12 +59,24 @@ export class ProductDetailsComponent implements OnInit{
       next: (d) => {
         this.product = d;
         this.currentImage= d.images[0] ? d.images[0] : 'assets/Images/NotFound.png'
+
+         // ---------------- [ get related products ]
+        this.productapi.getProductsByBrandName(this.product.brandName).subscribe({
+          next: (relatedPrds) => 
+          {
+            this.relatedProducts = relatedPrds.filter(b => b.id !== this.productId); //not work
+          },
+          error:(e) => console.log(e),
+          complete: () => {console.log('Successfully Got the Related products!') }
+        });
       },
       error:(e) => console.log(e),
       complete: () => {
         console.log('Successfully Got the product!')
       }
     })
+
+    
   }
 
   LoadImage(src :string)

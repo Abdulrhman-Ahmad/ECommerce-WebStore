@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { IcontactUs } from 'src/app/Interfaces/icontact-us';
 import { IRegister } from 'src/app/Interfaces/iregister';
+import { ContacUsService } from 'src/app/Services/dashboard/contac-us.service';
 import { RegisterService } from 'src/app/Services/register.service';
 
 @Component({
@@ -15,17 +17,16 @@ export class ContactusComponent implements OnInit {
   fg !:FormGroup
   IsMatchedPass = new BehaviorSubject<boolean>(false)
 
-  user: IRegister = {
+  //not logic use this interface
+  userMsg: IcontactUs = {
     fullName: "",
-    userName: "",
     email: "",
-    password: "",
     phoneNumber: "",
-    address: ""
+    message: ""
   };
 
 
-  constructor(private fb:FormBuilder, private register : RegisterService, private router:Router){}
+  constructor(private fb:FormBuilder, private contacUsService:ContacUsService, private router:Router){}
 
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class ContactusComponent implements OnInit {
     fullname:['',[Validators.required, Validators.minLength(4)]],
     email:   ['',[Validators.required, Validators.email]],
     phone:   ['',[Validators.required, Validators.pattern(/^\d{11}$/)]],
-    address :['',[Validators.required, Validators.minLength(20)]]
+    message :['',[Validators.required, Validators.minLength(10)]]
   })
   }
 
@@ -44,10 +45,24 @@ export class ContactusComponent implements OnInit {
     {
       this.IsMatchedPass.next(false)
 
-      this.user.fullName = this.fg.get('fullname')?.value;
-      this.user.email = this.fg.get('email')?.value;
-      this.user.phoneNumber = this.fg.get('phone')?.value;
-      this.user.address = this.fg.get('address')?.value;
+      this.userMsg.fullName = this.fg.get('fullname')?.value;
+      this.userMsg.email = this.fg.get('email')?.value;
+      this.userMsg.phoneNumber = this.fg.get('phone')?.value;
+      this.userMsg.message = this.fg.get('message')?.value;
+
+      this.contacUsService.add(this.userMsg).subscribe(
+        {
+          next:     () =>{},
+          error:    (e) => console.log(e),
+          complete: () => {
+            this.fg = this.fb.group({
+              fullname:['',[Validators.required, Validators.minLength(4)]],
+              email:   ['',[Validators.required, Validators.email]],
+              phone:   ['',[Validators.required, Validators.pattern(/^\d{11}$/)]],
+              message :['',[Validators.required, Validators.minLength(10)]]
+            })
+          }
+        })
     }
     else
     {
@@ -72,9 +87,9 @@ export class ContactusComponent implements OnInit {
   get phoneTouched():boolean|void {return this.fg.get('phone')?.touched;}
 
     // ---------------- [ Message ]
-    get addressRequired():boolean|void{return this.fg.get('address')?.hasError('required');}
-    get addressValid(): boolean|void  {return this.fg.get('address')?.valid;}
-    get addressTouched():boolean|void {return this.fg.get('address')?.touched;}
+    get messageRequired():boolean|void{return this.fg.get('message')?.hasError('required');}
+    get messageValid(): boolean|void  {return this.fg.get('message')?.valid;}
+    get messageTouched():boolean|void {return this.fg.get('message')?.touched;}
 
 
 }
