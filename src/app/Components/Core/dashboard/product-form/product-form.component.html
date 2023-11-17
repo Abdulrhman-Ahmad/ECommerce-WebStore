@@ -135,8 +135,7 @@
 
             <div class="form-floating">
               <select class="form-select" id="categoryID" formControlName="categoryID">
-                <option value="1">Laptop</option>
-                <option value="2">Mobile</option>
+                <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
               </select>
               <label for="categoryID">Category</label>
               <div class="text-danger form-text"   *ngIf="categoryIDTouched &&  categoryIDRequired">Required Field!</div>
@@ -146,9 +145,7 @@
 
             <div class="form-floating">
               <select class="form-select" id="brandID" formControlName="brandID">
-                <option value="1">Dell</option>
-                <option value="2">HP</option>
-                <option value="3">Iphone</option>
+                <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
               </select>
               <label for="brandID">Brand</label>
               <div class="text-danger form-text"   *ngIf="brandIDTouched &&  brandIDRequired">Required Field!</div>

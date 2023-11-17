@@ -23,18 +23,11 @@ export class AdminOrderDetailsComponent {
     // get order id from URL
     this.orderId = this.activatedRoute.snapshot.params['id'];
 
-    this.orderService.GetAllOrders(1).subscribe({
-      next:(data) =>{ this.orders = data ; this.Order = this.orders[0];},
+    this.orderService.GetOrderById(this.orderId).subscribe({
+      next:(data) =>{ this.Order = data ; console.log(this.Order)},
       error:(error)=>{console.log('error',error)},
       complete: ()=>{},
     });
-
-
-    // this.orderService.GetOrderById(this.orderId).subscribe({
-    //   next:(data) =>{ this.Order = data ; console.log(this.Order)},
-    //   error:(error)=>{console.log('error',error)},
-    //   complete: ()=>{},
-    // });
 
   }
 

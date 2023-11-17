@@ -183,7 +183,7 @@ export class EditProductFormComponent {
       this.productapi.EditProduct(formData).subscribe({
         next: (d) => {
           console.log('Editing Product ...', d)
-          this.router.navigate(['/adminproducts'])
+          this.router.navigate(['/admin/products'])
         },
         error: (e) => console.log('Error: ', e),
         complete: () => console.log('Edit Product Successfully!')

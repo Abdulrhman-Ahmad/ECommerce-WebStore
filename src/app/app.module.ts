@@ -47,7 +47,6 @@ import { DashhomeComponent } from './Components/Core/dashboard/dashhome/dashhome
 import { AdminasideComponent } from './Components/Core/dashboard/adminaside/adminaside.component';
 import { ProductFormComponent } from './Components/Core/dashboard/product-form/product-form.component';
 import { CategoryListDashboardComponent } from './Components/Core/dashboard/categories/category-list-dashboard/category-list-dashboard.component';
-import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
 import { BrandListDashboardComponent } from './Components/Core/dashboard/brands/brand-list-dashboard/brand-list-dashboard.component';
 import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/users/users-list-admin-dashboard/users-list-admin-dashboard.component';
 import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
@@ -56,6 +55,7 @@ import { ContactAdminDashboardComponent } from './Components/Core/dashboard/cont
 import { EditProductFormComponent } from './Components/Core/dashboard/edit-product-form/edit-product-form.component';
 import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
+import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 
 
 @NgModule({
@@ -102,7 +102,6 @@ import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/a
     AdminasideComponent,
     ProductFormComponent,
     CategoryListDashboardComponent,
-    CategoryFormDashboardComponent,
     BrandListDashboardComponent,
     UsersListAdminDashboardComponent,
     OrdersListDashboardComponent,
@@ -111,6 +110,7 @@ import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/a
     EditProductFormComponent,
     ChangepasswordComponent,
     AdminOrderDetailsComponent,
+    AddUserComponent,
 
   ],
   imports: [

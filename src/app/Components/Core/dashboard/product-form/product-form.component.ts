@@ -2,9 +2,13 @@ import { Iproductadd } from './../../../../Interfaces/product/iproductadd';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ibrandreturn } from 'src/app/Interfaces/brand/ibrandreturn';
+import { Icategoryreturn } from 'src/app/Interfaces/category/icategoryreturn';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iwarranty } from 'src/app/Interfaces/iwarranty';
 import { Iproductreturn } from 'src/app/Interfaces/product/iproductreturn';
+import { BrandService } from 'src/app/Services/dashboard/brand.service';
+import { CategoryService } from 'src/app/Services/dashboard/category.service';
 import { ProductlistService } from 'src/app/Services/productlist.service';
 
 @Component({
@@ -21,8 +25,15 @@ export class ProductFormComponent {
   productId:number = 0;
   images: File[] = [];
   warranties: Iwarranty[] = [];
+  categories:Icategoryreturn[] = [];
+  brands:Ibrandreturn[] = [];
 
-  constructor(private fb: FormBuilder, private productapi: ProductlistService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder,
+              private productapi: ProductlistService,
+              private catService: CategoryService,
+              private brandService:BrandService ,
+              private router: Router, 
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -52,6 +63,20 @@ export class ProductFormComponent {
         //#endregion
 
       })
+
+      // ---------------- [ Get All Categories ]
+        this.catService.getAll().subscribe({
+          next:(data) =>{this.categories= data},
+          error:(error)=>{console.log('error'+error)},
+          complete: ()=>{},
+        });
+
+     // ---------------- [ Get All Brands ]
+      this.brandService.getAll().subscribe({
+      next:(data) =>{this.brands= data},
+      error:(error)=>{console.log('error'+error)},
+      complete: ()=>{},
+      });
 
   }
 
@@ -190,7 +215,7 @@ export class ProductFormComponent {
 
       //#region Sending Data to API
       this.productapi.AddProduct(formData).subscribe({
-        next: (d) => {console.log('Adding Product ...', d),this.router.navigate(['/adminproducts'])},
+        next: (d) => {console.log('Adding Product ...', d),this.router.navigate(['/admin/products'])},
         error: (e) => console.log('Error: ', e),
         complete: () => console.log('Added Product Successfully!')
       })

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Icategoryreturn } from 'src/app/Interfaces/category/icategoryreturn';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { IproductFilter } from 'src/app/Interfaces/iproductfilter';
+import { CategoryService } from 'src/app/Services/dashboard/category.service';
 import { LoginService } from 'src/app/Services/login.service';
 import { ProductlistService } from 'src/app/Services/productlist.service';
 
@@ -13,6 +15,7 @@ import { ProductlistService } from 'src/app/Services/productlist.service';
 export class ProductsListDasboardComponent {
   currentIndex: number = 1;
   products !: Iproduct[];
+  
 
   filters: IproductFilter = {
     sort: '',

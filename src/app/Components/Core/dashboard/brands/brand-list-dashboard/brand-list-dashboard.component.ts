@@ -46,8 +46,8 @@ export class BrandListDashboardComponent {
     
   }
 
-// ------------------------------------------ [ Add brand  ] ----------------------------------------
-  // ---------------- [OnSubmit Add Form  ]
+// ------------------------------------------ [ Add | Edit brand  ] ----------------------------------------
+  // ---------------- [OnSubmit Form  ]
   OnSubmit(e :Event){
     e.preventDefault();
 

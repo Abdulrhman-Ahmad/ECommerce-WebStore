@@ -29,10 +29,10 @@ import { UsersListAdminDashboardComponent } from './Components/Core/dashboard/us
 import { OrdersListDashboardComponent } from './Components/Core/dashboard/orders/orders-list-dashboard/orders-list-dashboard.component';
 import { ReviewsListAdminDashboardComponent } from './Components/Core/dashboard/reviews/reviews-list-admin-dashboard/reviews-list-admin-dashboard.component';
 import { ContactAdminDashboardComponent } from './Components/Core/dashboard/contactus/contact-admin-dashboard/contact-admin-dashboard.component';
-import { CategoryFormDashboardComponent } from './Components/Core/dashboard/categories/category-form-dashboard/category-form-dashboard.component';
 import { EditProductFormComponent } from './Components/Core/dashboard/edit-product-form/edit-product-form.component';
 import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
+import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -52,18 +52,18 @@ const routes: Routes = [
   {path:'products', component:ProductListComponent},
   {path:'products/details/:id', component:ProductDetailsComponent},
   {path:'checkout', component:CheckoutComponent},
-  {path:'adminhome',component:DashhomeComponent},
-  {path:'adminproducts',component: ProductsListDasboardComponent},
+  {path:'admin/home',component:DashhomeComponent},
+  {path:'admin/products',component: ProductsListDasboardComponent},
   {path:'products/new',component: ProductFormComponent},
   {path:'products/edit/:id',component: EditProductFormComponent},
-  {path:'admincategories',component: CategoryListDashboardComponent},
-  {path:'category/new',component:CategoryFormDashboardComponent},
-  {path:'adminbrands',component:BrandListDashboardComponent},
-  {path:'adminusers',component:UsersListAdminDashboardComponent},
-  {path:'adminorders',component:OrdersListDashboardComponent},
-  {path:'adminorder/details/:id',component:AdminOrderDetailsComponent},
-  {path:'adminreviews',component:ReviewsListAdminDashboardComponent},
-  {path:'adminContactUs',component:ContactAdminDashboardComponent},
+  {path:'admin/categories',component: CategoryListDashboardComponent},
+  {path:'admin/brands',component:BrandListDashboardComponent},
+  {path:'admin/users',component:UsersListAdminDashboardComponent},
+  {path:'admin/users/new',component:AddUserComponent},
+  {path:'admin/orders',component:OrdersListDashboardComponent},
+  {path:'admin/order/details/:id',component:AdminOrderDetailsComponent},
+  {path:'admin/reviews',component:ReviewsListAdminDashboardComponent},
+  {path:'admin/ContactUs',component:ContactAdminDashboardComponent},
   {path:'**', component:NotfoundComponent}
 ];
 

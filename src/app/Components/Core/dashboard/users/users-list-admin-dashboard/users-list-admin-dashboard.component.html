@@ -5,7 +5,7 @@
         </div>
         <div class="col-9">
             <div class="m-2">
-                <button class="btn btn-dark m-3"><i class="bi bi-person-plus"></i> Add User</button>
+                <button class="btn btn-dark m-3" [routerLink]="'/admin/users/new'"><i class="bi bi-person-plus"></i> Add User</button>
             </div>
             <table class="table">
                 <thead>
@@ -24,8 +24,8 @@
                         <td>{{user.email}}</td>
                         <td>{{user.role}}</td>
                         <td>
-                            <i class="bi text-primary fs-4 bi-info-circle" ></i> |
-                            <i class="bi text-warning fs-4 bi-pencil-square" ></i> |
+                            <!-- <i class="bi text-primary fs-4 bi-info-circle" ></i> |  -->  <!-- Not Have Data To Show User Details-->
+                            <!-- <i class="bi text-warning fs-4 bi-pencil-square" ></i> | -->
                             <i class="bi text-danger fs-4 bi-trash" (click)="delete(user.userName)"></i>
                         </td>
                     </tr>
