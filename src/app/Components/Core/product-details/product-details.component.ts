@@ -1,6 +1,7 @@
 import { NotExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
 import { CartService } from 'src/app/Services/cart.service';
@@ -13,9 +14,9 @@ import { ProductlistService } from 'src/app/Services/productlist.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit{
+export class ProductDetailsComponent implements OnInit {
 
-  product :Iproduct= {
+  product: Iproduct = {
     id: 0,
     name: '',
     description: '',
@@ -43,13 +44,13 @@ export class ProductDetailsComponent implements OnInit{
   };
 
   productId !: number;
-  currentImage : string = 'assets/Images/NotFound.png';
-  quantity : number = 1;
+  currentImage: string = 'assets/Images/NotFound.png';
+  quantity: number = 1;
 
   // ---------------- [ get related products ]
-  relatedProducts !: Iproduct[];
+  relatedProducts : Iproduct[] = []
 
-  constructor(private productapi:ProductlistService, private route : ActivatedRoute, private cartapi: CartService, private router:Router, private favoriteapi: FavoriteService, private log:LoginService){}
+  constructor(private productapi: ProductlistService, private route: ActivatedRoute, private cartapi: CartService, private router: Router, private favoriteapi: FavoriteService, private log: LoginService) { }
 
   ngOnInit(): void {
 
@@ -58,36 +59,34 @@ export class ProductDetailsComponent implements OnInit{
     this.productapi.GetProductById(this.productId).subscribe({
       next: (d) => {
         this.product = d;
-        this.currentImage= d.images[0] ? d.images[0] : 'assets/Images/NotFound.png'
-
-         // ---------------- [ get related products ]
-        this.productapi.getProductsByBrandName(this.product.brandName).subscribe({
-          next: (relatedPrds) => 
-          {
-            this.relatedProducts = relatedPrds.filter(b => b.id !== this.productId); //not work
-          },
-          error:(e) => console.log(e),
-          complete: () => {console.log('Successfully Got the Related products!') }
-        });
+        this.currentImage = d.images[0] ? d.images[0] : 'assets/Images/NotFound.png'
       },
-      error:(e) => console.log(e),
+      error: (e) => console.log(e),
       complete: () => {
         console.log('Successfully Got the product!')
+
+        // ---------------- [ get related products ]
+        this.productapi.getProductsByBrandName(this.product.brandName).subscribe({
+          next: (relatedPrds) => {
+            this.relatedProducts = relatedPrds.filter(b => b.id != this.productId);
+          },
+          error: (e) => console.log(e),
+          complete: () => { console.log('Successfully Got the Related products!') }
+        });
+
       }
     })
 
-    
+
   }
 
-  LoadImage(src :string)
-  {
+  LoadImage(src: string) {
     this.currentImage = src;
   }
 
   //------------- [ Add To Cart ]
   AddToCart() {
-    if (this.log.IsLoggedIn.value)
-    {
+    if (this.log.IsLoggedIn.value) {
       let data: Iproductquantity = {
         productId: this.productId,
         quantity: this.quantity
@@ -98,49 +97,44 @@ export class ProductDetailsComponent implements OnInit{
         complete: () => console.log(`Successfully added [${data.quantity}] to cart`)
       })
     }
-    else
-    {
+    else {
       //in case the user is not logged in don't Add the product, so here it must navigate him to the login page
       this.router.navigate(['login']);
     }
   }
 
-  buy(){
-   if (this.log.IsLoggedIn.value)
-   {
-    let data: Iproductquantity = {
-      productId: this.productId,
-      quantity: this.quantity
-    }
-    this.cartapi.AddAmount(data).subscribe({
-      //next: (d) => console.log(d),
-      error: (d) => console.log('failed to add to cart', d.message),
-      complete: () => {
-        console.log(`Successfully added [${data.quantity}] to cart`)
-        this.router.navigate(['cart'])
+  buy() {
+    if (this.log.IsLoggedIn.value) {
+      let data: Iproductquantity = {
+        productId: this.productId,
+        quantity: this.quantity
       }
-    })
-   }
-   else
-   {
+      this.cartapi.AddAmount(data).subscribe({
+        //next: (d) => console.log(d),
+        error: (d) => console.log('failed to add to cart', d.message),
+        complete: () => {
+          console.log(`Successfully added [${data.quantity}] to cart`)
+          this.router.navigate(['cart'])
+        }
+      })
+    }
+    else {
       // In case the user didn't logged in we have to direct him to the login page
       // next improvement we record its cart or desire to buy something that were before clicking on the buy button and login
       this.router.navigate(['login'])
-   }
+    }
   }
 
   // ------------- [ Add To Favorite ]
-  AddToFavorite(){
-    if (this.log.IsLoggedIn.value)
-    {
+  AddToFavorite() {
+    if (this.log.IsLoggedIn.value) {
       this.favoriteapi.AddToFavorite(this.productId).subscribe({
         //next: (d) => console.log('Adding to Cart', d),
         error: (e) => console.log(e),
         complete: () => console.log('Successfully Added to Cart!')
       })
     }
-    else
-    {
+    else {
       this.router.navigate(['login'])
     }
   }

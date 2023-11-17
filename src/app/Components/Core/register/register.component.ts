@@ -58,13 +58,8 @@ export class RegisterComponent implements OnInit {
       this.register.Register(this.user).subscribe(
         {
           next: () => this.router.navigate(['login']),
-          error: (e) => {
-
-              e.error.forEach((item: any) => {
-                console.log('Error: ', item.description)
-              });
-
-          },
+          error: (e) => console.log('Unabel to Register: ', e)
+          ,
           complete: () => console.log("Successfully Registered!")
         }
       )
