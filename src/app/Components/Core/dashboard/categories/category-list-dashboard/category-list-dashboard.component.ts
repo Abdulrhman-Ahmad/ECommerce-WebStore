@@ -64,6 +64,7 @@ export class CategoryListDashboardComponent {
             complete: () => console.log("Successfully Edit Brand")
           })
       }
+
       
     }
 
