@@ -181,56 +181,14 @@
             <div class="card-body">
               <h5 class="card-title">Similar items</h5>
 
-              <div class="d-flex mb-3">
+              <div class="d-flex mb-3" *ngFor="let product of relatedProducts">
                 <a href="#" class="me-3">
-                  <img src="{{relatedProducts[0].images[0] ? relatedProducts[0].images[0]: 'assets/Images/NotFound.png'}}"
-                    style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" [routerLink]="['/products/details/',relatedProducts[0].id]" />
+                    <img src="{{ product.images[0] ? product.images[0] : 'assets/Images/NotFound.png' }}" style="min-width: 96px; height: 96px;"
+                      class="img-md img-thumbnail" [routerLink]="['/products/details/', product.id]" />
                 </a>
                 <div class="info">
-                  <a href="#" class="nav-link mb-1">
-                    {{relatedProducts[0].name}} <br />
-                    {{relatedProducts[0].description}}
-                  </a>
-                  <strong class="text-dark"> ${{relatedProducts[0].price}}</strong>
-                </div>
-              </div>
-
-              <div class="d-flex mb-3">
-                <a href="#" class="me-3">
-                  <img src="{{relatedProducts[1].images[0] ? relatedProducts[1].images[0]: 'assets/Images/NotFound.png'}}"
-                    style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" [routerLink]="['/products/details/',relatedProducts[1].id]" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1">
-                    {{relatedProducts[1].name}} <br />
-                    {{relatedProducts[1].description}}
-                  </a>
-                  <strong class="text-dark"> ${{relatedProducts[1].price}}</strong>
-                </div>
-              </div>
-
-              <div class="d-flex mb-3">
-                <a href="#" class="me-3">
-                  <img src="{{relatedProducts[2].images[0] ? relatedProducts[2].images[0]: 'assets/Images/NotFound.png'}}"
-                    style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" [routerLink]="['/products/details/',relatedProducts[2].id]" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1"> 
-                    {{relatedProducts[2].name}} <br />
-                    {{relatedProducts[2].description}}  </a>
-                  <strong class="text-dark"> ${{relatedProducts[2].price}}</strong>
-                </div>
-              </div>
-
-              <div class="d-flex">
-                <a href="#" class="me-3">
-                  <img src="{{relatedProducts[3].images[0] ? relatedProducts[3].images[0]: 'assets/Images/NotFound.png'}}"
-                    style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" [routerLink]="['/products/details/',relatedProducts[3].id]" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1">{{relatedProducts[3].name}} <br />
-                    {{relatedProducts[3].description}}  </a>
-                  <strong class="text-dark"> ${{relatedProducts[3].price}}</strong>
+                    <a href="#" class="nav-link mb-1">{{ product.name }} <br /> {{ product.description }}  </a>
+                    <strong class="text-dark"> ${{ product.price }}</strong>
                 </div>
               </div>
 
