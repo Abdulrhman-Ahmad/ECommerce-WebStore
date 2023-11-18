@@ -1,4 +1,4 @@
-img, button, a{
+img, button, a, select{
   border-radius: 0px !important;
   cursor: pointer;
 }
@@ -21,3 +21,5 @@ img, button, a{
   max-height: 96px;
   text-align: center;
 }
+
+

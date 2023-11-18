@@ -24,3 +24,7 @@ img{
 button,a, input, li, ul, form {
   border-radius: 0px;
 }
+
+#ShippingInfo ul li{
+  margin: 0.6rem;
+}

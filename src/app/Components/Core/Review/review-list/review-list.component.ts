@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Ireview } from 'src/app/Interfaces/ireview';
 import { ReviewService } from 'src/app/Services/review.service';
 
@@ -10,12 +11,13 @@ import { ReviewService } from 'src/app/Services/review.service';
 export class ReviewListComponent implements OnInit {
 
   reviews !: Ireview[];
+  productId !: number;
 
-  constructor(private reviewapi : ReviewService){}
+  constructor(private reviewapi : ReviewService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    // --------------- [ Get All reviews ]
-    this.reviewapi.GetAll().subscribe({
+    // --------------- [ Get Product reviews ]
+    this.reviewapi.GetProductReview(this.route.snapshot.params['id']).subscribe({
       next:    (d) =>   this.reviews = d,
       error:   (e) =>   console.log('Unable to get all the reviews',e),
       complete:( ) => console.log('Successfully Got Reviews!')
