@@ -33,6 +33,7 @@ import { EditProductFormComponent } from './Components/Core/dashboard/edit-produ
 import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
+import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin-reports/admin-reports.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent,pathMatch:'full'},
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path:'products/details/:id', component:ProductDetailsComponent},
   {path:'checkout', component:CheckoutComponent},
   {path:'admin/home',component:DashhomeComponent, canActivate:[authGuard]},
+  {path:'admin/Reports',component:AdminReportsComponent, canActivate:[authGuard]},
   {path:'admin/products',component: ProductsListDasboardComponent, canActivate:[authGuard]},
   {path:'products/new',component: ProductFormComponent, canActivate:[authGuard]},
   {path:'products/edit/:id',component: EditProductFormComponent, canActivate:[authGuard]},

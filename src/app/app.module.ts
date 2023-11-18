@@ -56,6 +56,7 @@ import { EditProductFormComponent } from './Components/Core/dashboard/edit-produ
 import { ChangepasswordComponent } from './Components/Core/user profile/changepassword/changepassword.component';
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
+import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin-reports/admin-reports.component';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add
     ChangepasswordComponent,
     AdminOrderDetailsComponent,
     AddUserComponent,
+    AdminReportsComponent,
     
   ],
   imports: [
