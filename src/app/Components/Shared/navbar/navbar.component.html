@@ -29,8 +29,8 @@
           <li class="nav-item ">
             <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['blog']">Blog</a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['admin/home']">Dashboard</a>
+          <li class="nav-item " *ngIf="(log.IsAdmin | async)">
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['admin/home']" >Dashboard</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['contactus']">Contact Us</a>

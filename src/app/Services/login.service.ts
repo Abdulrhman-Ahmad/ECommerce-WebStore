@@ -14,6 +14,7 @@ import { FavoriteService } from './favorite.service';
 export class LoginService {
 
   IsLoggedIn = new BehaviorSubject<boolean>(false)
+  IsAdmin = new BehaviorSubject<boolean>(false)
   CurrentUserName = new BehaviorSubject<string>('')
 
   BaseUrl: string = "https://localhost:7003/api/Accounts/Login"
@@ -27,7 +28,17 @@ export class LoginService {
 
         // Get Name of the User from Token Claims and display it in NavBar
         let claims = JSON.parse(window.atob(res.token.split('.')[1]));
-        this.CurrentUserName.next(claims[this.claim.claimTypes.GivenName])
+
+        this.CurrentUserName.next(claims[this.claim.claimTypes.GivenName]);
+
+        if (Array.isArray(claims[this.claim.claimTypes.Role]) && claims[this.claim.claimTypes.Role].includes('Admin')) {
+          this.IsAdmin.next(true);
+        } else if (claims[this.claim.claimTypes.Role] === 'Admin') {
+          this.IsAdmin.next(true);
+        } else {
+          this.IsAdmin.next(false);
+        }
+
       }
 
       if (localStorage.getItem('token')) {
