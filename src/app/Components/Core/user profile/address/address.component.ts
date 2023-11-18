@@ -23,7 +23,7 @@ export class AddressComponent implements OnInit {
     specialInstructions: ''
   };
 
-  addresses :string []  = []
+  addresses :Iaddress []  = []
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +38,15 @@ export class AddressComponent implements OnInit {
     if (token) {
       let claims = JSON.parse(window.atob(token.split('.')[1]));
 
-      this.addresses.push(claims[this.claim.claimTypes.StreetAddress]);
+      this.addresses.push({
+        id: 0,
+        street: '',
+        city: claims[this.claim.claimTypes.StreetAddress],
+        state: '',
+        country: '',
+        postalCode: 0,
+        specialInstructions: ''
+      });
       this.data.CurrentUser.MobilePhone = claims[this.claim.claimTypes.MobilePhone]
 
     }
@@ -51,21 +59,32 @@ export class AddressComponent implements OnInit {
 
   // Getting Addresses
   this.addressesapi.GetAddresses().subscribe({
-    next: (d) => console.log()
+    next: (d) => {
+      d.forEach((item: Iaddress) => {
+        this.addresses.push(
+            {
+              id: item.id,
+              street: '',
+              city: (item.street + " - " +  item.city + " - " + item.country),
+              state: '',
+              country: '',
+              postalCode: 0,
+              specialInstructions: ''
+            }
+            );
+          });
+    }
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
+
+  DeleteAddress(id : number) : void {
+    this.addressesapi.DeleteAddress(id).subscribe({
+      //next: (d) => console.log('Deleting ... '),
+      error: (e) => console.log('Unable to Delete: ', e),
+      complete: () => console.log('Deleted Successfully!')
+    });
+  }
+
+
 
 }

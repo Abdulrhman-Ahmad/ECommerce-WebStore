@@ -32,10 +32,10 @@
           <tbody>
 
             <tr *ngFor="let item of addresses; let i = index">
-              <th scope="row">{{i}}</th>
-              <td>{{item}}</td>
+              <th scope="row">{{i + 1}}</th>
+              <td>{{item.city}}</td>
               <td>
-                <button class="btn btn-dark">Remove</button>
+                <button class="btn btn-dark" (click)="DeleteAddress(item.id)">Remove</button>
               </td>
             </tr>
 
