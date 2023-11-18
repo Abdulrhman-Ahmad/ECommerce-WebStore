@@ -38,7 +38,7 @@ export class GeneralInformationComponent implements OnInit {
       username:[this.data.CurrentUser.Name,[Validators.required, Validators.minLength(4)]],
       email:   [this.data.CurrentUser.Email,[Validators.required, Validators.email]],
       address: [this.data.CurrentUser.StreetAddress,[Validators.required, Validators.minLength(8)]],
-      phone:   [this.data.CurrentUser.MobilePhone,[Validators.required, Validators.minLength(11)]]
+      phone:   [this.data.CurrentUser.MobilePhone,[Validators.required, Validators.pattern(/^\d{11}$/)]]
     })
   }
 

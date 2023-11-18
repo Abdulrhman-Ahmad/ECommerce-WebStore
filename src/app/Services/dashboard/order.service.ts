@@ -19,7 +19,7 @@ export class OrderService {
 
   // ---------------- [ Get Order By Id  ]
   GetOrderById(id:number) : Observable<IorderAdmin>{
-    return this.http.get<IorderAdmin>(`${this.baseURL}/GetOrderById/${id}`);
+    return this.http.get<IorderAdmin>(`${this.baseURL}/${id}`);
   }
 
 }

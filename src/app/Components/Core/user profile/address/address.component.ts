@@ -44,8 +44,8 @@ export class AddressComponent implements OnInit {
     }
 
     this.fg = this.fb.group({
-      address: [this.data.CurrentUser.StreetAddress, [Validators.required, Validators.minLength(8)]],
-      phone: [this.data.CurrentUser.MobilePhone, [Validators.required, Validators.minLength(11)]]
+      address: [this.data.CurrentUser.StreetAddress,[Validators.required, Validators.minLength(8)]],
+      phone:   [this.data.CurrentUser.MobilePhone,[Validators.required, Validators.pattern(/^\d{11}$/)]]
     })
 
 
