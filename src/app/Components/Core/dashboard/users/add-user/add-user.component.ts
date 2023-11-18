@@ -19,6 +19,8 @@ export class AddUserComponent {
     userName: "",
     email: "",
     password: "",
+    address: "",
+    phoneNumber: "",
     role: ""
   };
 
@@ -33,6 +35,8 @@ export class AddUserComponent {
     email:   ['',[Validators.required, Validators.email]],
     password:['',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]],
     confirm: ['',[Validators.required, Validators.minLength(8)]],
+    address: ['', [Validators.required, Validators.minLength(8)]],
+    phone: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
     role: ['Admin']
   })
   }
@@ -48,6 +52,8 @@ export class AddUserComponent {
       this.user.userName = this.fg.get('username')?.value;
       this.user.email = this.fg.get('email')?.value;
       this.user.password = this.fg.get('password')?.value;
+      this.user.address = this.fg.get('address')?.value;
+      this.user.phoneNumber = this.fg.get('phone')?.value;
       this.user.role = this.fg.get('role')?.value;
       
 
@@ -94,5 +100,15 @@ export class AddUserComponent {
   get confirmValid(): boolean|void  {return this.fg.get('confirm')?.valid;}
   get confirmTouched():boolean|void {return this.fg.get('confirm')?.touched;}
 
+
+   // ---------------- [ address ]
+    get addressRequired(): boolean | void { return this.fg.get('address')?.hasError('required'); }
+    get addressValid(): boolean | void { return this.fg.get('address')?.valid; }
+    get addressTouched(): boolean | void { return this.fg.get('address')?.touched; }
+
+   // ---------------- [ phone ]
+    get phoneRequired(): boolean | void { return this.fg.get('phone')?.hasError('required'); }
+    get phoneValid(): boolean | void { return this.fg.get('phone')?.valid; }
+    get phoneTouched(): boolean | void { return this.fg.get('phone')?.touched; }
 
 }
