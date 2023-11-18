@@ -11,7 +11,7 @@ import { AddressService } from 'src/app/Services/address.service';
   styleUrls: ['./add-address.component.css']
 })
 export class AddAddressComponent {
-  fg !:FormGroup
+  fg !: FormGroup
   address: Iaddress = {
     id: 0,
     street: '',
@@ -19,7 +19,7 @@ export class AddAddressComponent {
     state: '',
     country: '',
     postalCode: 0,
-    specialInstructions: ''
+    specialInstructions: 'N/A'
   };
 
   constructor(
@@ -31,18 +31,18 @@ export class AddAddressComponent {
 
   ngOnInit(): void {
     this.fg = this.fb.group({
-      street :['',[Validators.required, Validators.minLength(5)]],
-      city :['',[Validators.required, Validators.minLength(5)]],
-      state :['',[Validators.required, Validators.minLength(5)]],
-      country :['',[Validators.required, Validators.minLength(5)]],
-      postalCode :['',[Validators.required, Validators.pattern(/\d{1,}/)]],
+      street: ['', [Validators.required, Validators.minLength(3)]],
+      city: ['', [Validators.required, Validators.minLength(3)]],
+      country: ['', [Validators.required, Validators.minLength(3)]],
+      //state: ['', [Validators.required, Validators.minLength(3)]],
+      //postalCode: ['',],    //[Validators.required, Validators.pattern(/\d{1,}/)]
     });
   }
 
   onSubmit(e: Event): void {
     e.preventDefault();
 
-    if (this.fg.valid ) {
+    if (this.fg.valid) {
 
       this.address.street = this.fg.get('street')?.value;
       this.address.city = this.fg.get('city')?.value;
@@ -50,15 +50,17 @@ export class AddAddressComponent {
 
 
       this.addaddress.AddAddress(this.address).subscribe({
-        next: () => console.log('Changing Password ...'),
-        error: (e) => console.log('Failed To Change Password! : ',e),
+        //next: () => console.log('Changing Password ...'),
+        error: (e) => console.log('Failed To Change Password! : ', e),
         complete: () => {
-          console.log('Successfully Change Password!');
-          localStorage.removeItem('token');
-          this.router.navigate(['login']);
+
+          console.log('Successfully Added!');
+          this.router.navigate(['/address']);
+
         }
       });
-    } else {
+    }
+    else {
     }
   }
 

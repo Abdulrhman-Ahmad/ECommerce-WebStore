@@ -13,6 +13,10 @@ export class AddressService {
 
   constructor(private httpclient :HttpClient) { }
 
+  GetAddresses () : Observable<any>{
+    return this.httpclient.get<any>(this.BaseUrl + "es");
+  }
+
   // adding new Address
   AddAddress( address : Iaddress): Observable<Iaddress>{
     return this.httpclient.post<Iaddress>(this.BaseUrl, address )
