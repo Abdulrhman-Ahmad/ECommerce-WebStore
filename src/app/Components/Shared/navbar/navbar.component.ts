@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
     let token = localStorage.getItem('token');
 
 
+
     if (token) {
 
       // in case there is a token then the login button will disappear
@@ -47,6 +48,16 @@ export class NavbarComponent implements OnInit {
       // we get the name of the logged in user from the token claims in case it stored in the browser
       let claims = JSON.parse(window.atob(token.split('.')[1]));
       this.log.CurrentUserName.next(claims[this.claim.claimTypes.GivenName])
+
+      // check if the admin logged in
+      if (Array.isArray(claims[this.claim.claimTypes.Role]) && claims[this.claim.claimTypes.Role].includes('Admin')) {
+        this.log.IsAdmin.next(true);
+      } else if (claims[this.claim.claimTypes.Role] === 'Admin') {
+        this.log.IsAdmin.next(true);
+      } else {
+        this.log.IsAdmin.next(false);
+      }
+
     }
     else
       this.log.IsLoggedIn.next(false);
