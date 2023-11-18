@@ -45,7 +45,7 @@ const routes: Routes = [
   {path:'address', component:AddressComponent, canActivate:[authGuard]},
   {path:'wishlist', component:WishlistUserDashboardComponent, canActivate:[authGuard]},
   {path:'favorite', component:FavoritesUserDashboardComponent, canActivate:[authGuard]},
-  {path:'add', component:AddAddressComponent, canActivate:[authGuard]},
+  {path:'address/add', component:AddAddressComponent, canActivate:[authGuard]},
   {path:'orders', component:OrderListComponent, canActivate:[authGuard]},
   {path:'orderdetails', component:OrderdetailsComponent, canActivate:[authGuard]},
   {path:'cart', component:CartComponent, canActivate:[authGuard]},

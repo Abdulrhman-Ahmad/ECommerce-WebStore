@@ -1,111 +1,189 @@
 <div class="container my-5">
   <div class="row g-5">
+
+    <!-- Order Products -->
     <div class="col-md-5 col-lg-4 order-md-last">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-dark">Your cart</span>
-        <span class="badge bg-dark rounded-pill">3</span>
+
+      <h4 class="d-flex justify-content-between align-items-center mb-3 p-1">
+        <span class="text-dark">Your Order</span>
+        <span class="badge bg-success rounded-pill">{{cartLength}} Pieces</span>
       </h4>
+
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-          <div>
-            <h6 class="my-0">Product name</h6>
-            <small class="text-muted">Brief description</small>
+        <li class="list-group-item " *ngFor="let item of products" id="Holder">
+          <div class="row">
+            <div class="col-3" id="img">
+              <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="" class="img-fluid">
+            </div>
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">{{item.productName}}</h6>
+                <small class="text-muted">{{item.productQuantity}} Pieces</small>
+              </div>
+              <span class="text-muted">{{item.productPrice * item.productQuantity}}LE</span>
+            </div>
           </div>
-          <span class="text-muted">$12</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-          <div>
-            <h6 class="my-0">Second product</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$8</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-          <div>
-            <h6 class="my-0">Third item</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
-          </div>
-          <span class="text-success">−$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
-          <strong>$20</strong>
         </li>
       </ul>
 
       <form class="card p-2">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Promo code">
-          <button type="submit" class="btn btn-secondary">Redeem</button>
+          <button type="submit" class="btn btn-success">Redeem</button>
         </div>
       </form>
+
+      <div>
+
+        <ul class="list-group mb-3 mt-3" id="info">
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Promotion</h6>
+                <small class="text-muted">{{promotion}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Tax</h6>
+                <small class="text-muted">{{tax}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm col-9">
+              <div>
+                <h6 class="my-0">Discounts</h6>
+                <small class="text-muted">{{discounts}} LE</small>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item ">
+            <div class="d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0 fs-4">Total Price</h6>
+              </div>
+              <div>
+                <!-- <span class="badge bg-dark rounded-pill fs-5">234$</span> -->
+                <h6 class="my-0 fs-4 text-success">200 LE</h6>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div>
+        <ul class="list-group mb-3 mt-3" id="info">
+          <li class="list-group-item ">
+            <button class="btn btn-success w-100 p-2">Submit</button>
+          </li>
+        </ul>
+      </div>
+
     </div>
-<!-- Billing -->
-    <div class="col-md-7 col-lg-8">
-      <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate="" [formGroup]="fg" (submit)="OnSubmit($event)">
+
+
+    <!-- Billing -->
+    <div class="col-md-7 col-lg-8 fs-3">
+
+      <div class="display-6">Shipping Info.</div>
+
+      <ul class="list-group mb-3 mt-3" id="info">
+
+        <li class="list-group-item ">
+          <div class="d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Full Name</h6>
+              <small class="text-muted">{{fullname}}</small>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item ">
+          <div class="d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Phone Number</h6>
+              <small class="text-muted">{{phonenumber}}</small>
+            </div>
+            <div>
+              <a href="" class="fs-6">Change</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item ">
+          <div class="d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Address</h6>
+              <small class="text-muted">{{address}}</small>
+            </div>
+            <div>
+              <a href="" class="fs-6">Change</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+<br><hr><br>
+
+        <div class="display-6">Payment Method</div>
+        <form>
+
+        </form>
+
+
+
+      <!-- <h4 class="mb-3">Billing address</h4>
+      <form class="needs-validation" (submit)="OnSubmit($event)" [formGroup]="fg">
+
         <div class="row g-3">
+
           <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" placeholder="Full Name"
-              formControlName="fullname">
+            <input type="text" class="form-control" id="floatingName" placeholder="Full Name" readonly formControlName="fullname">
             <label for="floatingName">Full Name</label>
-            <div class="text-danger form-text" *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
-            <div class="text-danger form-text" *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8
-              digits!</div>
-            <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
           </div>
 
           <div class="form-floating">
             <input type="text" class="form-control" id="phone" placeholder="phone" formControlName="phone">
             <label for="phone">Phone</label>
-            <div class="text-danger form-text" *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
-            <div class="text-danger form-text" *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11
-              digits!</div>
-            <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
-          </div>
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
-            <label for="floatingInput">Email address</label>
-            <div class="text-danger form-text" *ngIf="emailTouched && emailRequired">Required Field!</div>
-            <div class="text-danger form-text" *ngIf="emailTouched && !emailRequired &&!emailValid">Wrong Email!</div>
-            <div class="text-success form-text" *ngIf="!emailRequired && emailValid">Looks Good!</div>
           </div>
 
+
           <div class="form-floating">
-            <select class="form-select" aria-label="Default select example" >
+            <select class="form-select" aria-label="Default select example" formControlName="address">
               <option selected>Address</option>
-              <option value="show" [(ngModel)]="addcity" (change)="onAddCity('show')" value="show">Add</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="1">One</option>
+              <option value="show" (change)="onAddCity('show')" value="show">Add</option>
             </select>
-            <div class="text-danger form-text" *ngIf="addressTouched &&  addressRequired">Required Field!</div>
-            <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
           </div>
 
           <div class="form-floating m-2 row" *ngIf="addcity === 'show'">
             <div class="col-6">
               <label for="floatingName">City</label>
-              <input type="text" class="form-control" id="floatingName" placeholder="City Nme" formControlName="fullname">
+              <input type="text" class="form-control" id="floatingName" placeholder="City Nme">
               <div class="text-danger form-text" *ngIf="fullnameTouched &&  fullnameRequired">Required Field!</div>
-              <div class="text-danger form-text" *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least 8 digits!</div>
+              <div class="text-danger form-text" *ngIf="fullnameTouched && !fullnameRequired &&!fullnameValid">At least
+                8 digits!</div>
               <div class="text-success form-text" *ngIf="!fullnameRequired && fullnameValid">Looks Good!</div>
             </div>
             <div class="col-6">
               <label for="address">Street</label>
-              <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
+              <input type="text" class="form-control" id="address" placeholder="address">
               <div class="text-danger form-text" *ngIf="addressTouched &&  addressRequired">Required Field!</div>
               <div class="text-danger form-text" *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8
                 digits!</div>
               <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
             </div>
           </div>
+
         </div>
 
         <hr class="my-4">
@@ -126,11 +204,13 @@
 
         <div class="my-3">
           <div class="form-check">
-            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="" [(ngModel)]="selectedPaymentOption" (change)="onPaymentOptionChange('delivery')" value="delivery">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required=""
+              (change)="onPaymentOptionChange('delivery')" value="delivery">
             <label class="form-check-label" for="credit">Delivery</label>
           </div>
           <div class="form-check">
-            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="" [(ngModel)]="selectedPaymentOption" (change)="onPaymentOptionChange('payment')" value="payment">
+            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required=""
+              [(ngModel)]="selectedPaymentOption" (change)="onPaymentOptionChange('payment')" value="payment">
             <label class="form-check-label" for="paypal">PayPal</label>
           </div>
         </div>
@@ -172,7 +252,9 @@
         <hr class="my-4">
 
         <button class="w-100 btn btn-dark  btn-lg" type="submit">Continue to checkout</button>
-      </form>
+      </form> -->
+
+
     </div>
   </div>
 

@@ -1,0 +1,26 @@
+#img{
+  max-height: 39px;
+  text-align: center;
+}
+
+img{
+  max-height: inherit;
+  transition-duration: 300ms;
+}
+
+#Holder :hover #img img{
+  transform: scale(1.2) !important;
+  opacity: .8;
+}
+
+#Holder{
+  cursor: pointer;
+}
+
+#info div, #info ul, #info li{
+  background-color: rgb(240, 229, 229) !important;
+}
+
+button,a, input, li, ul, form {
+  border-radius: 0px;
+}
