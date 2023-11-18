@@ -8,9 +8,9 @@
 
     <div class="container-fluid shadow" style="min-height: 60vh;">
 
-      <table class="table table-striped -mt-2">
+      <table class="table table-striped mt-2">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th class="whitespace-nowrap fs-5">Id</th>
             <th class="whitespace-nowrap fs-5">Name</th>
             <th class="whitespace-nowrap fs-5">Brand</th>
@@ -23,13 +23,17 @@
         </thead>
 
         <tbody>
-          <tr class="intro-x" *ngFor="let item of favorites; let i = index">
+          <tr class="intro-x" *ngFor="let item of favorites; let i = index" id="favoritesHolder">
             <td>{{i + 1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.brandName}}</td>
             <td>{{item.model}}</td>
             <td>{{item.price}}</td>
-            <img class="img-fluid" src="https://www.picsum.photos/200/200" alt="">
+            <td>
+              <div id="img" class="text-center">
+                <img class="img-fluid" src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="">
+              </div>
+            </td>
             <td>
               <button class="btn btn-dark">View</button>
             </td>

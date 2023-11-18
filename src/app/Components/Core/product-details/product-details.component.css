@@ -6,3 +6,18 @@ img, button, a{
 #mainImage{
   width: 50vh;
 }
+
+#img img{
+  max-height: inherit;
+  transition-duration: 500ms;
+  overflow: hidden;
+}
+
+#Holder:hover a #img img{
+  transform: scale(1.2);
+}
+
+#img{
+  max-height: 96px;
+  text-align: center;
+}

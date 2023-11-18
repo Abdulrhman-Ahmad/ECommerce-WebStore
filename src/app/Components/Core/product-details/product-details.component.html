@@ -173,25 +173,29 @@
       </div>
 
 
+
       <!-- Recommendations -->
-      <div class="col-lg-4">
+      <div class="col-lg-4" style="overflow: auto;">
         <br>
         <div class="px-0 border rounded-2 shadow-0">
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Similar items</h5>
+            <div class="card-body" style="min-height: 27rem; max-height: 40rem;">
+              <h5 class="card-title m-3 text-center border-bottom">Similar Products</h5>
 
-              <div class="d-flex mb-3" *ngFor="let product of relatedProducts">
-                <a href="#" class="me-3">
-                    <img src="{{ product.images[0] ? product.images[0] : 'assets/Images/NotFound.png' }}" style="min-width: 96px; height: 96px;"
-                      class="img-md img-thumbnail" [routerLink]="['/products/details/', product.id]" />
+              <div class="d-flex mb-3 row" *ngFor="let item of relatedProducts" id="Holder">
+                <a class=" col-4" href="/products/details/{{item.id}}">
+                  <div id="img">
+                    <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" class="img-fluid" />
+                  </div>
                 </a>
-                <div class="info">
-                    <a href="#" class="nav-link mb-1">{{ product.name }} <br /> {{ product.description }}  </a>
-                    <strong class="text-dark"> ${{ product.price }}</strong>
+                <div class="info col-8">
+                  <a class="nav-link mb-1" href="/products/details/{{item.id}}">
+                    {{item.name}} <br />
+                    {{item.description}}
+                  </a>
+                  <strong class="text-dark"> ${{item.price}}</strong>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

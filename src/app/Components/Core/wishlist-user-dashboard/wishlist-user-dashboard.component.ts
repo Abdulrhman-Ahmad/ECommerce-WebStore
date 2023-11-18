@@ -15,10 +15,7 @@ export class WishlistUserDashboardComponent implements OnInit{
   ngOnInit(): void {
     this.wishlistapi.GetWishlist().subscribe(
       {
-        next: (data) => {
-          this.wishlist = data
-          console.log(data)
-        },
+        next: (data) =>this.wishlist = data,
         error: () => console.log('failed to get wishlist'),
         complete: () => console.log('Successfully got wishlist!')
       }

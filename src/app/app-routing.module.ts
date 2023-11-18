@@ -35,7 +35,7 @@ import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/a
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', component:HomeComponent,pathMatch:'full'},
   {path:'contactus', component:ContactusComponent},
   {path:'blog', component:BlogComponent},
   {path:'login', component:LoginComponent, canActivate:[authGuard]},
