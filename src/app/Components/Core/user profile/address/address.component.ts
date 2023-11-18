@@ -81,7 +81,12 @@ export class AddressComponent implements OnInit {
     this.addressesapi.DeleteAddress(id).subscribe({
       //next: (d) => console.log('Deleting ... '),
       error: (e) => console.log('Unable to Delete: ', e),
-      complete: () => console.log('Deleted Successfully!')
+      complete: () => {
+
+        console.log('Deleted Successfully!');
+        this.addresses = this.addresses.filter( d => d.id != id );
+
+      }
     });
   }
 
