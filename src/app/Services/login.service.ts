@@ -31,6 +31,7 @@ export class LoginService {
 
         this.CurrentUserName.next(claims[this.claim.claimTypes.GivenName]);
 
+        // check for the admin if logged in or not!
         if (Array.isArray(claims[this.claim.claimTypes.Role]) && claims[this.claim.claimTypes.Role].includes('Admin')) {
           this.IsAdmin.next(true);
         } else if (claims[this.claim.claimTypes.Role] === 'Admin') {

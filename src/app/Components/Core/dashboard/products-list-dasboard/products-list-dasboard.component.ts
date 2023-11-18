@@ -15,7 +15,7 @@ import { ProductlistService } from 'src/app/Services/productlist.service';
 export class ProductsListDasboardComponent {
   currentIndex: number = 1;
   products !: Iproduct[];
-  
+
 
   filters: IproductFilter = {
     sort: '',
@@ -47,8 +47,6 @@ export class ProductsListDasboardComponent {
   }
 
   // ---------------- [ Delete Product ]
-  // - there is a problem while deleting the prducts, foreigns can't be null there ?
-  // yes, and can't fix it :( [must edit db to make table products on delete cascade]
   DeleteProduct(id:number){
     this.productlist.DeleteProduct(id).subscribe({
       next: (d) => console.log('Deleting...'),
@@ -56,13 +54,13 @@ export class ProductsListDasboardComponent {
       complete: () => {
         console.log('Product Deleted Successfully!')
         this.products = this.products.filter(e=> e.id != id)
-        console.log(id)
       }
     })
   }
 
 
   // --------------- [ Pageination ]
+
   next() {
     this.filters.pageIndex = (this.currentIndex + 1).toString();
     this.productlist.getProducts(this.filters).subscribe(
@@ -81,6 +79,7 @@ export class ProductsListDasboardComponent {
       }
     );
   }
+
   prev() {
     if (this.currentIndex > 1) {
       this.filters.pageIndex = (this.currentIndex - 1).toString();
@@ -96,4 +95,5 @@ export class ProductsListDasboardComponent {
       );
     }
   }
+
 }

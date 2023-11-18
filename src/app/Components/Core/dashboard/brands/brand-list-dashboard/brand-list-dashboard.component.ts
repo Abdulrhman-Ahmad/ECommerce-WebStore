@@ -13,7 +13,7 @@ import { BrandService } from 'src/app/Services/dashboard/brand.service';
 export class BrandListDashboardComponent {
 
   brands:Ibrandreturn[] = [];
-  
+
   // ---------------- [ Add Variables ]
   fg !:FormGroup;
 
@@ -43,7 +43,7 @@ export class BrandListDashboardComponent {
       error:(error)=>{console.log('error'+error)},
       complete: ()=>{},
     });
-    
+
   }
 
 // ------------------------------------------ [ Add | Edit brand  ] ----------------------------------------
@@ -56,11 +56,18 @@ export class BrandListDashboardComponent {
       if(this.brandId < 1) //add
       {
         this.brandAdd.name = this.fg.get('name')?.value;
+
           this.brandService.add(this.brandAdd).subscribe(
             {
               next:     () => this.closeForm(),
               error:    (e) => console.log(e),
-              complete: () => console.log("Successfully Add Brand")
+              complete: () => {
+                console.log("Brand Added Successfully!")
+                this.brandService.getAll().subscribe({
+                  next: (d) => this.brands = d
+                })
+                this.fg.reset();
+              }
             })
       }
       else // edit
@@ -72,10 +79,17 @@ export class BrandListDashboardComponent {
           {
             next:     () => this.closeForm(),
             error:    (e) => console.log(e),
-            complete: () => console.log("Successfully Edit Brand")
+            complete: () => {
+              console.log("Brand Edited Successfully!")
+              this.brandService.getAll().subscribe({
+                next: (d) => this.brands = d
+              })
+              this.brandId = 0;
+              this.fg.reset();
+            }
           })
       }
-      
+
     }
 
   }
