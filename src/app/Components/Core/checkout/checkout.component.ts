@@ -2,6 +2,7 @@ import { ClaimsService } from './../../../Services/claims.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { BehaviorSubject } from 'rxjs';
 import { Icart } from 'src/app/Interfaces/icart';
 import { IRegister } from 'src/app/Interfaces/iregister';
@@ -28,6 +29,8 @@ export class CheckoutComponent implements OnInit {
   fullname : string = '';
   phonenumber : string = '';
   address : string = '';
+
+  paypalConfig ? : IPayPalConfig; // for paypal
 
   constructor(private fb:FormBuilder, private router:Router, private cartapi:CartService, private claim:ClaimsService){}
 
@@ -65,6 +68,9 @@ export class CheckoutComponent implements OnInit {
     address: [this.address,[Validators.required, Validators.minLength(8)]],
     phone:   [this.phonenumber,[Validators.required, Validators.minLength(11)]]
   })
+
+    // call the paypal function
+    this.paypalInitConfig();
   }
 
   OnSubmit(e :Event){
@@ -118,6 +124,52 @@ export class CheckoutComponent implements OnInit {
 
     onAddCity(option: string) {
       this.addcity = option;
-    }
+  }
 
+  // function for paypal logic
+  private paypalInitConfig() : void{
+    this.paypalConfig = {
+      clientId : 'AcjwrP2NINSvMRyEJVuafImY0GtGVj4B4Nn1hJEZD0yBAAQAFmWe4vGaZLzspkfbK5ZEKTgymVM9ju0s', // -----------------------------------------------------
+      currency : 'USD',
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent : 'CAPTURE',
+        purchase_units : [
+          {
+            amount : {
+              currency_code : 'USD',
+              value : this.totalPrice.toString()
+            }
+          }
+        ]
+      },
+      advanced : {
+        commit : 'true'
+      },
+      style : {
+        label : 'paypal',
+        layout : 'vertical'
+      },
+      onApprove : (data , actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(() => {
+          console.log('onApprove - you can get full order details inside onApprove: ');
+        }
+        )
+      },
+      onClientAuthorization : (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        
+      },
+      onCancel : (data,actions) => {
+        console.log('OnCancel', data, actions);
+        
+      },
+      onError : err => {
+        console.log('OnError', err);
+      },
+      onClick : (data , actions) => {
+        console.log('onClick', data, actions);
+      }
+    }
+  }
 }

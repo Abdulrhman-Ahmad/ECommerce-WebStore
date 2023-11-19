@@ -100,7 +100,8 @@
       <div>
         <ul class="list-group mb-3 mt-3" id="info">
           <li class="list-group-item ">
-            <button class="btn btn-success w-100 p-2" id="paypal"><i class="bi bi-paypal"></i> PayPal</button>
+            <ngx-paypal [config]="paypalConfig"></ngx-paypal> <!-- Paypal Buttons-->
+            <!-- <button class="btn btn-success w-100 p-2" id="paypal"><i class="bi bi-paypal"></i> PayPal</button> -->
           </li>
         </ul>
       </div>
