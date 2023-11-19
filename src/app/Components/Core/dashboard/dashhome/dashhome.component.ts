@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { AdminUserManagerService } from 'src/app/Services/dashboard/admin-user-manager.service';
 
 @Component({
@@ -12,9 +13,20 @@ export class DashhomeComponent {
   totalOrders !: number ;
   totalSell !: number ;
 
+  // ---------------- [ SignalR ]
+  private hubConnectionBuilder!: HubConnection;
+  offers: any[] = [];
+
   constructor(private adminUserManagerService:AdminUserManagerService ){}
 
   ngOnInit(): void {
+
+        // ---------------- [ SignalR ]
+        this.hubConnectionBuilder = new HubConnectionBuilder().withUrl('https://localhost:7003/offers').configureLogging(LogLevel.Information).build();
+        this.hubConnectionBuilder.start().then(() => console.log('Connection started.......!')).catch(err => console.log('Error while connect with server' , err));
+        this.hubConnectionBuilder.on('SendOffersToUser', (result: any) => {
+            this.offers.push(result);
+        });
 
     // ---------------- [ Get Users Count ]
     this.adminUserManagerService.GetUsersCount().subscribe({
@@ -45,5 +57,10 @@ export class DashhomeComponent {
       complete: ()=>{},
     });
     
+
+
+    
   }
+  
+    
 }
