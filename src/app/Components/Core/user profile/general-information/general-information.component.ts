@@ -24,6 +24,7 @@ import { Iuser } from 'src/app/Interfaces/user/iuser';
       phoneNumber: '',
       address: ''
     }
+    passwordForm !:FormGroup
     constructor(
       private fb:FormBuilder,
       public data:CurrentuserService,
@@ -31,7 +32,12 @@ import { Iuser } from 'src/app/Interfaces/user/iuser';
       private claim:ClaimsService ,
       private edituser: GeneralService,
       private router: Router
-      ){}
+      ){
+        // Initialize the form with validation
+    this.passwordForm = this.fb.group({
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/)]],
+    });
+      }
 
     ngOnInit(): void {
 
@@ -83,34 +89,58 @@ import { Iuser } from 'src/app/Interfaces/user/iuser';
       }
     }
 
+
+     // Flag to track if user is deleted
   isDeleted: boolean = false;
+
+  // Flag to track if an error occurred during deletion
   isError: boolean = false;
 
+  // Form group for password input
 
-
-
-  deleteUser(): void {
-    // Use the browser's prompt to get the password
-    const password = prompt('Enter your password:');
-
-    if (password !== null) {
-      this.deleteuser.Deleteuserdata(password).subscribe({
-        next: () => {
-          this.isDeleted = true;
-          this.isError = false;
-        },
-        error: (error) => {
-          this.isDeleted = false;
-          this.isError = true;
-          console.error('Unable to delete account:', error);
-        },
-        complete: () => {
-          localStorage.removeItem('token');
-          this.router.navigate(['login']);
-        }
-      });
+    openForm(): void {
+      const overlay = document.getElementById('overlay');
+      if (overlay) {
+        overlay.style.display = 'block';
+      }
     }
-  }
+
+    closeForm(): void {
+      const overlay = document.getElementById('overlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+      }
+    }
+
+    deleteUser(): void {
+      // Check if the passwordForm is valid
+      if (this.passwordForm.valid) {
+        const password = this.passwordForm.value.password;
+        this.deleteuser.Deleteuserdata(password).subscribe({
+          next: () => {
+            this.isDeleted = true;
+            this.isError = false;
+          },
+          error: (error) => {
+            this.isDeleted = false;
+            this.isError = true;
+            console.error('Unable to delete account:', error);
+          },
+          complete: () => {
+            localStorage.removeItem('token');
+            this.router.navigate(['login']);
+            // Optionally close the form after successful deletion
+            this.closeForm();
+          },
+        });
+      }
+    }
+
+      // ---------------- [ password ]
+  get passwordRequired(): boolean | void { return this.passwordForm.get('password')?.hasError('required'); }
+  get passwordValid(): boolean | void { return this.passwordForm.get('password')?.valid; }
+  get passwordTouched(): boolean | void { return this.passwordForm.get('password')?.touched; }
+
 
     // ---------------- [ fullname ]
     get fullnameRequired():boolean|void{return this.fg.get('fullname')?.hasError('required');}

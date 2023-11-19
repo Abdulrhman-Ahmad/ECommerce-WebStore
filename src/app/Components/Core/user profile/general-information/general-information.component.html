@@ -57,10 +57,25 @@
               </button>
 
 
-              <button class="col-12 col-md-4 btn btn-dark" (click)="deleteUser()" >
+              <button class="col-12 col-md-4 btn btn-dark" (click)="openForm()" >
                 Delete Account
               </button>
-
+              <div class="overlay" id="overlay">
+                <div class="form-contain col-6">
+                    <form class="shadow p-4 " [formGroup]="passwordForm">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="name" formControlName="password">
+                            <label for="name">Password</label>
+                            <div class="text-danger form-text" *ngIf="passwordTouched && passwordRequired">Required Field!</div>
+                            <div class="text-danger form-text" *ngIf="passwordTouched && !passwordRequired && !passwordValid">At least 8
+                              Digits!</div>
+                            <div class="text-success form-text" *ngIf="!passwordRequired && passwordValid">Looks Good!</div>
+                        </div>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="deleteUser()">Delete</button>
+                    <button class="btn btn-dark text-white w-100 py-3 mt-4" type="submit" (click)="closeForm()">Close</button>
+                    </form>
+                </div>
+              </div>
 
               <button class="col-12 col-md-4 btn btn-dark" routerLink="/Changepassword">
                 Change Password
