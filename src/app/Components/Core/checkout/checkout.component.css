@@ -28,3 +28,7 @@ button,a, input, li, ul, form {
 #ShippingInfo ul li{
   margin: 0.6rem;
 }
+
+#paypal{
+  background-color: #00457C;
+}

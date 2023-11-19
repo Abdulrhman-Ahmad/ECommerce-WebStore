@@ -23,6 +23,7 @@ export class CheckoutComponent implements OnInit {
   promotion : number = 0;
   discounts : number = 0;
   tax : number = 0;
+  totalPrice : number = 0;
 
   fullname : string = '';
   phonenumber : string = '';
@@ -51,7 +52,10 @@ export class CheckoutComponent implements OnInit {
       });
     },
     error: (e) => console.log('Unable to Get Cart : ', e),
-    complete: () => console.log('Got Cart Successfully!')
+    complete: () => {
+      console.log('Got Cart Successfully!')
+      this.totalPrice = this.cartPrice + this.tax - (this.discounts + ((this.promotion / 100) * this.cartPrice ))
+    }
   });
 
 
