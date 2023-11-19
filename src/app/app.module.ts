@@ -113,13 +113,13 @@ import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin
     AdminOrderDetailsComponent,
     AddUserComponent,
     AdminReportsComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [
