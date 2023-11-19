@@ -105,7 +105,8 @@ import { Iuser } from 'src/app/Interfaces/user/iuser';
           console.error('Unable to delete account:', error);
         },
         complete: () => {
-         this.router.navigate(['login']);
+          localStorage.removeItem('token');
+          this.router.navigate(['login']);
         }
       });
     }
