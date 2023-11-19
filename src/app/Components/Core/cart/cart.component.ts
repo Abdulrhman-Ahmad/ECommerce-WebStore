@@ -50,6 +50,29 @@ export class CartComponent implements OnInit {
       complete: () => {
         console.log('Cart deleted Successfully!')
         this.cart = this.cart.filter(c => c.productId != id)
+
+        this.quantities = []
+        this.prices = []
+
+        this.cartapi.GetCart().subscribe({
+          next: (d) => {
+            this.cart = d;
+            this.cart.forEach((item : Icart ) => {
+              if (item.productQuantity <= 5){
+                this.quantities.push(item.productQuantity)
+                this.prices.push(item.productPrice)
+              }
+              else
+                this.quantities.push(5)
+            })
+          },
+          error: (e) => console.log(e),
+          complete:()=> {
+            console.log('Successfully Got Cart')
+            this.UpdatetotalPrice()
+          }
+        })
+
       }
     })
   }
