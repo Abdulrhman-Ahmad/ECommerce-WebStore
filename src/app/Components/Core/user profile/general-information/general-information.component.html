@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-floating">
-          <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
+          <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username" >
           <label for="username">Username</label>
           <div class="text-danger form-text"   *ngIf="usernameTouched &&  usernameRequired">Required Field!</div>
           <div class="text-danger form-text"   *ngIf="usernameTouched && !usernameRequired &&!usernameValid">At least 8 digits!</div>
@@ -52,12 +52,12 @@
 
           <div class="d-flex justify-content-md-space-between justify-content-center row my-3">
 
-              <button class="col-12 col-md-4 btn btn-dark">
+              <button class="col-12 col-md-4 btn btn-dark" (click)="OnSubmit($event)">
                 Update Information
               </button>
 
 
-              <button class="col-12 col-md-4 btn btn-dark">
+              <button class="col-12 col-md-4 btn btn-dark" (click)="deleteUser()" >
                 Delete Account
               </button>
 

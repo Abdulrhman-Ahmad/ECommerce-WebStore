@@ -111,7 +111,7 @@ import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add
     ChangepasswordComponent,
     AdminOrderDetailsComponent,
     AddUserComponent,
-    
+
   ],
   imports: [
     BrowserModule,
