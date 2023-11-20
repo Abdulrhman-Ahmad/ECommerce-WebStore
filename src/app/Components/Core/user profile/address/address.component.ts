@@ -38,15 +38,7 @@ export class AddressComponent implements OnInit {
     if (token) {
       let claims = JSON.parse(window.atob(token.split('.')[1]));
 
-      this.addresses.push({
-        id: 0,
-        street: '',
-        city: claims[this.claim.claimTypes.StreetAddress],
-        state: '',
-        country: '',
-        postalCode: 0,
-        specialInstructions: ''
-      });
+
       this.data.CurrentUser.MobilePhone = claims[this.claim.claimTypes.MobilePhone]
 
     }

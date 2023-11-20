@@ -34,6 +34,8 @@ import { ChangepasswordComponent } from './Components/Core/user profile/changepa
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin-reports/admin-reports.component';
+import { PhonesComponent } from './Components/Core/phones/phones.component';
+import { AddphoneComponent } from './Components/Core/addphone/addphone.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent,pathMatch:'full'},
@@ -44,6 +46,8 @@ const routes: Routes = [
   {path:'profile', component:GeneralInformationComponent, canActivate:[authGuard]},
   {path:'Changepassword', component:ChangepasswordComponent, canActivate:[authGuard]},
   {path:'address', component:AddressComponent, canActivate:[authGuard]},
+  {path:'phones', component:PhonesComponent, canActivate:[authGuard]},
+  {path:'phones/add', component:AddphoneComponent, canActivate:[authGuard]},
   {path:'wishlist', component:WishlistUserDashboardComponent, canActivate:[authGuard]},
   {path:'favorite', component:FavoritesUserDashboardComponent, canActivate:[authGuard]},
   {path:'address/add', component:AddAddressComponent, canActivate:[authGuard]},

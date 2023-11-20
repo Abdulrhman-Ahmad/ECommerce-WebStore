@@ -91,7 +91,7 @@
 
       <div>
         <ul class="list-group mb-3 mt-3" id="info">
-          <li class="list-group-item ">
+          <li class="list-group-item " (click)="SubmitCheckout()">
             <button class="btn btn-success w-100 p-2" id="cod"><i class="bi bi-wallet2"></i> Cash On Delivery</button>
           </li>
         </ul>
@@ -100,7 +100,7 @@
       <div>
         <ul class="list-group mb-3 mt-3" id="info">
           <li class="list-group-item ">
-            <ngx-paypal [config]="paypalConfig"></ngx-paypal> <!-- Paypal Buttons-->
+            <!-- <ngx-paypal [config]="paypalConfig"></ngx-paypal>  -->
             <!-- <button class="btn btn-success w-100 p-2" id="paypal"><i class="bi bi-paypal"></i> PayPal</button> -->
           </li>
         </ul>
@@ -132,26 +132,33 @@
             <div class="d-flex justify-content-between lh-sm">
               <div>
                 <h6 class="my-0">Phone Number</h6>
-                <small class="text-muted">{{phonenumber}}</small>
+                <small class="text-muted" >{{phonenumber}}</small>
               </div>
               <div>
-                <!-- <a class="btn btn-dark m-1">Choose Phone</a> -->
-                <a class="btn btn-dark m-1" (click)="phoneAdd($event)"> Add New</a>
+                <a class="btn btn-dark m-1" *ngIf="!(AddPhone |async) " (click)="phoneChoose($event)">Choose Phone</a>
+                <a class="btn btn-dark m-1" *ngIf="!(ChoosePhone |async) " (click)="phoneAdd($event)"> Add New</a>
               </div>
             </div>
 
 
             <!-- Choose Phone Number -->
-            <!-- <label for="chosePhone" class="form-label fs-6">Choose number</label>
-            <select name="" id="chosePhone" class="form-select">
-              <option value=""></option>
-            </select> -->
+            <div *ngIf="(ChoosePhone |async) && (!(AddPhone | async))">
+              <label for="chosePhone" class="form-label fs-6">Choose number</label>
+              <select name="" id="chosePhone" class="form-select" (change)="AssignPhone($event)"
+                formControlName="ChoosePhone">
+                <option *ngFor="let item of phones">{{item.phoneNumber}}</option>
+              </select>
+            </div>
 
 
             <!-- Add New Number -->
-            <div *ngIf="AddPhone | async">
-              <label for="phone" class="form-label fs-6" >Add Phone</label>
-              <input type="text" id="phone" class="form-control">
+            <div *ngIf="(AddPhone |async) && (!(ChoosePhone | async))">
+              <label for="phone" class="form-label fs-6">Add Phone</label>
+              <input type="text" id="phone" class="form-control" formControlName="AddPhone">
+              <div class="text-danger form-text" *ngIf="phoneTouched &&  phoneRequired">Required Field!</div>
+              <div class="text-danger form-text" *ngIf="phoneTouched && !phoneRequired &&!phoneValid">Phone Must be 11
+                digits!</div>
+              <div class="text-success form-text" *ngIf="!phoneRequired && phoneValid">Looks Good!</div>
             </div>
 
           </li>
@@ -161,32 +168,58 @@
             <div class="d-flex justify-content-between lh-sm">
               <div>
                 <h6 class="my-0">Address</h6>
-                <small class="text-muted">{{address}}</small>
+                <small class="text-muted" >{{address}}</small>
               </div>
               <div>
                 <div>
-                  <a class="btn btn-dark m-1" *ngIf="!(addAddress | async)" (click)="AddressChoose($event)">Choose Address</a>
+                  <a class="btn btn-dark m-1" *ngIf="!(addAddress | async)" (click)="AddressChoose($event)">Choose
+                    Address</a>
                   <a class="btn btn-dark m-1" *ngIf="!(ChooseAddress | async)" (click)="addressAdd($event)"> Add New</a>
                 </div>
               </div>
             </div>
 
             <!-- Choose Address -->
-            <div *ngIf="ChooseAddress | async" >
-              <label for="chooseAddress" class="form-label fs-6" >Choose Address</label>
-              <select name="" id="chooseAddress" class="form-select">
-                <option *ngFor="let item of addresses" value="{{item.id}}">{{item.name}}</option>
+            <div *ngIf="ChooseAddress | async">
+              <label for="chooseAddress" class="form-label fs-6">Choose Address</label>
+              <select name="" id="chooseAddress" class="form-select" formControlName="ChooseAddress"
+                (change)="AssignAddress($event)">
+                <option *ngFor="let item of addresses" value="{{item.id}}">{{item.street}}, {{item.city}},
+                  {{item.country}}</option>
               </select>
 
             </div>
 
             <!-- Add New Address -->
             <div *ngIf="addAddress | async">
-              <label for="Address" class="form-label fs-6" >Add Address</label>
-              <input type="text" id="Address" class="form-control">
-              <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
-              <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8 digits!</div>
-              <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="street" placeholder="Street" formControlName="street">
+                <label for="street" class="form-label">Street</label>
+                <div class="text-danger form-text" *ngIf="streetTouched &&  streetRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="streetTouched && !streetRequired &&!streetValid">At least 5
+                  digits!</div>
+                <div class="text-success form-text" *ngIf="!streetRequired && streetValid">Looks Good!</div>
+              </div>
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
+                <label for="city">City</label>
+                <div class="text-danger form-text" *ngIf="cityTouched &&  cityRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="cityTouched && !cityRequired &&!cityValid">At least 5 digits!
+                </div>
+                <div class="text-success form-text" *ngIf="!cityRequired && cityValid">Looks Good!</div>
+              </div>
+
+              <div class="form-floating m-2">
+                <input type="text" class="form-control" id="country" placeholder="Country" formControlName="country">
+                <label for="country">Country</label>
+                <div class="text-danger form-text" *ngIf="countryTouched &&  countryRequired">Required Field!</div>
+                <div class="text-danger form-text" *ngIf="countryTouched && !countryRequired &&!countryValid">Phone Must
+                  be 11 digits!</div>
+                <div class="text-success form-text" *ngIf="!countryRequired && countryValid">Looks Good!</div>
+              </div>
+
             </div>
 
           </li>

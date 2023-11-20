@@ -58,6 +58,8 @@ import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/a
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin-reports/admin-reports.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { PhonesComponent } from './Components/Core/phones/phones.component';
+import { AddphoneComponent } from './Components/Core/addphone/addphone.component';
 
 
 @NgModule({
@@ -114,6 +116,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     AdminOrderDetailsComponent,
     AddUserComponent,
     AdminReportsComponent,
+    PhonesComponent,
+    AddphoneComponent,
 
   ],
   imports: [
