@@ -5,16 +5,16 @@
 
   <div class="body row">
 
-    <div class="card col-4"  *ngFor="let item of [1,2,3]">
+    <div class="card col-4"  *ngFor="let item of products">
       <div class="cover">
-        <img src="https://www.picsum.photos/800/400" alt="Elegant Leather Sofa Set"  />
+        <img src="{{item.images[0] ? item.images[0] : 'assets/Images/NotFound.png'}}" alt="Elegant Leather Sofa Set"  />
       </div>
       <div class="details">
         <div>
-          <img src="https://www.picsum.photos/800/400" alt="BetaFPV Cetos"  />
-          <h4>Modern Smart Phone
+          <img src="{{item.images[1] ? item.images[1] : 'assets/Images/NotFound.png'}}" alt="BetaFPV Cetos"  />
+          <h4>{{item.name}}
           </h4>
-          <h2>11990 <small class="h5">EGP</small></h2>
+          <h2>{{item.price}} <small class="h5">EGP</small></h2>
           <a routerLink="/products">Buy Now</a>
         </div>
       </div>
