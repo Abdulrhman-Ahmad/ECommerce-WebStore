@@ -21,6 +21,7 @@ export class ReviewRateComponent {
     discount: 0,
     priceAfter: 0,
     condition: 0,
+    stockQuantity: 0,
     model: '',
     color: '',
     storage: 0,
@@ -103,4 +104,5 @@ export class ReviewRateComponent {
       return totalReviews !== 0 ? (count / totalReviews) * 100 : 0;
     }
     
+
 }

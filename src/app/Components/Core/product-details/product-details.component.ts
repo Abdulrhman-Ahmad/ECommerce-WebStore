@@ -24,6 +24,7 @@ export class ProductDetailsComponent implements OnInit {
     discount: 0,
     priceAfter: 0,
     condition: 0,
+    stockQuantity: 0,
     model: '',
     color: '',
     storage: 0,
@@ -46,6 +47,7 @@ export class ProductDetailsComponent implements OnInit {
   productId !: number;
   currentImage: string = 'assets/Images/NotFound.png';
   quantity: number = 1;
+  stockQuantity:number = 0;
 
   // ---------------- [ get related products ]
   relatedProducts : Iproduct[] = []
@@ -139,5 +141,9 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  // ------------- [ Get Quantity Array drop down list  ]
+  getRange(quantity: number): number[] {
+    return Array.from({ length: quantity }, (_, i) => i + 1);
+  }
 
 }

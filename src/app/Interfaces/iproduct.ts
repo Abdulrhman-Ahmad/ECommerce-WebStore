@@ -8,7 +8,7 @@ export interface Iproduct {
   discount: number;
   priceAfter: number;
   condition: number;
-  //stockQuantity: number; // want in admin
+  stockQuantity: number; // want in admin
   model: string;
   color: string;
   storage: number;
