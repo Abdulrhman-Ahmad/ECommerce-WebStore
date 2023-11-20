@@ -70,13 +70,10 @@
 
 
           <div class="quantity d-flex align-items-center">
-            <select class="form-select mb-2" aria-label="Default select example" [(ngModel)]="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+            <select class="form-select mb-2" aria-label="Default select example" *ngIf="product.stockQuantity > 0"  [(ngModel)]="quantity">
+              <option *ngFor="let i of getRange(product.stockQuantity)" [value]="i">{{ i }}</option>
             </select>
+            
           </div>
           <div class="text-danger" *ngIf="quantity > 4">You Can't Add to Cart more than 5 Pieces!</div>
           <a class="btn btn-success shadow-0 m-1" (click)="buy()"> Buy now </a>
