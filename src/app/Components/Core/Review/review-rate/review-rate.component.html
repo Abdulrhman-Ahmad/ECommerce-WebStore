@@ -8,8 +8,16 @@
 
     <!-- Average Star -->
     <div class="rating text-warning">
-      <span class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span
-        class="bi bi-star-fill"></span><span class="bi bi-star-fill"></span><span class="bi bi-star"></span>
+      <span class="bi bi-star-fill text-warning" *ngIf="product.avgRatingRounded > 0"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="product.avgRatingRounded > 1"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="product.avgRatingRounded > 2"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="product.avgRatingRounded > 3"></span>
+            <span class="bi bi-star-fill text-warning" *ngIf="product.avgRatingRounded > 4"></span>
+            <span class="bi bi-star" *ngIf="product.avgRatingRounded < 1"></span>
+            <span class="bi bi-star" *ngIf="product.avgRatingRounded < 2"></span>
+            <span class="bi bi-star" *ngIf="product.avgRatingRounded < 3"></span>
+            <span class="bi bi-star" *ngIf="product.avgRatingRounded < 4"></span>
+            <span class="bi bi-star" *ngIf="product.avgRatingRounded < 5"></span>
     </div>
 
     <!-- Total Reviews Number -->
@@ -45,7 +53,7 @@
         </div>
         <div class="col-9">
           <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" 
+            <div class="progress-bar bg-success" role="progressbar"
               [style.width.%]="getPercentage(rate4)">
               <span class="visually-hidden">{{ getPercentage(rate4) }}%</span>
             </div>

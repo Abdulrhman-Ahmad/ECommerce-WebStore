@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { IRegister } from 'src/app/Interfaces/iregister';
+import { LoginService } from 'src/app/Services/login.service';
 import { RegisterService } from 'src/app/Services/register.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor(private fb: FormBuilder, private register: RegisterService, private router: Router) { }
+  constructor(private fb: FormBuilder, private register: RegisterService, private router: Router, private login:LoginService) { }
 
 
   ngOnInit(): void {
@@ -60,7 +61,28 @@ export class RegisterComponent implements OnInit {
           next: () => this.router.navigate(['login']),
           error: (e) => console.log('Unabel to Register: ', e)
           ,
-          complete: () => console.log("Successfully Registered!")
+          complete: () => {
+            console.log("Successfully Registered!")
+
+
+            // login
+            this.login.Login({
+              username: this.user.userName,
+              password: this.user.password
+            }).subscribe({
+              next: (d) => console.log('Loggin in...'),
+              error: (e) => {
+                console.log('Unable to Login: ',e)
+                this.router.navigate(['/login'])
+              },
+              complete: () => {
+                console.log('Logged In Successfully!')
+                this.router.navigate([''])
+              }
+            })
+
+
+          }
         }
       )
 

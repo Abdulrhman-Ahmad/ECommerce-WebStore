@@ -21,6 +21,7 @@ export class ReviewRateComponent {
     discount: 0,
     priceAfter: 0,
     condition: 0,
+    stockQuantity: 0,
     model: '',
     color: '',
     storage: 0,
@@ -46,7 +47,7 @@ export class ReviewRateComponent {
     rate3 = 0;
     rate4 = 0;
     rate5 = 0;
-  
+
   constructor(private reviewapi : ReviewService,private productapi: ProductlistService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -55,7 +56,7 @@ export class ReviewRateComponent {
     // --------------- [ Get Product reviews ]
     this.reviewapi.GetProductReview(this.productId).subscribe({
       next:    (d) => {
-        this.reviews = d 
+        this.reviews = d
           // --------------- [ Loop through reviews and update counts  ]
           if (this.reviews) {
             for (let review of this.reviews) {
@@ -80,7 +81,7 @@ export class ReviewRateComponent {
                   break;
               }
             }
-        
+
           }
       },
       error:   (e) =>   console.log('Unable to get all the reviews',e),
@@ -94,13 +95,14 @@ export class ReviewRateComponent {
       complete: () => console.log('Successfully Got the product!')
 
       });
-    
+
   }
-  
+
     // --------------- [ Calc percentage for each rate count  ]
     getPercentage(count: number): number {
       const totalReviews = this.reviews ? this.reviews.length : 0;
       return totalReviews !== 0 ? (count / totalReviews) * 100 : 0;
     }
-    
+
+
 }

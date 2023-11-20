@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Iproduct } from 'src/app/Interfaces/iproduct';
 import { Iproductquantity } from 'src/app/Interfaces/iproductquantity';
+import { IorderAdmin } from 'src/app/Interfaces/order/iorder-admin';
 import { CartService } from 'src/app/Services/cart.service';
+import { OrderService } from 'src/app/Services/dashboard/order.service';
 import { FavoriteService } from 'src/app/Services/favorite.service';
 import { LoginService } from 'src/app/Services/login.service';
 import { ProductlistService } from 'src/app/Services/productlist.service';
@@ -24,6 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     discount: 0,
     priceAfter: 0,
     condition: 0,
+    stockQuantity: 0,
     model: '',
     color: '',
     storage: 0,
@@ -46,16 +49,22 @@ export class ProductDetailsComponent implements OnInit {
   productId !: number;
   currentImage: string = 'assets/Images/NotFound.png';
   quantity: number = 1;
+  stockQuantity:number = 0;
 
   // ---------------- [ get related products ]
   relatedProducts : Iproduct[] = []
 
-  constructor(private productapi: ProductlistService, private route: ActivatedRoute, private cartapi: CartService, private router: Router, private favoriteapi: FavoriteService, private log: LoginService) { }
+  // ---------------- [ get All Orders ]
+  orders:IorderAdmin[] = [];
+  countProductInOrders:number = 0;
+
+  constructor(private productapi: ProductlistService,private orderService:OrderService, private route: ActivatedRoute, private cartapi: CartService, private router: Router, private favoriteapi: FavoriteService, private log: LoginService) { }
 
   ngOnInit(): void {
 
     this.productId = this.route.snapshot.params['id']
 
+    // ---------------- [ get Product by Id ]
     this.productapi.GetProductById(this.productId).subscribe({
       next: (d) => {
         this.product = d;
@@ -72,6 +81,22 @@ export class ProductDetailsComponent implements OnInit {
           },
           error: (e) => console.log(e),
           complete: () => { console.log('Successfully Got the Related products!') }
+        });
+
+        // ---------------- [ get All Orders ]
+        this.orderService.GetAllOrders(1).subscribe({
+          next:(data) =>{ this.orders = data ;},
+          error:(error)=>{console.log('error',error)},
+          complete: ()=>{
+            this.orders.forEach((o) => {
+              o.products.forEach((p) => {
+                if (p.id == this.productId) {
+                  this.countProductInOrders++;
+                }
+              });
+            });
+
+          },
         });
 
       }
@@ -139,5 +164,9 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  // ------------- [ Get Quantity Array drop down list  ]
+  getRange(quantity: number): number[] {
+    return Array.from({ length: quantity }, (_, i) => i + 1);
+  }
 
 }
