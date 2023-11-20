@@ -1,10 +1,10 @@
 import { ClaimsService } from './../../../Services/claims.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig, IPhone } from 'ngx-paypal';
 import { BehaviorSubject } from 'rxjs';
 import { Iaddress } from 'src/app/Interfaces/iaddress';
-import { Iaddressorder } from 'src/app/Interfaces/iaddressorder';
 import { Icart } from 'src/app/Interfaces/icart';
 import { Iorder } from 'src/app/Interfaces/iorder';
 import { Iphones } from 'src/app/Interfaces/iphones';
@@ -82,7 +82,8 @@ export class CheckoutComponent implements OnInit {
     private claim: ClaimsService,
     private addressapi: AddressService,
     private phoneapi: PhoneService,
-    private orderapi: OrderService
+    private orderapi: OrderService,
+    private router : Router
     //#endregion
 
   ) { }
@@ -401,6 +402,10 @@ export class CheckoutComponent implements OnInit {
 
         }
       });
+    }
+    else if ( this.cartLength == 0)
+    {
+      this.router.navigate(['/products'])
     }
   }
   //#endregion
