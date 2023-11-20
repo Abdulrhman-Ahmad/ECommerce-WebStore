@@ -10,14 +10,21 @@ import { OrderService } from 'src/app/Services/dashboard/order.service';
 })
 export class OrderListComponent {
   orders:IorderAdmin[] = [];
-  
+
   constructor(private orderService:OrderService){}
 
   ngOnInit(): void {
     this.orderService.GetAllUserOrders().subscribe({
-      next:(data) =>{ this.orders = data ;},
-      error:(error)=>{console.log('error',error)},
-      complete: ()=>{},
+      next:(data) =>{
+
+        console.log(data)
+        this.orders = data ;
+
+      },
+      error:(error)=>{console.log('Unable to load Data: ',error)},
+      complete: ()=>{
+        console.log('Got Orders Successfully!')
+      },
     });
   }
 
