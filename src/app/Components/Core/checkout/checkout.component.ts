@@ -21,10 +21,10 @@ import { PhoneService } from 'src/app/Services/phone.service';
 export class CheckoutComponent implements OnInit {
 
   // Order Container
-  order : Iorder = {
-    addressId : 0,
-    payMethod : '',
-    phoneNumebr : ''
+  order: Iorder = {
+    addressId: 0,
+    payMethod: '',
+    phoneNumebr: ''
   }
 
 
@@ -106,7 +106,7 @@ export class CheckoutComponent implements OnInit {
 
           this.cartLength += item.productQuantity
           this.cartPrice += (item.productPrice * item.productQuantity)
-          this.discounts = + (item.productQuantity * item.discount)
+          this.discounts += (item.productQuantity * item.discount)
 
         });
       },
@@ -136,10 +136,13 @@ export class CheckoutComponent implements OnInit {
     this.addressapi.GetAddresses().subscribe({
       next: (d) => {
         this.addresses = d
-
-        this.address = this.addresses[0].street + ', ' + this.addresses[0].city + ', ' + this.addresses[0].country
-        this.addressId = this.addresses[0].id;
-
+        if (d[0]) {
+          this.address = this.addresses[0].street + ', ' + this.addresses[0].city + ', ' + this.addresses[0].country
+          this.addressId = this.addresses[0].id;
+        }
+        else {
+          this.address = 'Empty'
+        }
       },
       error: (e) => console.log('Failed To Get User Addresses: ', e),
       complete: () => {
@@ -152,7 +155,12 @@ export class CheckoutComponent implements OnInit {
     this.phoneapi.GetAllPhones().subscribe({
       next: (d) => {
         this.phones = d
-        this.phonenumber = this.phones[0].phoneNumber;
+        if (d[0]) {
+          this.phonenumber = this.phones[0].phoneNumber;
+        }
+        else {
+          this.phonenumber = 'Empty'
+        }
       }
     })
     //#endregion
@@ -178,12 +186,11 @@ export class CheckoutComponent implements OnInit {
           complete: () => {
 
             console.log('Phone Added Successfully!')
-
+            this.phonenumber = this.fg.get('AddPhone')?.value;
             // refresh the addresses
             this.phoneapi.GetAllPhones().subscribe({
               next: (d) => {
                 this.phones = d
-                this.phonenumber = this.phones[0].phoneNumber;
               }
             })
 
@@ -361,10 +368,9 @@ export class CheckoutComponent implements OnInit {
   }
   //#endregion
 
-
-  SubmitCheckout() : void {
-    if (this.addressId != 0 && this.phonenumber.length > 10){
-
+  //#region Submit Checkout
+  SubmitCheckout(): void {
+    if (this.addressId != 0 && this.phonenumber.length > 10 && this.cartLength > 0) {
       this.order.addressId = this.addressId;
       this.order.phoneNumebr = this.phonenumber;
       this.order.payMethod = 'PayPal';
@@ -372,10 +378,31 @@ export class CheckoutComponent implements OnInit {
       this.orderapi.AddNewOrder(this.order).subscribe({
         next: (d) => console.log('Adding new order'),
         error: (e) => console.log('Unable to save order : ', e),
-        complete: () => console.log('Order Saved Sucessfully!')
-      });
+        complete: () => {
+          console.log('Order Saved Sucessfully!')
 
+          //#region Refresh Cart Data
+          this.cartapi.GetCart().subscribe({
+            next: (d) => {
+              this.products = d
+            },
+            error: (e) => console.log('Unable to Get Cart : ', e),
+            complete: () => {
+              console.log('Got Cart Successfully!')
+
+              // Calculating the Total price
+              this.totalPrice = 0
+              this.cartLength= 0
+              this.cartPrice = 0
+              this.discounts = 0
+            }
+          });
+          //#endregion
+
+        }
+      });
     }
   }
+  //#endregion
 
 }
