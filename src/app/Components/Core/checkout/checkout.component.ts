@@ -166,7 +166,7 @@ export class CheckoutComponent implements OnInit {
     })
     //#endregion
 
-    //this.paypalInitConfig(); // for paypal
+    this.paypalInitConfig(); // for paypal
 
   }
 
