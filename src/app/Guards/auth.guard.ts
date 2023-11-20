@@ -49,7 +49,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       return true
   }
 
-  if (state.url === "/profile" || state.url === "/Address" || state.url === "/orders" || state.url === "/cart" || state.url === "/favorite") {
+  if (state.url === "/profile" || state.url === "/Address" || state.url === "/orders" || state.url === "/cart" || state.url === "/favorite" || state.url === "/phones" || state.url === "/phones/add") {
     if (token != null)
       return true
     else

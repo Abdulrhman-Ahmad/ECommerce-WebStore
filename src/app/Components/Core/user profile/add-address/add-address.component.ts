@@ -12,6 +12,7 @@ import { AddressService } from 'src/app/Services/address.service';
 })
 export class AddAddressComponent {
   fg !: FormGroup
+  
   address: Iaddress = {
     id: 0,
     street: '',
@@ -76,15 +77,15 @@ export class AddAddressComponent {
   get cityValid(): boolean | void { return this.fg.get('city')?.valid; }
   get cityTouched(): boolean | void { return this.fg.get('city')?.touched; }
 
+    // ---------------- [ country ]
+    get countryRequired(): boolean | void { return this.fg.get('country')?.hasError('required'); }
+    get countryValid(): boolean | void { return this.fg.get('country')?.valid; }
+    get countryTouched(): boolean | void { return this.fg.get('country')?.touched; }
+
   // ---------------- [ state ]
   get stateRequired(): boolean | void { return this.fg.get('state')?.hasError('required'); }
   get stateValid(): boolean | void { return this.fg.get('state')?.valid; }
   get stateTouched(): boolean | void { return this.fg.get('state')?.touched; }
-
-  // ---------------- [ country ]
-  get countryRequired(): boolean | void { return this.fg.get('country')?.hasError('required'); }
-  get countryValid(): boolean | void { return this.fg.get('country')?.valid; }
-  get countryTouched(): boolean | void { return this.fg.get('country')?.touched; }
 
   // ---------------- [ postalCode ]
   get postalCodeRequired(): boolean | void { return this.fg.get('postalCode')?.hasError('required'); }
