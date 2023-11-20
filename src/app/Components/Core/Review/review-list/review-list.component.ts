@@ -13,14 +13,16 @@ export class ReviewListComponent implements OnInit {
   reviews !: Ireview[];
   productId !: number;
 
-  constructor(private reviewapi : ReviewService, private route: ActivatedRoute){}
+  constructor(public reviewapi : ReviewService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
     // --------------- [ Get Product reviews ]
     this.reviewapi.GetProductReview(this.route.snapshot.params['id']).subscribe({
-      next:    (d) =>   this.reviews = d,
+      next:    (d) =>   this.reviewapi.reviewList.next(d) ,
       error:   (e) =>   console.log('Unable to get all the reviews',e),
-      complete:( ) => console.log('Successfully Got Reviews!')
+      complete:( ) => {
+        console.log('Successfully Got Reviews!')
+      }
     })
 
 

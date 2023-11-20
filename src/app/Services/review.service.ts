@@ -1,7 +1,7 @@
 import { Ireview } from './../Interfaces/ireview';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Iwritereview } from '../Interfaces/iwritereview';
 import { Ireviewreturn } from '../Interfaces/review/Ireviewreturn';
 
@@ -14,7 +14,11 @@ export class ReviewService {
   AddReviewUrl: string = "https://localhost:7003/api/Review";
   baseURL: string = 'https://localhost:7003/api/Review'; // Tasneem
   ProductReviewUrl = 'https://localhost:7003/api/Review/GetReviewsByProductId/'
+
   constructor(private httpclient: HttpClient) { }
+
+  reviewList = new BehaviorSubject<Ireview[]>([])
+
 
   // ------------------- [ Get All Reviews]
   GetAll(): Observable<Ireview[]> {

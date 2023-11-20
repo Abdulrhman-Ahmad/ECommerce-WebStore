@@ -68,7 +68,13 @@ export class ReviewWriteComponent implements OnInit {
           error: (e) => console.log(e),
           complete: () => {
             console.log('Review Added Successfully!');
-            // this.fg.reset();
+
+            this.reviewapi.GetProductReview(this.productId).subscribe({
+              next: (d) => this.reviewapi.reviewList.next(d),
+              error: (e) => console.log('Unable to Load the Reviews: ', e),
+              complete: () => console.log('Got Reviews Successfully!')
+            });
+
           }
         })
 
