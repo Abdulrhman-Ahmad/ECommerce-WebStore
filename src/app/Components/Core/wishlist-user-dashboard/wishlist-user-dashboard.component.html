@@ -35,7 +35,7 @@
               </div>
             </td>
             <td>
-              <button class="btn btn-dark">View</button>
+              <button class="btn btn-dark" [routerLink]="['/products/details',item.id]">View</button>
             </td>
             <td>
               <button class="btn btn-dark" (click)="deleteWishlist(item.id)">X</button>

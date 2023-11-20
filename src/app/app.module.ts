@@ -57,6 +57,7 @@ import { ChangepasswordComponent } from './Components/Core/user profile/changepa
 import { AdminOrderDetailsComponent } from './Components/Core/dashboard/orders/admin-order-details/admin-order-details.component';
 import { AddUserComponent } from './Components/Core/dashboard/users/add-user/add-user.component';
 import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin-reports/admin-reports.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -113,14 +114,15 @@ import { AdminReportsComponent } from './Components/Core/dashboard/reports/admin
     AdminOrderDetailsComponent,
     AddUserComponent,
     AdminReportsComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    NgxPayPalModule, // import ngx for payment paypal
   ],
   providers: [
     {

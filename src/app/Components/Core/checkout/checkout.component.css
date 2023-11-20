@@ -21,10 +21,14 @@ img{
   background-color: rgb(240, 229, 229) !important;
 }
 
-button,a, input, li, ul, form {
+button,a, input, li, ul, form, select {
   border-radius: 0px;
 }
 
 #ShippingInfo ul li{
   margin: 0.6rem;
+}
+
+#paypal{
+  background-color: #00457C;
 }

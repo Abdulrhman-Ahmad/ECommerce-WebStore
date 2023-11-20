@@ -37,7 +37,7 @@ export class CurrentuserService {
     NameIdentifier: 'N/A',
     Name: 'N/A',
     MobilePhone: 'N/A',
-    Anonymous: 'N/A',
+    Anonymous: 'N/A', 
     Authentication: 'N/A',
     AuthenticationInstant: 'N/A',
     AuthenticationMethod: 'N/A',

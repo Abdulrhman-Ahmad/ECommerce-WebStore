@@ -17,6 +17,7 @@ ngOnInit(): void {
 }
 
 logout(){
+  console.log('Logout clicked');
   localStorage.removeItem('token');
   this.router.navigate(['login'])
 

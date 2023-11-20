@@ -23,7 +23,7 @@
       <input type="text" class="form-control" id="address" placeholder="address" formControlName="address">
       <label for="address">Address</label>
       <div class="text-danger form-text"   *ngIf="addressTouched &&  addressRequired">Required Field!</div>
-      <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">At least 8 digits!</div>
+      <div class="text-danger form-text"   *ngIf="addressTouched && !addressRequired &&!addressValid">Hint: Street, City, Country</div>
       <div class="text-success form-text" *ngIf="!addressRequired && addressValid">Looks Good!</div>
     </div>
 
