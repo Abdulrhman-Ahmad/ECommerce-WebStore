@@ -66,7 +66,10 @@ export class ReviewWriteComponent implements OnInit {
         this.reviewapi.AddReview(review).subscribe({
           next: (d)=> console.log('Adding Review...', d),
           error: (e) => console.log(e),
-          complete: () => console.log('Review Added Successfully!')
+          complete: () => {
+            console.log('Review Added Successfully!');
+            // this.fg.reset();
+          }
         })
 
       }

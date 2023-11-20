@@ -69,7 +69,10 @@ export class ProductlistService {
     return this.http.put<FormData>(this.ProductUrl, data);
   }
 
-
+  // -------------------- [ Get Top 3 Products ]
+  GetTop3Product(): Observable<Iproductreturn[]> {
+    return this.http.get<Iproductreturn[]>(`${this.ProductUrl}/GetTopThreerating`);
+  }
 }
 
 

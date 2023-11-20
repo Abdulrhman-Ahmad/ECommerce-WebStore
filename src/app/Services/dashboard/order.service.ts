@@ -14,6 +14,7 @@ export class OrderService {
   baseURL: string = 'https://localhost:7003/api/Order';
   AddOrderUrl : string = 'https://localhost:7003/api/Order/addOrder'
   modifiedUrl : string = 'https://localhost:7003/api/Order/addOrder?addressId=112&payMethod=asd&phoneNumebr=asd'
+  UserorderUrl : string ='https://localhost:7003/api/UserProfile/Orders';
   constructor(private http: HttpClient) { }
 
 
@@ -38,4 +39,8 @@ export class OrderService {
     return this.http.get<IorderAdmin>(`${this.baseURL}/${id}`);
   }
 
+  // ---------------- [ Get All User Orders ]
+  GetAllUserOrders() : Observable<IorderAdmin[]>{
+    return this.http.get<IorderAdmin[]>(`${this.UserorderUrl}`);
+  }
 }
