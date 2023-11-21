@@ -227,7 +227,7 @@ export class ProductListComponent implements OnInit {
 
   //#region Slider Price
   min: number = 0
-  max: number = 50000
+  max: number = 100000
 
   MinValue: number = this.min
   MaxValue: number = this.max

@@ -120,7 +120,7 @@
           id="star"></i></button>
       <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer;">
         <h5 class="card-title">{{item.name}}</h5>
-        <p class="card-text">{{item.description}}</p>
+        <p class="card-text" style="max-height: 48px; overflow: auto;">{{item.description}}</p>
         <p class="card-text">{{item.price}} LE</p>
       </div>
 

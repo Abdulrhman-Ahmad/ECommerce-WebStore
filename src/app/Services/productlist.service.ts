@@ -34,7 +34,7 @@ export class ProductlistService {
 
   }
 
-  // -------------------- [ Get All Products By Brand name ] //tasneem add it 
+  // -------------------- [ Get All Products By Brand name ] //tasneem add it
   getProductsByBrandName(brand: string): Observable<Iproduct[]> {
     return this.http.get<Iproduct[]>(`${this.ProductUrl}/${brand}`);
   }

@@ -1,12 +1,12 @@
-<div class="fluid-container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-3">
+    <div class="col-12 col-md-3">
       <app-adminaside></app-adminaside>
     </div>
-    <div class="col-9">
+    <div class="col-12 col-md-9">
 
       <!-------------------  form ------------------- -->
-      <div class="overlay" id="overlay">
+      <div class="overlay " id="overlay">
         <div class="form-container">
           <form class="shadow p-4 " [formGroup]="fg">
             <div class="form-floating">
@@ -30,7 +30,7 @@
       </div>
 
       <!-------------------  Category table ------------------- -->
-      <table class="table">
+      <table class="table ">
         <thead>
           <tr>
             <th scope="col">No.</th>
@@ -48,7 +48,7 @@
               <i class="bi text-danger fs-4 bi-trash" (click)="delete(cat.id)"></i>
             </td>
           </tr>
-          
+
         </tbody>
       </table>
 
