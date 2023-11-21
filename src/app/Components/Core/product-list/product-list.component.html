@@ -115,12 +115,14 @@
       <button (click)="AddToFavorite(item.id)" class="smalled s1 btn btn-dark m-1"
         style="position: absolute; top:1px; right: 1px; font-size: 10px;"><i class=" bi bi-heart-fill"
           id="heart"></i></button>
+
       <button (click)="AddToWithList(item.id)" class="smalled s2 btn btn-dark m-1"
         style="position: absolute; top:40px; right:1px; font-size: 10px;"><i class=" bi bi-list-ol"
           id="star"></i></button>
-      <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer;">
-        <h5 class="card-title">{{item.name}}</h5>
-        <p class="card-text" style="max-height: 48px; overflow: auto; min-height: 48px;">{{item.description}}</p>
+
+      <div class="card-body" [routerLink]="['details',item.id]" style="cursor: pointer; max-height: 170px; min-height: 170px; overflow: auto;">
+        <h5 class="card-title" >{{item.name}}</h5>
+        <p class="card-text" >{{item.description}}</p>
         <p class="card-text">{{item.price}} LE</p>
       </div>
 
