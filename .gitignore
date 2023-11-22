@@ -411,3 +411,11 @@ API/FodyWeavers.xsd
 # Ignore Images
 API/wwwroot/Images/*
 
+API/API/API.csproj.user
+API/API/bin/
+API/API/obj/
+API/Core/bin/
+API/Core/obj/
+API/Infrastructure/bin/
+API/Infrastructure/obj/
+
