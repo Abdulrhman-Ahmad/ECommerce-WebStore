@@ -13,9 +13,9 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <div class="card-title"><strong>Product Name:</strong>{{item.productName}}</div>
-            <h4 class="card-title"><strong>Price: {{item.productPrice}} LE</strong></h4>
-            <label for="quantity{{i}}"><strong>Quantity</strong></label>
+            <div class="card-title text-dark-emphasis"><strong>Product Name </strong>{{item.productName}}</div>
+            <h4 class="card-title text-success"><strong>Price: {{item.productPrice}} LE</strong></h4>
+            <label class="text-dark-emphasis" for="quantity{{i}}"><strong>Quantity</strong></label>
             <select name="quantity{{i}}" class="w-50 m-2" id="quantity" [(ngModel)]="quantities[i]"
               (change)="UpdateAmount(item.productId, i)">
               <option value="1">1</option>
@@ -24,11 +24,11 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <div>Total Price <Strong>{{item.productPrice * quantities[i]}} LE</Strong></div>
+            <div class="text-dark-emphasis">Total Price <Strong>{{item.productPrice * quantities[i]}} LE</Strong></div>
           </div>
         </div>
         <div class="col-1 d-flex justify-content-center align-items-center">
-          <button class="btn btn-dark" (click)="deletecart(item.productId)">X</button>
+          <button class="btn btn-close" (click)="deletecart(item.productId)"></button>
         </div>
 
       </div>
@@ -41,11 +41,11 @@
   <!-- checkout Section and price -->
   <div class="col-md-4 col-sm-12 container-fluid">
     <div class="row align-items-center" id="totalPriceSection">
-      <div id="totalPrice" class="fs-4 p-3 ">Total Price: <strong>{{totalPrice}} LE</strong></div>
+      <div id="totalPrice" class="fs-4 p-3 text-dark-emphasis">Total Price: <strong>{{totalPrice}} LE</strong></div>
     </div>
 
     <div id="checkButton" class="row">
-      <button class=" btn w-100 btn-dark p-3" (click)="checkout()">Checkout</button>
+      <button class=" btn w-100 btn-success mt-2 p-3" (click)="checkout()">Checkout</button>
     </div>
 
 
