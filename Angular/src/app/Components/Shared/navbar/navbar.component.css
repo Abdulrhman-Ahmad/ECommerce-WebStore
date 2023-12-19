@@ -89,12 +89,12 @@ div ul li a{
 }
 
 .Headers:hover {
-  color: #aba2fd !important;
+  color: rgb(95, 105, 81) !important;
   font-weight: bold;
 }
 
 nav i:hover {
-  color: #aba2fd !important;
+  color: rgb(95, 105, 81) !important;
 }
 
 i {
@@ -197,10 +197,15 @@ div ul li a {
 
   .lower-nav {
     flex-direction: column;
-    
   }
 
   .lower-nav-child {
     margin-top: 0.5em;
   }
+}
+
+.clicked{
+  font-weight: bold;
+  background-color: rgb(224, 214, 214);
+  margin-bottom: 5px;
 }

@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet">
+
 <div class="Header z-3 shadow">
 
   <div class="upper-nav banner" [routerLink]="['products']">
@@ -24,16 +28,16 @@
             <a class="nav-link p-2 p-lg-3 text-dark Headers" href="#brands">Brands</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['products']">Products</a>
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['products']" routerLinkActive="clicked">Products</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['blog']">Blog</a>
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['blog']" routerLinkActive="clicked">Blog</a>
           </li>
           <li class="nav-item " *ngIf="(log.IsAdmin | async)">
-            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['admin/home']" >Dashboard</a>
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['admin/home']" routerLinkActive="clicked">Dashboard</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['contactus']">Contact Us</a>
+            <a class="nav-link p-2 p-lg-3 text-dark Headers" [routerLink]="['contactus']" routerLinkActive="clicked">Contact Us</a>
           </li>
         </ul>
 
