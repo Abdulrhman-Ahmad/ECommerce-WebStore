@@ -35,7 +35,7 @@ Angular was employed to efficiently handle back-end technologies, enhancing the 
 
 ## Architecture
 
-- Followed N-tier architecture with three layers: API, Core (models and repositories abstraction), and Repository Logic.
+- Followed nTier architecture with three layers: API, Core (models and repositories abstraction), and Repository Logic.
 - Implemented Generic Repository and Unit of Work design patterns for efficient data access.
 
 ## Clean Code Practices

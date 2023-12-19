@@ -38,7 +38,6 @@ import { PhonesComponent } from './Components/Core/phones/phones.component';
 import { AddphoneComponent } from './Components/Core/addphone/addphone.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent,pathMatch:'full'},
   {path:'contactus', component:ContactusComponent},
   {path:'blog', component:BlogComponent},
   {path:'login', component:LoginComponent, canActivate:[authGuard]},
@@ -70,6 +69,7 @@ const routes: Routes = [
   {path:'admin/order/details/:id',component:AdminOrderDetailsComponent, canActivate:[authGuard]},
   {path:'admin/reviews',component:ReviewsListAdminDashboardComponent, canActivate:[authGuard]},
   {path:'admin/ContactUs',component:ContactAdminDashboardComponent, canActivate:[authGuard]},
+  {path:'', component:HomeComponent,pathMatch:'full'},
   {path:'**', component:NotfoundComponent}
 ];
 
