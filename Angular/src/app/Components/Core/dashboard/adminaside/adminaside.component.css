@@ -4,11 +4,11 @@ a{
 }
 
 .nav-link.active {
-    background-color: #383c3f; /* Set the background color for active links */
-    color: #aba2fd !important; /* Set the text color for active links */
+  background-color: #dddddd;
+  color: #818181 !important;
 }
 
 .nav-link:hover {
-    color: #aba2fd !important;
-    font-weight: bold;
+  color: #454545 !important;
+  font-weight: bold;
 }
