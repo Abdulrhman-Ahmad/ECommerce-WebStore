@@ -73,7 +73,6 @@
             <select class="form-select mb-2" aria-label="Default select example" *ngIf="product.stockQuantity > 0"  [(ngModel)]="quantity">
               <option *ngFor="let i of getRange(product.stockQuantity)" [value]="i">{{ i }}</option>
             </select>
-            
           </div>
           <div class="text-danger" *ngIf="quantity > 4">You Can't Add to Cart more than 5 Pieces!</div>
           <a class="btn btn-success shadow-0 m-1" (click)="buy()"> Buy now </a>
@@ -176,7 +175,7 @@
         <br>
         <div class="px-0 border rounded-2 shadow-0">
           <div class="card">
-            <div class="card-body" style="min-height: 27rem; max-height: 40rem;">
+            <div class="card-body" style="min-height: 27rem; max-height: 40rem; overflow: auto;">
               <h5 class="card-title m-3 text-center border-bottom">Similar Products</h5>
 
               <div class="d-flex mb-3 row" *ngFor="let item of relatedProducts" id="Holder">
